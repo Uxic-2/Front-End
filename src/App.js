@@ -14,11 +14,7 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <header className="App-header">
-        <p>
-          FE TEST
-        </p>
-      </header>
+
     </div>
   );
 }
