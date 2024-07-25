@@ -1,38 +1,41 @@
+/* App 전체 스타일 */
 .App {
-  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* 스크롤바 기본 스타일 */
+::-webkit-scrollbar {
+  width: 12px;
+  /* 스크롤바의 너비 */
+  height: 12px;
+  /* 수평 스크롤바의 높이 */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* 스크롤바 트랙 스타일 */
+::-webkit-scrollbar-track {
+  background: #A9C398;
+  /* 트랙의 배경색 */
+  border-radius: 10px;
+  /* 둥글게 */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* 스크롤바 핸들(스크롤바 자체) 스타일 */
+::-webkit-scrollbar-thumb {
+  background-color: #A9C398;
+  /* 스크롤바 색상 */
+  border-radius: 10px;
+  /* 둥글게 */
+  border: 3px solid #ffffff;
+  /* 스크롤바의 경계색, 더 넓은 경계로 스크롤바가 더 둥글게 보이도록 */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Firefox 스크롤바 스타일 */
+* {
+  scrollbar-width: thin;
+  /* 스크롤바의 두께 */
+  scrollbar-color: #A9C398 #f0f0f0;
+  /* 스크롤바 색상과 트랙 색상 */
 }
