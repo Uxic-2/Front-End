@@ -1,30 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.css';
-import logo from '../imgs/logo.png'; 
+import logo from '../imgs/logo.png';
 
 const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <NavLink to="/">
+          <img src={logo} alt="Logo" />
+        </NavLink>
       </div>
       <nav className="nav">
         <ul className="nav-list">
           <li className="nav-item">
-            <Link to="/" className="nav-link">홈</Link>
+            <NavLink 
+              to="/about" 
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              ABOUT
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link to="/photozone" className="nav-link">사진관</Link>
+            <NavLink 
+              to="/hotspot" 
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              HOT SPOT
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link to="/community" className="nav-link">커뮤니티</Link>
+            <NavLink 
+              to="/support" 
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              SUPPORT
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link to="/login" className="nav-link">로그인</Link>
+            <NavLink 
+              to="/login" 
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              LOGIN
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link to="/mypage" className="nav-link">마이페이지</Link>
+            <NavLink 
+              to="/mypage" 
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            >
+              MY PAGE
+            </NavLink>
           </li>
           <li className="nav-item search-bar">
             <input type="text" placeholder="검색" />

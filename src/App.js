@@ -5,8 +5,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import MyPage from './pages/MyPage';
 import SignUp from './pages/SignUp';
-import Photozone from './pages/Photozone';
-import Community from './pages/Community';
+import Support from './pages/Support';
+import Hotspot from './pages/Hotspot';
+import About from './pages/About';
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/photozone" element={<Photozone />} />
-        <Route path="/community" element={<Community />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/hotspot" element={<Hotspot />} />
+        <Route path="/about" element={<About />} />
       </Routes>
 
     </div>
