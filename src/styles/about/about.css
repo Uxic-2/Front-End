@@ -1,0 +1,76 @@
+.about-page {
+    display: flex;
+    background-color: white;
+}
+
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.about-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.greeting {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.about-section {
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 8%;
+    margin-bottom: 5%;
+    flex-grow: 1;
+    padding: 20px;
+    background-color: lightyellow;
+}
+
+.about-section h2 {
+    color: #F8B46E;
+}
+
+.about-section h2,
+.about-section p,
+.about-section ol {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.about-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.about-section li {
+    margin-bottom: 10px;
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+    .about-page {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        align-items: center;
+    }
+
+    .about-section {
+        width: 100%;
+    }
+}

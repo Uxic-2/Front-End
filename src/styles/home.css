@@ -1,25 +1,43 @@
 .home {
     position: relative;
-    /* 자식 요소에 대해 절대 위치 설정 가능 */
     overflow: hidden;
-    /* 이미지가 컨테이너 밖으로 넘치지 않게 */
+    text-align: center;
+    /* 중앙 정렬 추가 */
 }
 
 .main-banner {
     width: 100%;
-    /* 전체 너비 가득 */
     height: auto;
-    /* 높이는 자동 조절 */
     object-fit: cover;
-    /* 이미지가 컨테이너를 가득 채우도록 조절 */
 }
 
-/* 제목 스타일을 위해 추가 */
 .home h1 {
-    text-align: center;
-    /* 제목을 중앙 정렬 */
+    margin-top: 20px;
+    color: #333;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 가로 5개 */
+    grid-template-rows: repeat(2, auto);
+    /* 세로 2개 */
+    gap: 10px;
+    /* 이미지 간의 간격 */
+    background-color: lightyellow;
+    /* 배경색 */
+    padding: 20px;
+    /* 여백 추가 */
     margin-top: 20px;
     /* 상단 여백 추가 */
-    color: #333;
-    /* 텍스트 색상 */
+}
+
+.grid-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    /* 이미지 경계선 */
+    border-radius: 5px;
+    /* 모서리 둥글게 */
 }
