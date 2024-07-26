@@ -1,136 +1,43 @@
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f9f9f9;
+.home {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    /* 중앙 정렬 추가 */
 }
 
-.login-logo {
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: #fffacd;
-    /* Light yellow */
+.main-banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.home h1 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 가로 5개 */
+    grid-template-rows: repeat(2, auto);
+    /* 세로 2개 */
+    gap: 10px;
+    /* 이미지 간의 간격 */
+    background-color: lightyellow;
+    /* 배경색 */
     padding: 20px;
-    border-radius: 10px;
+    /* 여백 추가 */
+    margin-top: 20px;
+    /* 상단 여백 추가 */
 }
 
-.login-logo img {
-    width: 100px;
-}
-
-.login-logo h1 {
-    font-size: 36px;
-    margin: 10px 0;
-}
-
-.login-logo p {
-    font-size: 16px;
-    color: #888;
-}
-
-.login-form-container {
-    width: 80%;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    /* Changed to row for side by side */
-    justify-content: space-between;
-    /* Distribute space between items */
-    align-items: center;
-}
-
-.login-form-container h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.login-form-container p {
-    color: #888;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-.form-group input {
+.grid-image {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    /* 이미지 경계선 */
     border-radius: 5px;
-}
-
-.forgot-password {
-    text-align: right;
-    color: #f90;
-    margin-bottom: 20px;
-}
-
-.login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #f90;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.signup-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #ddd;
-    color: #555;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.social-login-text {
-    color: #888;
-    margin-bottom: 10px;
-}
-
-.social-login-buttons {
-    display: flex;
-    justify-content: space-around;
-}
-
-.social-button {
-    width: 100px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.social-button.naver {
-    background-color: #1ec800;
-    color: #fff;
-}
-
-.social-button.kakao {
-    background-color: #ffe812;
-    color: #3c1e1e;
-}
-
-.social-button.google {
-    background-color: #fff;
-    color: #555;
-    border: 1px solid #ddd;
+    /* 모서리 둥글게 */
 }
