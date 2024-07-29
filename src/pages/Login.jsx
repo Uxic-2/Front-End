@@ -24,11 +24,11 @@ const Login = () => {
       <div className="login-form-container">
         <div className="login-logo">
           <img src={characterLogo} alt="Photato Logo" />
+          <br></br><br></br>
           <h1>Welcome to PHOTATO!</h1>
           <p>Sign in to continue access pages</p>
         </div>
         <div className="right-container">
-        <div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">아이디</label>
@@ -61,7 +61,6 @@ const Login = () => {
             <button className="social-button naver">네이버로 로그인</button>
             <button className="social-button kakao">카카오로 로그인</button>
             <button className="social-button google">구글로 로그인</button>
-          </div>
           </div>
         </div>
       </div>

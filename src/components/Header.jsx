@@ -53,9 +53,7 @@ const Header = () => {
               MY PAGE
             </NavLink>
           </li>
-          <li className="nav-item search-bar">
-            <input type="text" placeholder="검색" />
-          </li>
+          
         </ul>
       </nav>
     </header>
