@@ -1,16 +1,35 @@
 import React from 'react';
+import SideBar from '../components/SideBar';
+import { Route, Routes } from 'react-router-dom';
 
-const Hotspot = () => {
+const HotSpot = () => {
+  const hotSpots = Array(9).fill({ likes: 123456789 });
+
   return (
-    <div>
-      <h1>Hotspot Page</h1>
-      <div id="map" style={{ width: '1000px', height: '500px', marginTop: '40px' }}>
-      <li className="nav-item search-bar">
-            <input type="text" placeholder="검색" />
-          </li>
+    <div className="flex">
+      <SideBar />
+      <div className="flex-1 p-4">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl">지금 인기있는 HOT SPOT</h2>
+          <input type="text" placeholder="Search..." className="border rounded p-2" />
+        </div>
+        <div className="flex-1 p-4">
+            인기순
+        </div>
+        <div className="grid grid-cols-3 gap-6">
+          {hotSpots.map((spot, index) => (
+            <div key={index}>
+              <div className="bg-gray-300 w-full h-40 mb-2"></div>
+              <div className="flex justify-between items-center">
+                <p>❤ {spot.likes.toLocaleString()}</p>
+                <button className="bg-gray-400 px-4 py-2 rounded">선택</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default Hotspot;
+export default HotSpot;

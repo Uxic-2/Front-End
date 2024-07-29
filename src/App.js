@@ -6,8 +6,10 @@ import Login from './pages/Login';
 import MyPage from './pages/MyPage';
 import SignUp from './pages/SignUp';
 import Support from './pages/Support';
-import Hotspot from './pages/Hotspot';
+import HotSpot from './pages/HotSpot';
 import About from './pages/About';
+import './index.css';
+
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/hotspot" element={<Hotspot />} />
+        <Route path="/hotspot" element={<HotSpot />} />
         <Route path="/about" element={<About />} />
       </Routes>
 
