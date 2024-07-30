@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import MyPage from './pages/MyPage';
 import SignUp from './pages/SignUp';
 import Support from './pages/Support';
-import HotSpot from './pages/HotSpot';
+import HotSpot from './pages/Hotspot';
 import About from './pages/About';
 import './index.css';
 
