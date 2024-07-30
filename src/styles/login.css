@@ -16,9 +16,19 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
+.position-cc {
+    display: flex;
+}
+
+.bblank {
+    width: 21%;
+    height: 1%;
+}
+
 .login-logo {
     flex: 1;
     text-align: center;
+    align-items: center;
     background-color: #fff9e6;
     padding: 40px;
     border-radius: 10px 0 0 10px;

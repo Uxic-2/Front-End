@@ -23,7 +23,10 @@ const Login = () => {
     <div className="login-container">
       <div className="login-form-container">
         <div className="login-logo">
+          <div className='position-cc'>
+          <div className='bblank'></div>
           <img src={characterLogo} alt="Photato Logo" />
+          </div>
           <br></br><br></br>
           <h1>Welcome to PHOTATO!</h1>
           <p>Sign in to continue access pages</p>
