@@ -1,0 +1,38 @@
+.logo-section {
+    margin-left: 250px;
+    margin-right: 40px;
+    align-items: center;
+    align-content: center;
+    text-align: left;
+}
+
+.character-logo {
+    margin-left: 300px;
+    width: 24vw;
+    height: 36vh;
+    margin-bottom: 8vh;
+}
+
+.logoimg {
+    width: 10vw;
+    height: 5vh;
+}
+
+.maincolor1 {
+    width: 80px;
+    height: 80px;
+    background-color: #F8B46E;
+    margin-right: 3vw;
+}
+
+.maincolor2 {
+    width: 80px;
+    height: 80px;
+    background-color: #A9C498;
+    margin-right: 3vw;
+}
+
+.color2div {
+    align-items: center;
+    display: flex;
+}

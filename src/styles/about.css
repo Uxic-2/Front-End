@@ -39,7 +39,7 @@
     margin-left: 220px;
     /* sidebar의 너비를 고려한 왼쪽 여백 */
     margin-top: 2%;
-    margin-right: 2%;
+    margin-right: 4%;
     margin-bottom: 5%;
     padding: 20px;
     background-color: lightyellow;
@@ -70,15 +70,7 @@
     margin: 30vh;
 }
 
-.logo-section {
-    margin-left: 250px;
-    margin-right: 40px;
-}
 
-.greeting-section {
-    margin-left: 250px;
-    margin-right: 40px;
-}
 
 /* 미디어 쿼리 */
 @media (max-width: 768px) {
