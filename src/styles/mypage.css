@@ -1,0 +1,145 @@
+.my-sidebar {
+  width: 170px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 1000;
+}
+
+.my-sidebar-content {
+  /* 내 지도 */
+
+  width: 182px;
+  height: 45px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  /* or 111% */
+  text-align: center;
+
+  color: #a9c398;
+  /* color: #f8b46e; */
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.my-container {
+  border: #000000 1px solid;
+  /* sidebar의 너비를 고려한 왼쪽 여백 */
+  margin-right: 4%;
+  margin-bottom: 5%;
+  margin-left: 220px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.my-map-container {
+  border: #000000 1px solid;
+  /* sidebar의 너비를 고려한 왼쪽 여백 */
+  margin-bottom: 5%;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.my-map-header-wrap {
+  display: flex;
+}
+
+.my-map-icon {
+  display: flex;
+}
+
+.my-map-header {
+  width: 105.89px;
+  height: 33.04px;
+  left: 400.9px;
+  top: 222px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20.331px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+
+  margin: 0 0 0 5px;
+}
+
+.my-map-section {
+  width: 70%;
+  height: 501.95px;
+
+  margin-top: 2%;
+  margin-left: 15%;
+  border: #000000 1px solid;
+
+  position: relative;
+}
+
+.my-map-upload-button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.my-map-upload-button:hover {
+  background-color: #ffffff;
+  color: black;
+  border: #000000 1px solid;
+}
+
+.my-folder-container {
+  border: #000000 1px solid;
+  /* sidebar의 너비를 고려한 왼쪽 여백 */
+  margin-bottom: 5%;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.my-folder-wrap {
+  width: 1000px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.my-folder-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 200px;
+  height: 250px;
+}
+
+.my-folder-img {
+  width: 120.03px;
+  height: 120.03px;
+
+  background-color: #dddddd;
+}
