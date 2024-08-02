@@ -8,6 +8,7 @@
 
 .character-logo {
     margin-left: 300px;
+    margin-right: 20px;
     width: 24vw;
     height: 36vh;
     margin-bottom: 8vh;
@@ -35,4 +36,11 @@
 .color2div {
     align-items: center;
     display: flex;
+}
+
+
+
+.logo-section p {
+    margin: 0;
+    /* Remove default margin to align the text properly */
 }

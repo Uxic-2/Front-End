@@ -10,9 +10,9 @@ const About = () => {
     <div>
       <div className="about-page">
         <aside className="sidebar">
-          <div className="about-title">ABOUT</div>
-          <div className="logo">LOGO</div>
-          <div className="greeting">인사말</div>
+          <div className="side1">ABOUT</div>
+          <div className="side2">LOGO</div>
+          <div className="side3">인사말</div>
         </aside>
         <section className="about-section">
           <h2>서비스명</h2>
