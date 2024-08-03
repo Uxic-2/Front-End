@@ -18,8 +18,8 @@ const Support = () => {
     <div className="support-container">
       <aside className="sidebar">
       <Link to="/support" className="sidebar-item side1 active">문의사항</Link>
-        <Link to="/suppage/notice" className="sidebar-item side2">공지사항</Link>
-        <Link to="/suppage/question" className="sidebar-item side3">자주 묻는 질문</Link>
+        <Link to="/SupNotice" className="sidebar-item side2">공지사항</Link>
+        <Link to="/SupQuestion" className="sidebar-item side3">자주 묻는 질문</Link>
       </aside>
       <div className="support-content">
         <h1>문의사항</h1>

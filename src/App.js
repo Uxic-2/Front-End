@@ -10,8 +10,8 @@ import HotSpot from "./pages/Hotspot";
 import About from "./pages/About";
 import HiddenSpot from "./pages/HiddenSpot";
 import ReadyTravel from "./pages/ReadyTravel";
-import SupNotice from "./pages/suppage/SupNotice";
-import SupQuestion from "./pages/suppage/SupQuestion";
+import SupNotice from "./pages/SupNotice";
+import SupQuestion from "./pages/SupQuestion";
 import Lodging from "./pages/Lodging";
 import Restaurant from "./pages/Restaurant";
 
@@ -36,8 +36,8 @@ function App() {
         <Route path="/mypage/mymap" element={<MyMap />} />
         <Route path="/mypage/myfolder" element={<MyFolder />} />
         <Route path="/mypage/myschedule" element={<MySchedule />} />
-        <Route path="/suppage/supnotice" element={<SupNotice />} />
-        <Route path="/suppage/supquestion" element={<SupQuestion />} />
+        <Route path="/supnotice" element={<SupNotice />} />
+        <Route path="/supquestion" element={<SupQuestion />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </div>

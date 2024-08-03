@@ -27,3 +27,15 @@
 .sidebar .side3 {
     color: #8bc34a;
 }
+
+.sidebar .side1 {
+    color: #8bc34a;
+}
+
+.sidebar .side2.active {
+    color: #fc926b;
+}
+
+.sidebar .side3.active {
+    color: #fc926b;
+}
