@@ -19,7 +19,7 @@ const HotSpot = () => {
         <div className="grid grid-cols-3 gap-6">
           {hotSpots.map((spot, index) => (
             <div key={index}>
-              <div className="bg-gray-300 w-full h-40 mb-2"></div>
+              <div className="bg-gray-300 w-full h-60 mb-2"></div>
               <div className="flex justify-between items-center">
                 <p>❤ {spot.likes.toLocaleString()}</p>
                 <button className="bg-gray-400 px-4 py-2 rounded">선택</button>

@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp";
 import Support from "./pages/Support";
 import HotSpot from "./pages/Hotspot";
 import About from "./pages/About";
+import HiddenSpot from "./pages/HiddenSpot"; 
+import ReadyTravel from "./pages/ReadyTravel"; 
 
 import "./index.css";
 
@@ -20,9 +22,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/hotspot" element={<HotSpot />} />
+        <Route path="/hot-spot" element={<HotSpot />} />
         <Route path="/about" element={<About />} />
-
+        <Route path="/hidden-spot" element={<HiddenSpot />} /> 
+        <Route path="/ready-travel" element={<ReadyTravel />} /> 
         <Route path="/mypage" element={<MyMap />} />
         <Route path="/mypage/mymap" element={<MyMap />} />
         <Route path="/mypage/myfolder" element={<MyFolder />} />

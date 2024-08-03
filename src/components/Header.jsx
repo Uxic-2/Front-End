@@ -23,7 +23,7 @@ const Header = () => {
           </li>
           <li className="nav-item">
             <NavLink 
-              to="/hotspot" 
+              to="/hot-spot" 
               className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
             >
               HOT SPOT
