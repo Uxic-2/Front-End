@@ -16,26 +16,15 @@
     color: #000;
 }
 
-.sidebar .side1.active {
+.sidebar .side1.active,
+.sidebar .side2.active,
+.sidebar .side3.active {
+    background-color: #f0f0f0;
     color: #fc926b;
 }
 
-.sidebar .side2 {
-    color: #8bc34a;
-}
-
+.sidebar .side1,
+.sidebar .side2,
 .sidebar .side3 {
     color: #8bc34a;
-}
-
-.sidebar .side1 {
-    color: #8bc34a;
-}
-
-.sidebar .side2.active {
-    color: #fc926b;
-}
-
-.sidebar .side3.active {
-    color: #fc926b;
 }
