@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "../styles/support.css";
 
 const Support = () => {
@@ -16,9 +17,9 @@ const Support = () => {
   return (
     <div className="support-container">
       <aside className="sidebar">
-        <div className="side1 active">문의사항</div>
-        <div className="side2">공지사항</div>
-        <div className="side3">자주 묻는 질문</div>
+      <Link to="/support" className="sidebar-item side1 active">문의사항</Link>
+        <Link to="/suppage/notice" className="sidebar-item side2">공지사항</Link>
+        <Link to="/suppage/question" className="sidebar-item side3">자주 묻는 질문</Link>
       </aside>
       <div className="support-content">
         <h1>문의사항</h1>

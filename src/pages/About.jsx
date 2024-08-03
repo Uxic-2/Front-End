@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/about.css';
+import '../styles/sidebar.css';
 import '../styles/about/aboutlogo.css';
 import '../styles/about/aboutgreeting.css';
 import character_logo from '../imgs/character_logo.png'; 
@@ -10,9 +11,9 @@ const About = () => {
     <div>
       <div className="about-page">
         <aside className="sidebar">
-          <div className="side1">ABOUT</div>
-          <div className="side2">LOGO</div>
-          <div className="side3">인사말</div>
+          <div className="sidebar-item side1 active">ABOUT</div>
+          <div className="sidebar-item side2">LOGO</div>
+          <div className="sidebar-item side3">인사말</div>
         </aside>
         <section className="about-section">
           <h2>서비스명</h2>

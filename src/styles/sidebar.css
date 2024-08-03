@@ -1,0 +1,29 @@
+.sidebar {
+    width: 200px;
+    background-color: #ffffff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar .sidebar-item {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar .side1.active {
+    color: #fc926b;
+}
+
+.sidebar .side2 {
+    color: #8bc34a;
+}
+
+.sidebar .side3 {
+    color: #8bc34a;
+}

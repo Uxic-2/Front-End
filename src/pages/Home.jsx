@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/home.css'; 
 import mainBanner from '../imgs/main_banner.png'; 
-import exampleImage from '../imgs/example_image.jpg'; // 예제 이미지를 추가
+import exampleImage from '../imgs/example_image.jpg'; 
 
 const Home = () => {
   return (
