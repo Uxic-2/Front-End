@@ -10,6 +10,8 @@ import HotSpot from "./pages/Hotspot";
 import About from "./pages/About";
 import HiddenSpot from "./pages/HiddenSpot"; 
 import ReadyTravel from "./pages/ReadyTravel"; 
+import Lodging from "./pages/Lodging";
+import Restaurant from "./pages/Restaurant";
 
 import "./index.css";
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/hidden-spot" element={<HiddenSpot />} /> 
         <Route path="/ready-travel" element={<ReadyTravel />} /> 
+        <Route path="/lodging" element={<Lodging />} /> 
+        <Route path="/restaurant" element={<Restaurant />} /> 
         <Route path="/mypage" element={<MyMap />} />
         <Route path="/mypage/mymap" element={<MyMap />} />
         <Route path="/mypage/myfolder" element={<MyFolder />} />
