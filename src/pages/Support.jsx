@@ -10,7 +10,6 @@ const Support = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log({ email, subject, message, userId, file });
   };
 
