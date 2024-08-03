@@ -12,6 +12,8 @@ import HiddenSpot from "./pages/HiddenSpot";
 import ReadyTravel from "./pages/ReadyTravel";
 import SupNotice from "./pages/suppage/SupNotice";
 import SupQuestion from "./pages/suppage/SupQuestion";
+import Lodging from "./pages/Lodging";
+import Restaurant from "./pages/Restaurant";
 
 import "./index.css";
 
@@ -28,6 +30,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/hidden-spot" element={<HiddenSpot />} />
         <Route path="/ready-travel" element={<ReadyTravel />} />
+        <Route path="/restaurant" element={<Restaurant />} />
+        <Route path="/lodging" element={<Lodging />} />
         <Route path="/mypage" element={<MyMap />} />
         <Route path="/mypage/mymap" element={<MyMap />} />
         <Route path="/mypage/myfolder" element={<MyFolder />} />
