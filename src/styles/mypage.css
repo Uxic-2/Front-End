@@ -51,6 +51,14 @@
   margin-bottom: 5%;
   padding: 20px;
   flex-grow: 1;
+  overflow: hidden;
+}
+
+.my-map-container:nth-child(3),
+.my-map-container:nth-child(4) {
+  display: flex;
+  flex-direction: column; /* 자식 요소들을 세로로 배치 */
+  align-items: center; /* 자식 요소들을 가운데 정렬 (선택 사항) */
 }
 
 .my-map-header-wrap {
@@ -89,6 +97,13 @@
   border: #000000 1px solid;
 
   position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-map-section:nth-last-child(2) {
+  position: relative;
+  margin-left: 0;
 }
 
 .my-map-upload-button {
@@ -115,7 +130,6 @@
   /* sidebar의 너비를 고려한 왼쪽 여백 */
   margin-bottom: 5%;
   padding: 20px;
-  flex-grow: 1;
 }
 
 .my-folder-wrap {
@@ -142,4 +156,39 @@
   height: 120.03px;
 
   background-color: #dddddd;
+}
+
+.my-cursor_icon {
+  position: relative;
+  width: 10%;
+  margin-top: 5%;
+  margin-left: 45%;
+}
+
+.my-map-readytravel-wrap {
+  border: #000000 1px solid;
+}
+
+.my-map-upload-text {
+  font-family: "Inter";
+  font-weight: 800;
+  font-size: 13.5516px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+
+  color: #626262;
+  margin: 5% 0 auto;
+}
+
+.my-map-upload-bold-text {
+  font-family: "Inter";
+  font-weight: 800;
+  font-size: 27.1033px;
+  line-height: 33px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+  margin: 5% 0 5% 0;
 }
