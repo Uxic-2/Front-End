@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
+import Map from "./MapApi";
 import "react-calendar/dist/Calendar.css";
 import "../styles/mypage.css";
 
@@ -65,7 +66,7 @@ function MyMap() {
             <img className="my-map-icon" src={map_icon}></img>
             <h2 className="my-map-header">내 지도</h2>
           </div>
-          <div className="my-map-section">이 자리에 지도</div>
+          <Map />
         </div>
         <div className="my-map-container">
           <div className="my-map-upload-bold-text">
