@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../styles/about.css';
 import '../styles/sidebar.css';
 import '../styles/about/aboutlogo.css';
@@ -7,15 +7,47 @@ import character_logo from '../imgs/character_logo.png';
 import logo from '../imgs/logo.png';
 
 const About = () => {
+  const [activeSection, setActiveSection] = useState('ABOUT');
+
+  const aboutRef = useRef(null);
+  const logoRef = useRef(null);
+  const greetingRef = useRef(null);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5 
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.dataset.section);
+        }
+      });
+    }, options);
+
+    if (aboutRef.current) observer.observe(aboutRef.current);
+    if (logoRef.current) observer.observe(logoRef.current);
+    if (greetingRef.current) observer.observe(greetingRef.current);
+
+    return () => {
+      if (aboutRef.current) observer.unobserve(aboutRef.current);
+      if (logoRef.current) observer.unobserve(logoRef.current);
+      if (greetingRef.current) observer.unobserve(greetingRef.current);
+    };
+  }, []);
+
   return (
     <div>
       <div className="about-page">
         <aside className="sidebar">
-          <div className="sidebar-item side1 active">ABOUT</div>
-          <div className="sidebar-item side2">LOGO</div>
-          <div className="sidebar-item side3">인사말</div>
+          <div className={`sidebar-item side1 ${activeSection === 'ABOUT' ? 'active' : ''}`}>ABOUT</div>
+          <div className={`sidebar-item side2 ${activeSection === 'LOGO' ? 'active' : ''}`}>LOGO</div>
+          <div className={`sidebar-item side3 ${activeSection === '인사말' ? 'active' : ''}`}>인사말</div>
         </aside>
-        <section className="about-section">
+        <section ref={aboutRef} data-section="ABOUT" className="about-section">
           <h2>서비스명</h2>
           <p>PHOTATO</p>
           <br />
@@ -36,30 +68,33 @@ const About = () => {
         </section>
       </div>
       <div className="blank"></div>
-      <section className="logo-section">
-      <img src={character_logo} alt="character_logo" className="character-logo" />
-        <p>
-        <img src={logo} alt="logoimg" className="logoimg" />
-          는 사진분석 여행 추천 시스템이라는 취지에 걸맞게
-          나만의 spot을 찾길 바라는 마음에서 시작되었습니다.<br></br>
-          “PHOTATO”는 뜨거운 감자를 의미하며, 나만의 숨겨진 곳을 공유하고 
-          그 곳이 많은 이들의 “HOT SPOT”이 되길 바라는 마음에서 유래되었습니다.
-          <br></br>
-          <br></br>
-          <br></br>
-          <h4><b>Main Color</b></h4>
-          <div className='color2div'>
-          <div className="maincolor1"></div>
-          <p>#F8B46E</p></div>
-          <br></br>
-          <div className='color2div'>
-          <div className="maincolor2"></div>
-          <p>#A9C498</p>
-          </div>
-        </p>
+      <section ref={logoRef} data-section="LOGO" className="logo-section">
+        <div className="logo-container">
+          <img src={character_logo} alt="character_logo" className="character-logo" />
+          <p>
+            <img src={logo} alt="logoimg" className="logoimg" />
+            는 사진분석 여행 추천 시스템이라는 취지에 걸맞게
+            나만의 spot을 찾길 바라는 마음에서 시작되었습니다.<br></br>
+            “PHOTATO”는 뜨거운 감자를 의미하며, 나만의 숨겨진 곳을 공유하고 
+            그 곳이 많은 이들의 “HOT SPOT”이 되길 바라는 마음에서 유래되었습니다.
+            <br></br>
+            <br></br>
+            <br></br>
+            <h4><b>Main Color</b></h4>
+            <div className='color2div'>
+              <div className="maincolor1"></div>
+              <p>#F8B46E</p>
+            </div>
+            <br></br>
+            <div className='color2div'>
+              <div className="maincolor2"></div>
+              <p>#A9C498</p>
+            </div>
+          </p>
+        </div>
       </section>
       <div className="blank"></div>
-      <section className="greeting-section">
+      <section ref={greetingRef} data-section="인사말" className="greeting-section">
         <p>
           안녕하세요! 여행의 새로운 길을 열어주는 PHOTATO에 오신 것을 환영합니다.<br></br><br></br><br></br>
           PHOTATO는 여러분의 소중한 여행 사진을 통해 최고의 국내 여행지를 추천하는 혁신적인 서비스입니다.
