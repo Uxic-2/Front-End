@@ -1,33 +1,33 @@
 import React, { useState } from "react";
-import Calendar from "react-calendar";
-import Map from "./MapApi";
-import "react-calendar/dist/Calendar.css";
+import { Link, NavLink } from "react-router-dom";
+
+import "../styles/sidebar.css";
 import "../styles/mypage.css";
+
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
+import Map from "./MapApi";
+import Modal from "./UploadModal";
 
 import map_icon from "../imgs/mypage_map_icon.svg";
 import cursor_icon from "../imgs/mypage_cursor_icon.svg";
 
 function MySidebar() {
   return (
-    <div>
-      <ul className="my-sidebar">
-        <li>
-          <a href="/mypage/mymap" className="my-sidebar-content">
-            내 지도
-          </a>
-        </li>
-        <li>
-          <a href="/mypage/myfolder" className="my-sidebar-content">
-            내 여행 폴더
-          </a>
-        </li>
-        <li>
-          <a href="/mypage/myschedule" className="my-sidebar-content">
-            저장한 스케줄
-          </a>
-        </li>
-      </ul>
-    </div>
+    <>
+      <aside className="sidebar">
+        <NavLink to="/mypage/mymap" className="sidebar-item side1">
+          내 지도
+        </NavLink>
+        <NavLink to="/mypage/myfolder" className="sidebar-item side2">
+          내 여행 폴더
+        </NavLink>
+        <NavLink to="/mypage/myschedule" className="sidebar-item side3">
+          저장한 스케줄
+        </NavLink>
+      </aside>
+    </>
   );
 }
 
@@ -57,6 +57,10 @@ function ReadyTravelNoSideBar() {
 }
 
 function MyMap() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
   return (
     <>
       <MySidebar />
@@ -66,7 +70,7 @@ function MyMap() {
             <img className="my-map-icon" src={map_icon}></img>
             <h2 className="my-map-header">내 지도</h2>
           </div>
-          <Map />
+          <Map style={{ overlay: { zIndex: 0 } }} />
         </div>
         <div className="my-map-container">
           <div className="my-map-upload-bold-text">
@@ -74,7 +78,17 @@ function MyMap() {
             <br />
             나의 지도를 채워보세요
           </div>
-          <button className="my-map-upload-button">upload</button>
+          <div>
+            <Link to="#" onClick={openModal}>
+              모달 열기
+            </Link>
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={{ overlay: { zIndex: 1000 } }}
+            />
+          </div>
+          {/* <button className="my-map-upload-button">upload</button> */}
         </div>
         <div className="my-map-container">
           <div className="my-map-section">
@@ -149,10 +163,10 @@ function MySchedule() {
 
 const MyPage = () => {
   return (
-    <div>
+    <>
       <div className="my-container">이거안쓰는데지워야하나요?</div>
-    </div>
+    </>
   );
 };
 
-export { MyPage, MyMap, MyFolder, MySchedule };
+export { MySidebar, MyPage, MyMap, MyFolder, MySchedule };

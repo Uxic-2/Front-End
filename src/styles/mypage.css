@@ -52,6 +52,8 @@
   padding: 20px;
   flex-grow: 1;
   overflow: hidden;
+  text-align: center;
+  z-index: 0;
 }
 
 .my-map-container:nth-child(3),
@@ -117,6 +119,7 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 4px;
+  border: #000000 1px solid;
 }
 
 .my-map-upload-button:hover {
