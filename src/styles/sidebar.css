@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
     width: 200px;
     background-color: #ffffff;
     padding: 20px;
@@ -27,4 +27,12 @@
 .sidebar .side2,
 .sidebar .side3 {
     color: #8bc34a;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active {
+  @apply text-main-orange font-bold;
 }
