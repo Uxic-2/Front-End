@@ -33,7 +33,6 @@ function App() {
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/lodging" element={<Lodging />} />
         <Route path="/mypage" element={<MyMap />} />
-        <Route path="/mypage/mymap" element={<MyMap />} />
         <Route path="/mypage/myfolder" element={<MyFolder />} />
         <Route path="/mypage/myschedule" element={<MySchedule />} />
         <Route path="/supnotice" element={<SupNotice />} />

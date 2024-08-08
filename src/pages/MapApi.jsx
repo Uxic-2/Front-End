@@ -24,7 +24,13 @@ const MapApi = () => {
     script.addEventListener("load", onLoadKakaoMap);
   }, []);
 
-  return <div id="map" ref={containerRef}></div>;
+  return (
+    <div
+      id="map"
+      // className=" w-3/4 h-128 mt-2 ml-16 relative flex flex-col items-center"
+      ref={containerRef}
+    ></div>
+  );
 };
 
 export default MapApi;
