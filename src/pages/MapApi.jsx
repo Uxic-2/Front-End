@@ -1,14 +1,16 @@
 import { useEffect, useRef } from "react";
+import config from "../apikey";
 
 const MapApi = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
     // Kakao 지도 API 스크립트 동적으로 추가
+    const apikey = config.KAKAO_MAP_API_KEY;
+
     const script = document.createElement("script");
     script.async = true;
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=1d3351181fac2fc990523f9dd2d4d36f&autoload=false";
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&autoload=false`;
     document.body.appendChild(script);
 
     const onLoadKakaoMap = () => {
