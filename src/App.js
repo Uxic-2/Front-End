@@ -4,7 +4,9 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import { MyPage, MyMap, MyFolder, MySchedule } from "./pages/MyPage";
+import MyMap from "./pages/MyMap";
+import MyFolder from "./pages/MyFolder";
+import MySchedule from "./pages/MySchedule";
 import SignUp from "./pages/SignUp";
 import Support from "./pages/Support";
 import HotSpot from "./pages/Hotspot";
@@ -26,7 +28,10 @@ function App() {
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/support" element={<Support />} />
         <Route path="/hot-spot" element={<HotSpot />} />
