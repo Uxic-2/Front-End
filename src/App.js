@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -18,12 +19,14 @@ import Restaurant from "./pages/Restaurant";
 import "./index.css";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
+
   return (
     <div className="App">
-      <Header />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/support" element={<Support />} />
         <Route path="/hot-spot" element={<HotSpot />} />

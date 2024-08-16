@@ -9,15 +9,29 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Name', name);
-    console.log('Phone:', phone);
-    console.log('Birthdate:', birthdate);
-    console.log('Email:', email);
-    console.log('Username:', username);
-    console.log('Password:', password);
-    // 여기서 백엔드 API와 연동하여 회원가입 처리 로직을 추가할 수 있습니다.
+
+    try {
+      const response = await fetch('http://localhost:8080/member/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, birthdate, email, id: username, pw: password
+        }),
+      });
+
+      if (response.ok) {
+        alert('회원가입이 완료되었습니다!');
+        window.location.href = '/login'; // 회원가입 후 로그인 페이지로 이동
+      } else {
+        console.error('Registration failed');
+        alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('서버와의 통신 중 문제가 발생했습니다.');
+    }
   };
 
   return (

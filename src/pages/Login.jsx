@@ -8,11 +8,26 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Here you can add logic to connect with backend API for login
+
+    try {
+      const response = await fetch('http://localhost:8080/member/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        // 로그인 성공 시, 메인 페이지로 이동
+        navigate('/');
+      } else {
+        // 로그인 실패 처리
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleSignUpClick = () => {
