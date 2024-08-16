@@ -11,6 +11,8 @@ import Modal from "./UploadModal";
 
 import map_icon from "../imgs/mypage_map_icon.svg";
 import cursor_icon from "../imgs/mypage_cursor_icon.svg";
+import folder_icon from "../imgs/mypage_folder.svg";
+import schedule_icon from "../imgs/mypage_schedule.svg";
 
 import "../styles/sidebar.css";
 
@@ -121,55 +123,97 @@ function MyFolder() {
   const listItems = 3;
 
   return (
-    <div>
+    <div className="flex">
       <SideBar />
-      <div className="my-container">
-        {Array.from(Array(Math.ceil(myFolder.length / listItems)).keys()).map(
-          (v) => {
-            return (
-              <div className="my-folder-wrap">
-                {Array.from(
-                  {
-                    length:
-                      myFolder.length - v * listItems >= listItems
-                        ? listItems
-                        : myFolder.length % listItems,
-                  },
-                  (_, i) => v * 3 + i
-                ).map((spot, index) => {
-                  return (
-                    <div className="my-folder-item">
-                      <div className="my-folder-img"></div>
-                      <div className="my-folder-text">
-                        {myFolder[index].folder_name}
+      <div className="flex-1 p-4 ">
+        <div className="items-center mb-10">
+          <div className="flex ">
+            <h2 className="text-2xl">내 여행 폴더</h2>
+          </div>
+        </div>
+        <div className=" m-auto w-[70%] border-2 border-main-orange rounded-xl">
+          {Array.from(Array(Math.ceil(myFolder.length / listItems)).keys()).map(
+            (v) => {
+              return (
+                <div className="flex p-2 m-auto w-[50%]">
+                  {Array.from(
+                    {
+                      length:
+                        myFolder.length - v * listItems >= listItems
+                          ? listItems
+                          : myFolder.length % listItems,
+                    },
+                    (_, i) => v * 3 + i
+                  ).map((spot, index) => {
+                    return (
+                      <div className="flex flex-col items-center w-[200px] h-[250px]">
+                        <img
+                          src={folder_icon}
+                          className="w-[120px] h-[120px]"
+                        ></img>
+                        <div className="flex-1 text-base text-center">
+                          {myFolder[index].folder_name}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          }
-        )}
+                    );
+                  })}
+                </div>
+              );
+            }
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
 function MySchedule() {
+  const myFolder = Array(10).fill({ folder_name: "folder name" });
+  const listItems = 3;
+
   return (
-    <>
+    <div className="flex">
       <SideBar />
-      <div className="my-container">MySchedule</div>
-    </>
+      <div className="flex-1 p-4 ">
+        <div className="items-center mb-10">
+          <div className="flex ">
+            <h2 className="text-2xl">저장한 스케쥴</h2>
+          </div>
+        </div>
+        <div className=" m-auto w-[70%] border-2 border-main-orange rounded-xl">
+          {Array.from(Array(Math.ceil(myFolder.length / listItems)).keys()).map(
+            (v) => {
+              return (
+                <div className="flex p-2 m-auto w-[50%]">
+                  {Array.from(
+                    {
+                      length:
+                        myFolder.length - v * listItems >= listItems
+                          ? listItems
+                          : myFolder.length % listItems,
+                    },
+                    (_, i) => v * 3 + i
+                  ).map((spot, index) => {
+                    return (
+                      <div className="flex flex-col items-center w-[200px] h-[250px]">
+                        <img
+                          src={schedule_icon}
+                          className="w-[120px] h-[120px]"
+                        ></img>
+                        <div className="flex-1 text-base text-center">
+                          {myFolder[index].folder_name}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
-const MyPage = () => {
-  return (
-    <>
-      <div className="my-container">이거안쓰는데지워야하나요?</div>
-    </>
-  );
-};
-
-export { MyPage, MyMap, MyFolder, MySchedule };
+export { MyMap, MyFolder, MySchedule };
