@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-apikey.js
+/config
 
 # production
 /build

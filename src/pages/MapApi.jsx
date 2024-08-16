@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import config from "../apikey";
+import config from "../../config/apikey";
 
 const MapApi = () => {
   const containerRef = useRef(null);
