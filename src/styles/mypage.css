@@ -82,35 +82,6 @@
   align-items: center;
 }
 
-.my-folder-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-
-  width: 200px;
-  height: 250px;
-}
-
-.my-folder-img {
-  width: 120.03px;
-  height: 120.03px;
-
-  background-color: #dddddd;
-}
-
 .my-map-readytravel-wrap {
   border: #000000 1px solid;
-}
-
-.my-map-upload-text {
-  font-family: "Inter";
-  font-weight: 800;
-  font-size: 13.5516px;
-  line-height: 16px;
-  align-items: center;
-  text-align: center;
-
-  color: #626262;
-  margin: 5% 0 auto;
 }
