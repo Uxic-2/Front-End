@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/support.css";
 
+import SideBar from "../components/SideBar";
+import links from "../components/SideBar/SBSupport";
+
 const Support = () => {
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
-  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [userId, setUserId] = useState("");
   const [file, setFile] = useState(null);
 
   const handleSubmit = (e) => {
@@ -16,11 +19,12 @@ const Support = () => {
 
   return (
     <div className="support-container">
-      <aside className="sidebar">
+      <SideBar links={links} />
+      {/* <aside className="sidebar">
       <Link to="/support" className="sidebar-item side1 active">문의사항</Link>
         <Link to="/SupNotice" className="sidebar-item side2">공지사항</Link>
         <Link to="/SupQuestion" className="sidebar-item side3">자주 묻는 질문</Link>
-      </aside>
+      </aside> */}
       <div className="support-content">
         <h1>문의사항</h1>
         <form onSubmit={handleSubmit} className="support-form">

@@ -1,16 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/sidebar.css';
-import '../styles/support/supportQuestion.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/sidebar.css";
+import "../styles/support/supportQuestion.css";
+
+import SideBar from "../components/SideBar";
+import links from "../components/SideBar/SBSupport";
 
 const SupQuestion = () => {
   return (
     <div className="container">
-      <aside className="sidebar">
-        <Link to="/support" className="sidebar-item side1">문의사항</Link>
-        <Link to="/supnotice" className="sidebar-item side2">공지사항</Link>
-        <Link to="/supquestion" className="sidebar-item side3 active">자주 묻는 질문</Link>
-      </aside>
+      <SideBar links={links} />
       <div className="content">
         <h1>자주 묻는 질문</h1>
         <div className="search-bar">
@@ -28,9 +27,7 @@ const SupQuestion = () => {
               <th>조회</th>
             </tr>
           </thead>
-          <tbody>
-            {/* Add your table rows here */}
-          </tbody>
+          <tbody>{/* Add your table rows here */}</tbody>
         </table>
         <div className="pagination">
           <button>{"<"}</button>

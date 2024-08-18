@@ -1,21 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/sidebar.css';
-import '../styles/support/supportNotice.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/sidebar.css";
+import "../styles/support/supportNotice.css";
+
+import SideBar from "../components/SideBar";
+import links from "../components/SideBar/SBSupport";
 
 const SupNotice = () => {
   return (
     <div className="container">
-      <aside className="sidebar">
-        <Link to="/support" className="sidebar-item side1">문의사항</Link>
-        <Link to="/supnotice" className="sidebar-item side2 active">공지사항</Link>
-        <Link to="/supquestion" className="sidebar-item side3 ">자주 묻는 질문</Link>
-      </aside>
+      <SideBar links={links} />
       <div className="content">
         <h1>공지사항</h1>
         <div className="search-bar">
           <input type="text" placeholder="검색" />
-          <button type="submit">         🔍</button>
+          <button type="submit"> 🔍</button>
         </div>
         <table className="faq-table">
           <thead>
@@ -28,9 +27,7 @@ const SupNotice = () => {
               <th>조회</th>
             </tr>
           </thead>
-          <tbody>
-            {/* Add your table rows here */}
-          </tbody>
+          <tbody>{/* Add your table rows here */}</tbody>
         </table>
         <div className="pagination">
           <button>{"<"}</button>

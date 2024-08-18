@@ -1,13 +1,16 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SideBar from '../components/SideBar';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import SideBar from "../components/SideBar";
+import links from "../components/SideBar/SBHotspot";
 
 const Restaurant = () => {
   return (
     <div className="flex">
-      <SideBar />
+      <SideBar links={links} />
       <div className="ml-64 p-6">
-        <h1 className="text-2xl font-bold mb-6">편집자가 추천해주는 맛집 BEST</h1>
+        <h1 className="text-2xl font-bold mb-6">
+          편집자가 추천해주는 맛집 BEST
+        </h1>
         <div className="flex gap-4 mb-6">
           <button className="px-4 py-2 bg-gray-200 rounded">전체</button>
           <button className="px-4 py-2 bg-gray-200 rounded">중식</button>
@@ -25,7 +28,9 @@ const Restaurant = () => {
               <h2 className="text-xl font-semibold">맛집 위치</h2>
               <p className="text-gray-700">서울시 노원구 노원로</p>
               <p className="text-gray-700">가격</p>
-              <button className="mt-2 px-4 py-2 bg-gray-200 rounded">선택</button>
+              <button className="mt-2 px-4 py-2 bg-gray-200 rounded">
+                선택
+              </button>
             </div>
           </div>
           <div className="flex p-4 bg-white border border-gray-300 rounded">
@@ -34,7 +39,9 @@ const Restaurant = () => {
               <h2 className="text-xl font-semibold">맛집 위치</h2>
               <p className="text-gray-700">서울시 노원구 노원로</p>
               <p className="text-gray-700">가격</p>
-              <button className="mt-2 px-4 py-2 bg-gray-200 rounded">선택</button>
+              <button className="mt-2 px-4 py-2 bg-gray-200 rounded">
+                선택
+              </button>
             </div>
           </div>
         </div>

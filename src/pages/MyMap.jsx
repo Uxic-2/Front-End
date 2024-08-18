@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import SideBar from "../components/SideBar";
+import links from "../components/SideBar/SBMypage";
 
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -9,25 +11,6 @@ import Modal from "./UploadModal";
 
 import map_icon from "../imgs/mypage_map_icon.svg";
 import cursor_icon from "../imgs/mypage_cursor_icon.svg";
-
-// decouple 해야함(SideBar, SelectDate)
-function SideBar() {
-  return (
-    <div id="sidebar" className="w-200 bg-white p-5">
-      <ul>
-        <li className="mb-4 text-main-green font-bold">
-          <NavLink to="/mypage">내 지도</NavLink>
-        </li>
-        <li className="mb-4 text-main-green font-bold">
-          <NavLink to="/mypage/myfolder">내 여행 폴더</NavLink>
-        </li>
-        <li className="mb-4 text-main-green font-bold">
-          <NavLink to="/mypage/myschedule">저장한 스케줄</NavLink>
-        </li>
-      </ul>
-    </div>
-  );
-}
 
 function SelectDate() {
   const [date, setDate] = useState(new Date());
@@ -61,7 +44,7 @@ function MyMap() {
   const closeModal = () => setModalIsOpen(false);
   return (
     <div className="flex">
-      <SideBar />
+      <SideBar links={links} />
       <div className="flex-1 p-4 ">
         <div className="items-center mb-10">
           <div className="flex ">
