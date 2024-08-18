@@ -32,14 +32,14 @@ function MySchedule() {
       <div className="flex-1 p-4 ">
         <div className="items-center mb-10">
           <div className="flex ">
-            <h2 className="text-2xl">저장한 스케쥴</h2>
+            <h2 className="text-2xl">저장한 스케줄</h2>
           </div>
         </div>
-        <div className=" m-auto w-[70%] border-2 border-main-orange rounded-xl">
+        <div className="m-auto w-[70%] border-2 border-main-orange rounded-xl">
           {Array.from(Array(Math.ceil(myFolder.length / listItems)).keys()).map(
             (v) => {
               return (
-                <div className="flex p-2 m-auto w-[50%]">
+                <div className="flex m-auto w-[80%]">
                   {Array.from(
                     {
                       length:
@@ -50,7 +50,7 @@ function MySchedule() {
                     (_, i) => v * 3 + i
                   ).map((spot, index) => {
                     return (
-                      <div className="flex flex-col items-center w-[200px] h-[250px]">
+                      <div className="flex flex-col items-center w-[33%] mt-20">
                         <img
                           src={schedule_icon}
                           className="w-[120px] h-[120px]"
