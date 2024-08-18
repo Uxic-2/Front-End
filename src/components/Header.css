@@ -1,146 +1,147 @@
 /* 기본 스타일 */
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff;
-    padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 5px 20px;
 }
 
 .logo img {
-    margin-left: 5%;
-    height: 50px;
+  margin-left: 5%;
+  margin-top: 10%;
+  height: 30px;
 }
 
 .nav {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-list {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-item {
-    margin-left: 20px;
-    position: relative;
+  margin-left: 20px;
+  position: relative;
 }
 
 .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 10px 20px;
-    transition: color 0.3s ease;
-    position: relative;
-    z-index: 1;
-    /* z-index 추가 */
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+  /* z-index 추가 */
 }
 
 .nav-link:hover {
-    color: #5c5a5a;
+  color: #5c5a5a;
 }
 
 .search-bar input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 /* nav-item을 감싸는 스타일 */
 .nav-item.active::before,
 .nav-item .nav-link.active::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #A9C398;
-    border-radius: 25px;
-    /* 원형 버튼을 만들기 위해 둥글게 */
-    z-index: 0;
-    /* nav-link보다 뒤로 */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #a9c398;
+  border-radius: 25px;
+  /* 원형 버튼을 만들기 위해 둥글게 */
+  z-index: 0;
+  /* nav-link보다 뒤로 */
 }
 
 .nav-item.active .nav-link,
 .nav-item .nav-link.active {
-    color: rgb(245, 245, 245);
-    /* 활성화 시 링크 색상 변경 */
-    position: relative;
-    /* 상대 위치 */
-    z-index: 1;
-    /* z-index 추가 */
+  color: rgb(245, 245, 245);
+  /* 활성화 시 링크 색상 변경 */
+  position: relative;
+  /* 상대 위치 */
+  z-index: 1;
+  /* z-index 추가 */
 }
 
 .nav-item.active .nav-link::before,
 .nav-item .nav-link.active::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 98%;
-    background-color: #A9C398;
-    border-radius: 25px;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 98%;
+  background-color: #a9c398;
+  border-radius: 25px;
+  z-index: -1;
 }
 
 /* 미디어 쿼리 */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
 
-    .logo img {
-        margin-left: 0;
-        height: 40px;
-    }
+  .logo img {
+    margin-left: 0;
+    height: 40px;
+  }
 
-    .nav {
-        width: 100%;
-        justify-content: center;
-    }
+  .nav {
+    width: 100%;
+    justify-content: center;
+  }
 
-    .nav-list {
-        display: block;
-        margin-right: 0;
-        text-align: center;
-    }
+  .nav-list {
+    display: block;
+    margin-right: 0;
+    text-align: center;
+  }
 
-    .nav-item {
-        display: block;
-        margin: 10px 0;
-    }
+  .nav-item {
+    display: block;
+    margin: 10px 0;
+  }
 
-    .search-bar {
-        margin-top: 10px;
-        width: 100%;
-        text-align: center;
-    }
+  .search-bar {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
 
-    .search-bar input {
-        width: 100%;
-    }
+  .search-bar input {
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
-    .logo img {
-        height: 30px;
-    }
+  .logo img {
+    height: 30px;
+  }
 
-    .nav-item {
-        margin: 8px 0;
-    }
+  .nav-item {
+    margin: 8px 0;
+  }
 
-    .nav-link {
-        font-size: 14px;
-    }
+  .nav-link {
+    font-size: 14px;
+  }
 }
