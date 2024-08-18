@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 import '../styles/login.css';
 import characterLogo from '../imgs/character_logo_yellow_back.png';
 
@@ -12,13 +13,12 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/member/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post('http://localhost:8080/member/login', {
+        email,
+        password,
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         // 로그인 성공 시, 메인 페이지로 이동
         navigate('/');
       } else {
@@ -64,7 +64,7 @@ const Login = () => {
               <input
                 type="password"
                 id="password"
-                placeholder="비밀번호를 입력하세요."
+                placeholder="비밀번호를 입력하세요"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

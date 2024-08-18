@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import '../styles/signup.css';
 
@@ -13,17 +14,18 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/member/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name, phone, birthdate, email, id: username, pw: password
-        }),
+      const response = await axios.post('http://localhost:8080/member/register', {
+        name,
+        phone,
+        birthdate,
+        email,
+        id: username,
+        pw: password,
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         alert('회원가입이 완료되었습니다!');
-        window.location.href = '/login'; // 회원가입 후 로그인 페이지로 이동
+        window.location.href = '/login'; 
       } else {
         console.error('Registration failed');
         alert('회원가입에 실패했습니다. 다시 시도해주세요.');
