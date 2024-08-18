@@ -75,7 +75,9 @@ const Support = () => {
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
-          <button type="submit">제출</button>
+          <button id="button" type="submit">
+            제출
+          </button>
         </form>
       </div>
     </div>

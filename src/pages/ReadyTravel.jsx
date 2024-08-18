@@ -5,8 +5,15 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../index.css";
 
+import { useNavigate } from "react-router-dom";
+
 const ReadyTravel = () => {
   const [date, setDate] = useState(new Date());
+
+  const navigate = useNavigate();
+  const NextStepPopup = () => {
+    navigate("/lodging");
+  };
 
   return (
     <div className="flex">
@@ -23,7 +30,10 @@ const ReadyTravel = () => {
           />
         </div>
         <div className="flex justify-center mt-4">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={NextStepPopup}
+          >
             완료
           </button>
         </div>
