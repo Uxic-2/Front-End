@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SideBar from "../components/SideBar";
-import links from "../components/SideBar/SBHotspot";
+
+import { useNavigate } from "react-router-dom";
 
 const HiddenSpot = () => {
   const [selectedPopup, setSelectedPopup] = useState(false);
@@ -22,9 +22,13 @@ const HiddenSpot = () => {
     setLikedPopup(false);
   };
 
+  const navigate = useNavigate();
+  const NextStepPopup = () => {
+    navigate("/ready-travel");
+  };
+
   return (
     <div className="flex">
-      <SideBar links={links} />
       <div className="flex-grow p-4">
         <h1 className="text-xl mb-4">당신이 몰랐던 주변 HIDDEN SPOT</h1>
         <div className="grid grid-cols-1 gap-4">
@@ -63,7 +67,7 @@ const HiddenSpot = () => {
               <p>ㅇㅇ동 여행 스케줄에 담습니다.</p>
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded"
-                onClick={closeSelectedPopup}
+                onClick={NextStepPopup}
               >
                 다음 단계로
               </button>
