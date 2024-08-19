@@ -63,11 +63,7 @@ function MyMap() {
             <Link to="#" onClick={openModal}>
               모달 열기
             </Link>
-            <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={closeModal}
-              style={{ overlay: { zIndex: 10 } }}
-            />
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} />
           </div>
           {/* <button className="my-map-upload-button">upload</button> */}
         </div>
