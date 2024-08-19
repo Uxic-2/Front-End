@@ -1,91 +1,81 @@
-.about-page {
-    display: flex;
-    background-color: white;
-    position: relative;
-    /* 필요한 경우 */
-}
-
-.sidebar {
-    width: 200px;
-    background-color: #ffffff;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
-}
-
-.sidebar div {
-    margin-bottom: 15px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.sidebar .side1.active {
-    color: #fc926b;
-}
-
-.sidebar .side2 {
-    color: #8bc34a;
-}
-
-.sidebar .side3 {
-    color: #8bc34a;
-}
-
 .about-section {
-    margin-left: 220px;
-    /* sidebar의 너비를 고려한 왼쪽 여백 */
-    margin-top: 2%;
+    margin-left: 120px;
+    /* 기존의 sidebar 공간을 위한 margin-left 유지 */
+    margin-top: 5%;
     margin-right: 4%;
     margin-bottom: 5%;
     padding: 20px;
-    background-color: lightyellow;
     flex-grow: 1;
+    align-items: center;
+    text-align: center;
+    /* 텍스트를 왼쪽으로 정렬 */
+    display: flex;
+    flex-direction: row;
+    /* 로고와 텍스트를 가로로 배치 */
+    justify-content: space-between;
+    /* 로고와 텍스트 사이에 공간 분배 */
 }
 
-.about-section h2 {
-    color: #F8B46E;
+.about-section img {
+    max-width: 200px;
+    /* 로고 크기 설정 */
+    margin-right: 40px;
+    /* 텍스트와 로고 사이의 간격 */
+    flex-shrink: 0;
+    /* 로고가 작아지지 않도록 고정 */
 }
 
-.about-section h2,
-.about-section p,
-.about-section ol {
-    margin: 10px 0;
+.about-section .text-content {
+    align-items: center;
+    max-width: 60%;
+    /* 텍스트 컨텐츠의 최대 너비 설정 */
+}
+
+.greenText {
+    color: #A9C498;
+    font-size: 2.4ch;
+    font-weight: 800;
     text-align: left;
+    /* 텍스트 왼쪽 정렬 */
 }
 
-.about-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
+.orangeText {
+    color: #F8B46E;
+    font-weight: 600;
+    font-size: 2.2ch;
+    text-align: left;
+    /* 텍스트 왼쪽 정렬 */
 }
 
-.about-section li {
-    margin-bottom: 10px;
+.color-block {
+    display: inline-block;
+    color: #ffffff;
+    font-size: smaller;
+    font-weight: 700;
+    text-align: center;
+    width: 80px;
+    /* 색상 블록의 너비 */
+    height: 30px;
+    /* 색상 블록의 높이 */
+    margin-top: 10px;
+    /* 외부 마진 */
 }
 
-.blank {
-    margin: 30vh;
+.color1 {
+    background-color: #F8B46E;
+    /* 첫 번째 색상 */
 }
 
+.color2 {
+    background-color: #A9C498;
+    /* 두 번째 색상 */
+}
 
+.character-logo {
+    margin-left: 300px;
+    margin-right: 20px;
+    width: 24vw;
+    height: 36vh;
+    margin-bottom: 8vh;
 
-/* 미디어 쿼리 */
-@media (max-width: 768px) {
-    .about-page {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 60%;
-        position: relative;
-        /* 모바일에서 사이드바의 위치를 상대적으로 변경 */
-        height: auto;
-        /* 모바일에서는 높이를 자동으로 조정 */
-    }
-
-    .about-section {
-        margin-left: 0;
-        /* 사이드바가 위로 이동하므로 왼쪽 여백 제거 */
-        width: 100%;
-    }
 }
