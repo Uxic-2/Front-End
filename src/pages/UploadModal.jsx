@@ -21,6 +21,7 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
       }`}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
+      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
     >
       <div className="p-5">
         <button className="ml-[98%]" onClick={onRequestClose}>
