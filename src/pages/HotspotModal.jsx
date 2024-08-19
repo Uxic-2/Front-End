@@ -1,20 +1,20 @@
-// 이름 프레젠테이션어쩌고로 했는데 일단 내용 다 집어넣어놔서 이름을 바꿔야 할 듯(전서연)
 import React from "react";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-function PresentaionalModal({ isOpen, onRequestClose, renderHiddenspot }) {
+function CustomModal({ isOpen, onRequestClose, renderHiddenspot }) {
   return (
     <Modal
-      className={`fixed z-0 left-0 top-0 w-[100vw] h-[100vh] overflow-auto${
+      className={`fixed z-0 bg-white m-[10%_0_0_25%] w-[60%] h-[60vh] rounded-xl overflow-auto ${
         isOpen ? "" : "hidden"
       }`}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
+      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0.05)" } }}
     >
-      <div className="mt-20 m-auto p-5 rounded-2xl border border-gray-400 w-[60vw] ">
-        <button className="ml-[98%] " onClick={onRequestClose}>
+      <div className="p-5">
+        <button className="ml-[98%]" onClick={onRequestClose}>
           X
         </button>
         <div className="bg-gray-300 m-auto w-[50%] h-[30vh] mb-2"></div>
@@ -42,4 +42,4 @@ function PresentaionalModal({ isOpen, onRequestClose, renderHiddenspot }) {
   );
 }
 
-export default PresentaionalModal;
+export default CustomModal;

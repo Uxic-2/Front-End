@@ -4,7 +4,7 @@ import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
 import { Route, Routes } from "react-router-dom";
 
-import Modal from "./PresentaionalModal";
+import Modal from "./HotspotModal";
 import HiddenSpot from "./HiddenSpot";
 
 const HotSpot = () => {
@@ -42,21 +42,18 @@ const HotSpot = () => {
                   <div className="bg-gray-300 w-full h-60 mb-2"></div>
                   <div className="flex justify-between items-center">
                     <p>❤ {spot.likes.toLocaleString()}</p>
-                    <div>
-                      <Link
-                        to="#"
-                        className=" bg-[#E4EBF1] px-4 py-1 w-[68px]  rounded"
-                        onClick={openModal}
-                      >
-                        선택
-                      </Link>
-                      <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        renderHiddenspot={renderHiddenspot}
-                        style={{ overlay: { zIndex: 10 } }}
-                      />
-                    </div>
+                    <Link
+                      to="#"
+                      className=" bg-[#E4EBF1] px-4 py-1 w-[68px]  rounded"
+                      onClick={openModal}
+                    >
+                      선택
+                    </Link>
+                    <Modal
+                      isOpen={modalIsOpen}
+                      onRequestClose={closeModal}
+                      renderHiddenspot={renderHiddenspot}
+                    />
                     {/* <button className="bg-gray-400 px-4 py-2 rounded">선택</button> */}
                   </div>
                 </div>

@@ -40,9 +40,9 @@ function App() {
         <Route path="/ready-travel" element={<ReadyTravel />} />
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/lodging" element={<Lodging />} />
-        <Route path="/mypage" element={<MyMap />} />
-        <Route path="/mypage/myfolder" element={<MyFolder />} />
-        <Route path="/mypage/myschedule" element={<MySchedule />} />
+        <Route path="/mymap" element={<MyMap />} />
+        <Route path="/myfolder" element={<MyFolder />} />
+        <Route path="/myschedule" element={<MySchedule />} />
         <Route path="/supnotice" element={<SupNotice />} />
         <Route path="/supquestion" element={<SupQuestion />} />
         <Route path="*" element={<div>404 Not Found</div>} />

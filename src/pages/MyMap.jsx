@@ -53,22 +53,20 @@ function MyMap() {
           </div>
           <Map className="z-0 w-[70%] h-[70vh] bg-slate-200" />
         </div>
-        <div className="items-center mb-10 bg-slate-400">
-          <div className="flex-1 p-4 text-2xl text-center font-bold ">
+        <div className="flex flex-col items-center m-[0_auto] p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
+          <div className="mt-7 text-2xl text-center font-bold ">
             여행지 사진을 업로드하여
             <br />
             나의 지도를 채워보세요
           </div>
-          <div className=" bg-white w-[10%] ml-[45%] mr-[45%] mb-10">
-            <Link to="#" onClick={openModal}>
-              모달 열기
-            </Link>
-            <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={closeModal}
-              style={{ overlay: { zIndex: 10 } }}
-            />
-          </div>
+          <Link
+            to="#"
+            className=" bg-black text-white text-center p-2 w-[20%] h-[40px] m-auto rounded-md"
+            onClick={openModal}
+          >
+            Upload
+          </Link>
+          <Modal isOpen={modalIsOpen} onRequestClose={closeModal} />
           {/* <button className="my-map-upload-button">upload</button> */}
         </div>
         <div className="flex flex-col content-center">

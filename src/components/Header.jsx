@@ -79,7 +79,7 @@ const Header = () => {
           )}
           <li className="nav-item">
             <NavLink
-              to="/mypage"
+              to="/mymap"
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
