@@ -75,10 +75,24 @@ const About = () => {
       <section ref={logoRef} data-section="LOGO" className="logo-section">
         <h1>서비스 기능</h1>
         <div className="logo-container">
-          <p>
-          사진 분석 및 위치 추출
+          <div className="container1">
+          <span>사진 분석 및 위치 추출</span><br></br>
           사용자들이 업로드한 사진에서 GPS 정보를 추출하여 위치정보 제공
-          </p>
+          </div>
+          <div className="container2">
+          <span>여행지 추천</span><br></br>
+사진에서 추출한 위치 정보를 바탕으로 주변의 유명한 관광지 및 자연 경관을 추천. 관광지에 대한 정보와 추천 제공
+          </div>
+          <div className="container3">
+          <span>숙소 추천</span><br></br>
+
+해당 위치 주변의 숙소를 추천하고, 객실 이미지 정보를 왜곡 없이 VR (또는 360º 동영상)으로 제공
+          </div>
+          <div className="container4">
+          <span>맛집 추천</span><br></br>
+
+해당 위치 주변의 인기 맛집을 추천. 사용자 리뷰와 평점을 반영하여 맞춤형 추천 제공
+          </div>
             <br></br>
           </div>
       </section>
