@@ -1,7 +1,5 @@
 .about-section {
-    margin-left: 20%;
-    /* 기존의 sidebar 공간을 위한 margin-left 유지 */
-    margin-top: 5%;
+    margin-left: 15%;
     margin-right: 10%;
     margin-bottom: 5%;
     padding: 20px;
