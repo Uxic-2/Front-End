@@ -1,8 +1,8 @@
 .about-section {
-    margin-left: 120px;
+    margin-left: 20%;
     /* 기존의 sidebar 공간을 위한 margin-left 유지 */
     margin-top: 5%;
-    margin-right: 4%;
+    margin-right: 10%;
     margin-bottom: 5%;
     padding: 20px;
     flex-grow: 1;
@@ -12,21 +12,15 @@
     display: flex;
     flex-direction: row;
     /* 로고와 텍스트를 가로로 배치 */
-    justify-content: space-between;
-    /* 로고와 텍스트 사이에 공간 분배 */
 }
 
-.about-section img {
-    max-width: 200px;
-    /* 로고 크기 설정 */
-    margin-right: 40px;
-    /* 텍스트와 로고 사이의 간격 */
-    flex-shrink: 0;
-    /* 로고가 작아지지 않도록 고정 */
+.siteLogo {
+    align-items: center;
 }
 
 .about-section .text-content {
     align-items: center;
+    text-align: center;
     max-width: 60%;
     /* 텍스트 컨텐츠의 최대 너비 설정 */
 }
@@ -43,8 +37,16 @@
     color: #F8B46E;
     font-weight: 600;
     font-size: 2.2ch;
-    text-align: left;
-    /* 텍스트 왼쪽 정렬 */
+}
+
+.siteLogo {
+    width: 200px;
+    /* 로고 크기 설정 */
+    margin-right: 40px;
+    /* 텍스트와 로고 사이의 간격 */
+    flex-shrink: 0;
+    /* 로고가 작아지지 않도록 고정 */
+    margin-left: 30%;
 }
 
 .color-block {
@@ -71,11 +73,13 @@
     /* 두 번째 색상 */
 }
 
-.character-logo {
-    margin-left: 300px;
-    margin-right: 20px;
-    width: 24vw;
-    height: 36vh;
-    margin-bottom: 8vh;
+.character-logos {
+    width: 28vw;
+    margin-right: 2vw;
+    height: auto;
+}
 
+
+.blank {
+    height: 20vh;
 }

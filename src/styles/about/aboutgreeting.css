@@ -3,3 +3,17 @@
     margin-right: 100px;
 
 }
+
+.orangeColor {
+    color: #F8B46E;
+    font-weight: 700;
+    text-align: left;
+    /* 텍스트 왼쪽 정렬 */
+}
+
+.greenColor {
+    color: #A9C498;
+    font-weight: 700;
+    text-align: center;
+    /* 텍스트 왼쪽 정렬 */
+}
