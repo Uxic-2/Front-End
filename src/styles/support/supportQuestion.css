@@ -8,28 +8,6 @@
     width: calc(100% - 220px);
 }
 
-.search-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-}
-
-.search-bar input {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.search-bar button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #ccc;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-
 .faq-table {
     width: 100%;
     border-collapse: collapse;
@@ -45,6 +23,24 @@
 .faq-table th {
     background-color: #a0c17b;
     color: white;
+}
+
+.faq-question {
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.faq-question:hover {
+    background-color: #f1f1f1;
+}
+
+.faq-answer {
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.faq-answer.show {
+    display: table-row;
 }
 
 .pagination {
@@ -64,4 +60,11 @@
 .pagination .page-number {
     margin: 0 10px;
     font-weight: bold;
+}
+
+.howpagetext {
+    font-size: larger;
+    font-weight: bold;
+    color: #728957;
+    margin-bottom: 2%;
 }
