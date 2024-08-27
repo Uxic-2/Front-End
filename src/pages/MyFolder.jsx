@@ -5,9 +5,16 @@ import links from "../components/SideBar/SBMypage";
 
 import folder_icon from "../imgs/mypage_folder.svg";
 
+import Modal from "./MyFolderModal";
+
 function MyFolder() {
   const myFolder = Array(10).fill({ folder_name: "folder name" });
   const listItems = 3;
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
 
   return (
     <div className="flex">
@@ -33,7 +40,10 @@ function MyFolder() {
                     (_, i) => v * 3 + i
                   ).map((spot, index) => {
                     return (
-                      <div className="flex flex-col items-center w-[33%] mt-20">
+                      <div
+                        className="flex flex-col items-center w-[33%] mt-20"
+                        onClick={openModal}
+                      >
                         <img
                           src={folder_icon}
                           className="w-[120px] h-[120px]"
@@ -50,6 +60,7 @@ function MyFolder() {
           )}
         </div>
       </div>
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} />
     </div>
   );
 }

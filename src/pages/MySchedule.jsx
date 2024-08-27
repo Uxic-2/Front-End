@@ -32,7 +32,7 @@ function MySchedule() {
                           : myFolder.length % listItems,
                     },
                     (_, i) => v * 3 + i
-                  ).map((spot, index) => {
+                  ).map((spot) => {
                     return (
                       <div className="flex flex-col items-center w-[33%] mt-20">
                         <img
@@ -40,7 +40,7 @@ function MySchedule() {
                           className="w-[120px] h-[120px]"
                         ></img>
                         <div className="flex-1 text-base text-center">
-                          {myFolder[index].folder_name}
+                          {myFolder[spot].folder_name}
                         </div>
                       </div>
                     );
