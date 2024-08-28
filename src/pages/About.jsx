@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../styles/about.css";
-import "../styles/sidebar.css";
 import "../styles/about/aboutlogo.css";
 import "../styles/about/aboutgreeting.css";
 import character_logos from "../imgs/character_logos.png";
 import logo from "../imgs/logo.png";
-
-import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBAbout";
 
 const About = () => {
+  // 'activeSection' 상태로 현재 활성화된 섹션을 관리
   const [activeSection, setActiveSection] = useState("ABOUT");
 
+  // 각 섹션의 DOM 요소를 참조하기 위한 ref 생성
   const aboutRef = useRef(null);
   const logoRef = useRef(null);
   const greetingRef = useRef(null);
@@ -20,9 +19,10 @@ const About = () => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5,
+      threshold: 0.5, // 50% 이상 보이면 활성화
     };
 
+    // IntersectionObserver를 사용하여 섹션이 보일 때 'activeSection' 상태 업데이트
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -31,10 +31,12 @@ const About = () => {
       });
     }, options);
 
+    // 각 섹션에 observer 연결
     if (aboutRef.current) observer.observe(aboutRef.current);
     if (logoRef.current) observer.observe(logoRef.current);
     if (greetingRef.current) observer.observe(greetingRef.current);
 
+    // 컴포넌트가 언마운트될 때 observer 해제
     return () => {
       if (aboutRef.current) observer.unobserve(aboutRef.current);
       if (logoRef.current) observer.unobserve(logoRef.current);
@@ -45,12 +47,7 @@ const About = () => {
   return (
     <div>
       <div className="about-page">
-        <SideBar links={links} />
-        {/* <aside className="sidebar">
-          <div className={`sidebar-item side1 ${activeSection === 'ABOUT' ? 'active' : ''}`}>ABOUT</div>
-          <div className={`sidebar-item side2 ${activeSection === 'LOGO' ? 'active' : ''}`}>LOGO</div>
-          <div className={`sidebar-item side3 ${activeSection === '인사말' ? 'active' : ''}`}>인사말</div>
-        </aside> */}
+        
           <section ref={aboutRef} data-section="ABOUT" className="about-section">
     <img src={character_logos} alt="character_logo" className="character-logos" />
   <div className="text-content">
