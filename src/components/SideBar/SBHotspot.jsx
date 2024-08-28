@@ -5,7 +5,7 @@ const links = [
   { to: "/ready-travel", text: "STEP 2 여행 준비" },
   { to: "/lodging", text: "STEP 3 숙소/지점 추천" },
   { to: "/restaurant", text: "맛집 추천 테스트용" },
-  { text: "STEP 4 이동 경로 안내" },
+  { to: "/schedule-create", text: "STEP 4 이동 경로 안내" },
   { to: "/hidden-spot", text: "Hiddenspo 테스트용" },
 ];
 

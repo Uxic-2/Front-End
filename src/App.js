@@ -7,7 +7,8 @@ import Login from "./pages/Login";
 import MyMap from "./pages/MyMap";
 import MyFolder from "./pages/MyFolder";
 import MySchedule from "./pages/MySchedule";
-import Schedule from "./pages/ScheduleEdit";
+import ScheduleEdit from "./pages/ScheduleEdit";
+import ScheduleCreate from "./pages/ScheduleCreate";
 import SignUp from "./pages/SignUp";
 import Support from "./pages/Support";
 import HotSpot from "./pages/Hotspot";
@@ -44,7 +45,8 @@ function App() {
         <Route path="/mymap" element={<MyMap />} />
         <Route path="/myfolder" element={<MyFolder />} />
         <Route path="/myschedule" element={<MySchedule />} />
-        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/schedule-edit" element={<ScheduleEdit />} />
+        <Route path="/schedule-create" element={<ScheduleCreate />} />
         <Route path="/supnotice" element={<SupNotice />} />
         <Route path="/supquestion" element={<SupQuestion />} />
         <Route path="*" element={<div>404 Not Found</div>} />
