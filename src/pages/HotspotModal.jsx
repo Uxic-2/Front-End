@@ -1,9 +1,17 @@
 import React from "react";
 import Modal from "react-modal";
+import { useNavigate } from "react-router-dom"; 
 
 Modal.setAppElement("#root");
 
-function CustomModal({ isOpen, onRequestClose, renderHiddenspot }) {
+function CustomModal({ isOpen, onRequestClose }) {
+  const navigate = useNavigate();
+
+
+  const goToHiddenSpot = () => {
+    navigate("/hidden-spot"); 
+  };
+
   return (
     <Modal
       className={`fixed z-0 bg-white m-[10%_0_0_25%] w-[60%] h-[60vh] rounded-xl overflow-auto ${
@@ -32,7 +40,7 @@ function CustomModal({ isOpen, onRequestClose, renderHiddenspot }) {
           </button>
           <button
             className="bg-gray-100 w-[15%] h-[40px] m-auto rounded-xl"
-            onClick={renderHiddenspot}
+            onClick={goToHiddenSpot} 
           >
             네
           </button>
