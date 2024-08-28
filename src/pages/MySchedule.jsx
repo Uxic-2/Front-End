@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBMypage";
@@ -9,6 +9,12 @@ import schedule_icon from "../imgs/mypage_schedule.svg";
 function MySchedule() {
   const myFolder = Array(10).fill({ folder_name: "folder name" });
   const listItems = 3;
+
+  const navigate = useNavigate();
+
+  const goToSchedule = () => {
+    navigate("/schedule");
+  };
 
   return (
     <div className="flex">
@@ -34,7 +40,10 @@ function MySchedule() {
                     (_, i) => v * 3 + i
                   ).map((spot) => {
                     return (
-                      <div className="flex flex-col items-center w-[33%] mt-20">
+                      <div
+                        className="flex flex-col items-center w-[33%] mt-20"
+                        onClick={goToSchedule}
+                      >
                         <img
                           src={schedule_icon}
                           className="w-[120px] h-[120px]"

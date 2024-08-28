@@ -51,7 +51,7 @@ function MyMap() {
             <img src={map_icon}></img>
             <h2 className="text-2xl">내 지도</h2>
           </div>
-          <Map className="z-0 w-[70%] h-[70vh] bg-slate-200" />
+          <Map className="z-0 w-[70%] h-[70vh] bg-slate-200"></Map>
         </div>
         <div className="flex flex-col items-center m-[0_auto] p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
           <div className="mt-7 text-2xl text-center font-bold ">
