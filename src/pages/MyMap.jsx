@@ -24,11 +24,11 @@ function SelectDate() {
             value={date}
             selectRange={true}
             showDoubleView={true}
-            className="p-4 border border-gray-300 rounded"
+            className="p-4 border border-gray-300 rounded custom-calendar"
           />
         </div>
-        <div className="flex justify-center mt-4">
-          <button className="w-20 bg-slate-500 text-white px-4 py-2 rounded">
+        <div className="flex justify-end w-[75%] mt-4">
+          <button className="w-20 bg-[#E4EBF1] text-[14px] font-bold px-4 py-2 rounded-xl">
             완료
           </button>
         </div>
