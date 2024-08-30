@@ -54,7 +54,7 @@ const HotSpot = () => {
                   )}
                   <div className="bg-gray-300 w-full h-60 mb-2"></div>
                   <div className="flex justify-between items-center">
-                    <p>❤ {spot.likes.toLocaleString()}</p>
+                    <p>❤️ {spot.likes.toLocaleString()}</p>
                     <Link
                       to="#"
                       className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded"
