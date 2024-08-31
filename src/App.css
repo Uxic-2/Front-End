@@ -39,3 +39,11 @@
   scrollbar-color: #A9C398 #f0f0f0;
   /* 스크롤바 색상과 트랙 색상 */
 }
+
+.tooltip-icon:hover+.tooltip-text {
+  display: block;
+}
+
+.tooltip-text {
+  display: none;
+}
