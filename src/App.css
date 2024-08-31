@@ -40,10 +40,24 @@
   /* 스크롤바 색상과 트랙 색상 */
 }
 
-.tooltip-icon:hover+.tooltip-text {
-  display: block;
+/* Tooltip styles */
+.tooltip-icon {
+  position: relative;
 }
 
 .tooltip-text {
   display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.tooltip-icon:hover .tooltip-text {
+  display: block;
+  opacity: 1;
 }
