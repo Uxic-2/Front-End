@@ -4,7 +4,7 @@ import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
 import Modal from "./HotspotModal";
 import HiddenSpot from "./HiddenSpot";
-import questionIcon from "../imgs/question.png"; // 이미지 경로 import
+import questionIcon from "../imgs/question.png"; 
 
 const HotSpot = () => {
   const hotSpots = Array(9)
