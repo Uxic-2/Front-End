@@ -4,7 +4,7 @@ import "../styles/sidebar.css";
 
 const SideBar = ({ links }) => {
   return (
-    <div className="w-200 bg-white p-5">
+    <div className="w-200 bg-white p-5 mt-8">
       <ul>
         {links.map((link, index) => (
           <li key={index} className="mb-4 text-main-green font-bold">
