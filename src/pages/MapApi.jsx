@@ -31,7 +31,7 @@ const MapApi = () => {
     <div
       id="map"
       ref={containerRef}
-      className={`z-0 w-[70%] h-[70vh] m-auto ${
+      className={`z-0 w-[600px] h-[500px] m-auto ${
         isMapLoaded ? "" : "bg-slate-200"
       }`}
     ></div>

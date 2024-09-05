@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
-import { useNavigate } from "react-router-dom"; 
-import folder_icon from "../imgs/mypage_folder.svg"; 
+import { useNavigate } from "react-router-dom";
+import folder_icon from "../imgs/mypage_folder.svg";
 
 const HiddenSpot = () => {
   const [selectedPopup, setSelectedPopup] = useState(false);
   const [likedPopup, setLikedPopup] = useState(false);
 
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate();
 
   const handleSelectClick = () => {
     setSelectedPopup(true);
@@ -101,7 +100,7 @@ const HiddenSpot = () => {
               <div className="flex mt-4">
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded"
-                  onClick={goToFolder} 
+                  onClick={goToFolder}
                 >
                   폴더 가기
                 </button>

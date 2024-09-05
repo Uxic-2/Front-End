@@ -10,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 const ReadyTravel = () => {
   const [date, setDate] = useState(new Date());
 
+  const formatDay = (locale, date) => {
+    return date.getDate(); // 날짜에서 숫자만 반환
+  };
+
   const navigate = useNavigate();
   const NextStepPopup = () => {
     navigate("/lodging");
@@ -18,20 +22,21 @@ const ReadyTravel = () => {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-grow p-4">
-        <h1 className="text-xl mb-4 text-center">여행 기간을 선택해주세요.</h1>
+      <div className="flex-grow p-4 mt-20">
+        <h1 className="text-sm mb-4 text-center">여행 기간을 선택해주세요.</h1>
         <div className="flex justify-center space-x-8">
           <Calendar
             onChange={setDate}
             value={date}
             selectRange={true}
             showDoubleView={true}
-            className="p-4 border border-gray-300 rounded"
+            className="p-4 custom-calendar"
+            formatDay={formatDay}
           />
         </div>
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-end w-[75%] mt-4">
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-[#DEF8FF] text-[12px] font-bold px-4 py-2 rounded-xl"
             onClick={NextStepPopup}
           >
             완료
