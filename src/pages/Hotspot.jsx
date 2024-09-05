@@ -7,15 +7,18 @@ import HiddenSpot from "./HiddenSpot";
 import questionIcon from "../imgs/question.png"; 
 
 const HotSpot = () => {
-  const hotSpots = Array(9)
+  const hotSpots = Array(15) // 15개의 하트 수 데이터를 생성
     .fill({ likes: 123456789 })
     .map((spot, index) => ({
       ...spot,
-      likes: spot.likes - index * 1000000, // 하트수 임의
+      likes: spot.likes - index * 1000000, // 하트수 임의로 조정
     }));
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("HotSpot");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9; // 페이지 당 표시할 항목 수
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
@@ -25,12 +28,32 @@ const HotSpot = () => {
     closeModal();
   };
 
-  const sortedHotSpots = [...hotSpots].sort((a, b) => b.likes - a.likes);
+  // 현재 페이지에서 보여줄 항목 계산
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentHotSpots = hotSpots.slice(indexOfFirstItem, indexOfLastItem);
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(hotSpots.length / itemsPerPage);
+
+  const sortedHotSpots = [...currentHotSpots].sort((a, b) => b.likes - a.likes);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 mr-5"> {/* 오른쪽 마진 추가 */}
         {currentComponent === "HotSpot" ? (
           <>
             <div className="flex justify-between items-center mb-6">
@@ -71,7 +94,8 @@ const HotSpot = () => {
                       Top {index + 1}
                     </div>
                   )}
-                  <div className="bg-gray-300 w-full h-60 mb-2"></div>
+                  {/* 16:9 비율 적용 */}
+                  <div className="bg-gray-300 w-full mb-2 aspect-[16/9]"></div>
                   <div className="flex justify-between items-center">
                     <p>❤️ {spot.likes.toLocaleString()}</p>
                     <Link
@@ -89,6 +113,25 @@ const HotSpot = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Pagination 버튼 추가 */}
+            <div className="flex justify-center mt-4">
+              <button
+                className="px-4 py-2 bg-gray-200 rounded-l"
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+              >
+                이전
+              </button>
+              <span className="px-4 py-2">{currentPage} / {totalPages}</span>
+              <button
+                className="px-4 py-2 bg-gray-200 rounded-r"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                다음
+              </button>
             </div>
           </>
         ) : (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBMypage";
 
@@ -42,26 +42,27 @@ function MyMap() {
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
+
   return (
-    <div className="flex">
+    <div className="flex mx-8"> {/* Added mx-8 for horizontal margin */}
       <SideBar links={links} />
-      <div className="flex-1 p-4 ">
+      <div className="flex-1 p-4">
         <div className="items-center mb-10">
-          <div className="flex ">
-            <img src={map_icon}></img>
+          <div className="flex">
+            <img src={map_icon} alt="Map Icon" />
             <h2 className="text-2xl">내 지도</h2>
           </div>
-          <Map className="z-0 w-[70%] h-[70vh] bg-slate-200"></Map>
+          <Map className="z-0 w-[70%] h-[70vh] bg-slate-200" />
         </div>
-        <div className="flex flex-col items-center m-[0_auto] p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
-          <div className="mt-7 text-2xl text-center font-bold ">
+        <div className="flex flex-col items-center mx-auto p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
+          <div className="mt-7 text-2xl text-center font-bold">
             여행지 사진을 업로드하여
             <br />
             나의 지도를 채워보세요
           </div>
           <Link
             to="#"
-            className=" bg-black text-white text-center p-2 w-[20%] h-[40px] m-auto rounded-md"
+            className="bg-black text-white text-center p-2 w-[20%] h-[40px] m-auto rounded-md"
             onClick={openModal}
           >
             Upload
