@@ -16,11 +16,97 @@ code {
     monospace;
 }
 
-.custom-calendar .react-calendar__tile--active {
-  @apply bg-[#FFFADD] text-black rounded-xl border border-solid border-main-orange;
+/* calendar css */
+.react-calendar {
+  border: none !important;
 }
 
-.custom-calendar .react-calendar__tile--active:enabled:hover,
-.custom-calendar .react-calendar__tile--active:enabled:focus {
-  @apply bg-[#FFFADD] text-black;
+.react-calendar__navigation__next2-button,
+.react-calendar__navigation__prev2-button {
+  display: none;
+}
+
+/*월 화 수 목 금 토 일 밑줄 없애기*/
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+/* 연월 표시 아래에 선 추가*/
+.custom-calendar .react-calendar__navigation {
+  border-bottom: 0.75px solid #a3a3a6;
+  padding-bottom: 10px;
+}
+
+/*기간 첫, 끝 날짜 배경 색 입히기*/
+.react-calendar__month-view__days .react-calendar__tile--rangeStart,
+.react-calendar__month-view__days .react-calendar__tile--rangeEnd {
+  position: relative;
+  color: white;
+  background: white !important;
+}
+
+/*기간 첫, 끝 날짜 배경 원 그리기*/
+.react-calendar__month-view__days .react-calendar__tile--rangeStart abbr {
+  content: "";
+  position: absolute;
+  display: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: #daeffc;
+  color: black;
+  border: solid 1.5px black;
+  border-radius: 10px;
+  align-content: center;
+}
+
+.react-calendar__month-view__days .react-calendar__tile--rangeEnd abbr {
+  content: "";
+  position: absolute;
+  display: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: #daeffc;
+  color: black;
+  border: solid 1.5px black;
+  border-radius: 10px;
+  align-content: center;
+}
+
+/* 기간 중간 타일 배경 제거 */
+.react-calendar__month-view__days .react-calendar__tile--range {
+  background: none !important;
+  color: inherit !important;
+}
+
+.react-calendar__navigation__arrow.react-calendar__navigation__prev-button,
+.react-calendar__navigation__arrow.react-calendar__navigation__next-button {
+  width: 30px;
+  height: 30px;
+  background: white;
+  color: #b3b3b3;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 원하는 그림자 효과로 변경 */
+}
+
+.react-calendar__tile--now {
+  background: none !important; /* 배경색 제거 */
+}
+
+/* 주말의 기본 텍스트 색상으로 변경 */
+.react-calendar__month-view__days__day--weekend:not(
+    .react-calendar__month-view__days__day--neighboringMonth
+  ) {
+  color: inherit !important;
+}
+
+/* 타일의 폰트 스타일 변경 */
+.react-calendar__tile {
+  font-family: "Pretendard Variable", sans-serif !important;
+  font-weight: 700 !important;
 }
