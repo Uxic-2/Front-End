@@ -22,7 +22,7 @@ function MyFolder() {
       <div className="flex-1 p-4 ">
         <div className="items-center mb-10">
           <div className="flex ">
-            <h2 className="text-2xl">내 여행 폴더</h2>
+            <h2 className="text-2xl">하트 보관함</h2>
           </div>
         </div>
         <div className=" m-auto w-[70%] border-2 border-main-orange rounded-xl">

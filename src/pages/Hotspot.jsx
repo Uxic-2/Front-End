@@ -30,7 +30,7 @@ const HotSpot = () => {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 mr-6"> 
         {currentComponent === "HotSpot" ? (
           <>
             <div className="flex justify-between items-center mb-6">
