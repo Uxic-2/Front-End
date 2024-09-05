@@ -4,7 +4,9 @@ import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
 import Modal from "./HotspotModal";
 import HiddenSpot from "./HiddenSpot";
-import questionIcon from "../imgs/question.png"; 
+import questionIcon from "../imgs/question.png";
+import heart from "../imgs/heart.svg";
+import heart_fill from "../imgs/heart_fill.svg";
 
 const HotSpot = () => {
   const hotSpots = Array(15) // 15개의 하트 수 데이터를 생성
@@ -26,6 +28,16 @@ const HotSpot = () => {
   const renderHiddenspot = () => {
     setCurrentComponent("Hiddenspot");
     closeModal();
+  };
+
+  const [likedStates, setLikedStates] = useState(
+    Array(hotSpots.length).fill(false)
+  );
+
+  const handleLikeClick = (index) => {
+    const newLikedStates = [...likedStates];
+    newLikedStates[index] = !newLikedStates[index];
+    setLikedStates(newLikedStates);
   };
 
   // 현재 페이지에서 보여줄 항목 계산
@@ -53,18 +65,16 @@ const HotSpot = () => {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-1 p-4 mr-5"> {/* 오른쪽 마진 추가 */}
+      <div className="flex-1 p-4 mr-5">
+        {" "}
+        {/* 오른쪽 마진 추가 */}
         {currentComponent === "HotSpot" ? (
           <>
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center relative">
                 <h2 className="text-2xl">지금 인기있는 HOT SPOT</h2>
                 <div className="tooltip-icon ml-2">
-                  <img
-                    src={questionIcon}
-                    alt="Question"
-                    className="w-6 h-6"
-                  />
+                  <img src={questionIcon} alt="Question" className="w-6 h-6" />
                   <div className="tooltip-text -mt-2 -ml-16 w-72">
                     STEP 1에서는 타 유저들의 여행 사진을 모아두어 한 눈에
                     확인하실 수 있습니다. 하트 버튼을 누를 시 여행 폴더에
@@ -97,7 +107,18 @@ const HotSpot = () => {
                   {/* 16:9 비율 적용 */}
                   <div className="bg-gray-300 w-full mb-2 aspect-[16/9]"></div>
                   <div className="flex justify-between items-center">
-                    <p>❤️ {spot.likes.toLocaleString()}</p>
+                    <button
+                      onClick={() => handleLikeClick(index)}
+                      className="flex items-center"
+                    >
+                      <img
+                        src={likedStates[index] ? heart_fill : heart}
+                        alt="Like"
+                        className="mr-2 w-[20%]"
+                      />
+                      <p>{spot.likes.toLocaleString()}</p>
+                    </button>
+
                     <Link
                       to="#"
                       className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded"
@@ -124,7 +145,9 @@ const HotSpot = () => {
               >
                 이전
               </button>
-              <span className="px-4 py-2">{currentPage} / {totalPages}</span>
+              <span className="px-4 py-2">
+                {currentPage} / {totalPages}
+              </span>
               <button
                 className="px-4 py-2 bg-gray-200 rounded-r"
                 onClick={handleNextPage}
