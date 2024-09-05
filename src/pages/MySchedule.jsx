@@ -13,7 +13,7 @@ function MySchedule() {
   const navigate = useNavigate();
 
   const goToSchedule = () => {
-    navigate("/schedule");
+    navigate("/schedule-edit");
   };
 
   return (

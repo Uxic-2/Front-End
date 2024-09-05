@@ -44,7 +44,9 @@ function MyMap() {
   const closeModal = () => setModalIsOpen(false);
 
   return (
-    <div className="flex mx-8"> {/* Added mx-8 for horizontal margin */}
+    <div className="flex mx-8">
+      {" "}
+      {/* Added mx-8 for horizontal margin */}
       <SideBar links={links} />
       <div className="flex-1 p-4">
         <div className="items-center mb-10">
@@ -54,7 +56,7 @@ function MyMap() {
           </div>
           <Map className="z-0 w-[70%] h-[70vh] bg-slate-200" />
         </div>
-        <div className="flex flex-col items-center mx-auto p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
+        <div className="flex flex-col items-center mx-auto m-20 p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
           <div className="mt-7 text-2xl text-center font-bold">
             여행지 사진을 업로드하여
             <br />
@@ -70,7 +72,7 @@ function MyMap() {
           <Modal isOpen={modalIsOpen} onRequestClose={closeModal} />
           {/* <button className="my-map-upload-button">upload</button> */}
         </div>
-        <div className="flex flex-col content-center">
+        {/* <div className="flex flex-col content-center">
           <div className="relative">
             <img
               className="relative w-[6%] mt-[5%] ml-[47%]"
@@ -89,7 +91,7 @@ function MyMap() {
             </div>
           </div>
           <SelectDate />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import Modal from "react-modal";
 
 import img_icon from "../imgs/mymap_image.png";
 import loc_icon from "../imgs/mymap_loc.png";
+import left_icon from "../imgs/lefticon.svg";
+import right_icon from "../imgs/righticon.svg";
 
 Modal.setAppElement("#root");
 
@@ -28,17 +30,21 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
           X
         </button>
         <div className="justify-center">user_123</div>
-        <div className="flex flex-col bg-white m-auto w-[100%] h-[35vh] mb-2">
-          <img className="mt-[5%] m-auto w-[5%]" src={img_icon}></img>
-          <div className="m-[0_auto] text-center">
-            사진을 여기에 끌어다 놓으세요
+        <div className="flex bg-white m-auto w-[100%] h-[35vh] mb-2">
+          <img src={left_icon} className="w-5"></img>
+          <div className="flex flex-col w-[100%] m-auto ">
+            <img className="mt-[5%] mb-5 m-auto w-[5%]" src={img_icon}></img>
+            <div className="m-[0_auto] text-center">
+              사진을 여기에 끌어다 놓으세요
+            </div>
+            <button
+              className="m-[1%_auto_3%] bg-main-orange text-white w-[15%] h-[40px] rounded-xl"
+              // onClick={uploadimg}
+            >
+              컴퓨터에서 선택
+            </button>
           </div>
-          <button
-            className="m-[1%_auto_3%] bg-main-orange text-white w-[15%] h-[40px] rounded-xl"
-            // onClick={uploadimg}
-          >
-            컴퓨터에서 선택
-          </button>
+          <img src={right_icon} className="w-5"></img>
         </div>
         <div className="flex m-[2%_auto] w-[100%]">
           <img className="w-5 h-5" src={loc_icon}></img>
