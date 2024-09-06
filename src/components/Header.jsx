@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Header.css";
 import logo from "../imgs/logo.png";
 
@@ -8,16 +9,36 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 로그인 상태 확인
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     setIsLoggedIn(loggedInStatus === "true");
+
+    const handleStorageChange = () => {
+      const loggedInStatus = localStorage.getItem("isLoggedIn");
+      setIsLoggedIn(loggedInStatus === "true");
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
-  const handleLogout = () => {
-    // 로그아웃 처리
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-    navigate("/"); // 로그아웃 후 메인 페이지로 리디렉션
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/member/logout');
+      if (response.status === 200) {
+        localStorage.removeItem("isLoggedIn");
+        setIsLoggedIn(false);
+        alert("로그아웃 되었습니다.");
+        navigate("/login");
+      } else {
+        alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert("서버와의 통신 중 오류가 발생했습니다.");
+    }
   };
 
   return (
@@ -60,11 +81,23 @@ const Header = () => {
             </NavLink>
           </li>
           {isLoggedIn ? (
-            <li className="nav-item">
-              <button onClick={handleLogout} className="nav-link">
-                LOGOUT
-              </button>
-            </li>
+            <>
+              <li className="nav-item">
+                <NavLink
+                  to="/mymap"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  MY PAGE
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <button onClick={handleLogout} className="nav-link">
+                  LOGOUT
+                </button>
+              </li>
+            </>
           ) : (
             <li className="nav-item">
               <NavLink
@@ -77,16 +110,6 @@ const Header = () => {
               </NavLink>
             </li>
           )}
-          <li className="nav-item">
-            <NavLink
-              to="/mymap"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              MY PAGE
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </header>

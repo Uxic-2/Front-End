@@ -5,8 +5,8 @@ import '../styles/login.css';
 import characterLogo from '../imgs/character_logo_yellow_back.png';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState(''); 
+  const [pw, setPw] = useState(''); 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -14,19 +14,21 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:8080/member/login', {
-        email,
-        password,
+        id, 
+        pw, 
       });
 
       if (response.status === 200) {
-        // 로그인 성공 시, 메인 페이지로 이동
-        navigate('/');
+        localStorage.setItem('isLoggedIn', 'true');
+        alert('로그인에 성공했습니다!');
+        navigate('/'); 
       } else {
-        // 로그인 실패 처리
-        console.error('Login failed');
+        console.error('로그인 실패');
+        alert('로그인에 실패했습니다. 다시 시도해주세요.');
       }
     } catch (error) {
       console.error('Error:', error);
+      alert('서버와의 통신 중 문제가 발생했습니다.');
     }
   };
 
@@ -39,8 +41,8 @@ const Login = () => {
       <div className="login-form-container">
         <div className="login-logo">
           <div className='position-cc'>
-          <div className='bblank'></div>
-          <img src={characterLogo} alt="Photato Logo" />
+            <div className='bblank'></div>
+            <img src={characterLogo} alt="Photato Logo" />
           </div>
           <br></br><br></br>
           <h1>Welcome to PHOTATO!</h1>
@@ -49,24 +51,24 @@ const Login = () => {
         <div className="right-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">아이디</label>
+              <label htmlFor="id">아이디</label>
               <input
-                type="email"
-                id="email"
-                placeholder="이메일을 입력하세요."
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                id="id"
+                placeholder="아이디를 입력하세요."
+                value={id} 
+                onChange={(e) => setId(e.target.value)}
                 required
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">비밀번호</label>
+              <label htmlFor="pw">비밀번호</label>
               <input
                 type="password"
-                id="password"
+                id="pw"
                 placeholder="비밀번호를 입력하세요"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={pw} // password를 pw로 변경
+                onChange={(e) => setPw(e.target.value)}
                 required
               />
             </div>
@@ -74,12 +76,6 @@ const Login = () => {
             <button type="submit" className="login-button">로그인하기</button>
           </form>
           <button onClick={handleSignUpClick} className="signup-button">회원가입하기</button>
-          <p className="social-login-text">소셜아이디로 간편하게 로그인할 수 있습니다.</p>
-          <div className="social-login-buttons">
-            <button className="social-button naver">네이버로 로그인</button>
-            <button className="social-button kakao">카카오로 로그인</button>
-            <button className="social-button google">구글로 로그인</button>
-          </div>
         </div>
       </div>
     </div>

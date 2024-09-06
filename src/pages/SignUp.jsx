@@ -7,8 +7,8 @@ const SignUp = () => {
   const [phone, setPhone] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState(''); 
+  const [pw, setPw] = useState(''); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,15 +19,15 @@ const SignUp = () => {
         phone,
         birthdate,
         email,
-        id: username,
-        pw: password,
+        id, 
+        pw, 
       });
 
       if (response.status === 200) {
         alert('회원가입이 완료되었습니다!');
-        window.location.href = '/login'; 
+        window.location.href = '/login';
       } else {
-        console.error('Registration failed');
+        console.error('회원가입 실패');
         alert('회원가입에 실패했습니다. 다시 시도해주세요.');
       }
     } catch (error) {
@@ -82,27 +82,27 @@ const SignUp = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="username">아이디</label>
+            <label htmlFor="id">아이디</label>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="id"
+              value={id} 
+              onChange={(e) => setId(e.target.value)}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">비밀번호</label>
+            <label htmlFor="pw">비밀번호</label>
             <input
               type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="pw"
+              value={pw} 
+              onChange={(e) => setPw(e.target.value)}
               required
             />
           </div>
           <button type="submit" className="signup-button">
-            Sign Up
+            회원가입하기
           </button>
         </form>
       </div>
