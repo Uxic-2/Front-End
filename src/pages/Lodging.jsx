@@ -30,30 +30,35 @@ const Lodging = () => {
           </select>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="flex p-4 bg-white border border-gray-300 rounded">
-            <div className="w-36 h-24 bg-gray-300"></div>
-            <div className="ml-4 flex-grow">
-              <h2 className="text-xl font-semibold">숙소 위치</h2>
-              <p className="text-gray-700">서울시 노원구 노원로</p>
-              <p className="text-gray-700">가격</p>
-              <div className="flex items-center mt-2">
-                <button className={`${buttonClass} mr-2`}>선택</button>
-                <button className={buttonClass}>❤️</button>
+          <a href="/vr/room_1/index.html" target="_blank" rel="noopener noreferrer">
+            <div className="flex p-4 bg-white border border-gray-300 rounded">
+              <div className="w-36 h-24 bg-gray-300"></div>
+              <div className="ml-4 flex-grow">
+                <h2 className="text-xl font-semibold">숙소 위치</h2>
+                <p className="text-gray-700">서울시 노원구 노원로</p>
+                <p className="text-gray-700">가격</p>
+                <div className="flex items-center mt-2">
+                  <button className={`${buttonClass} mr-2`}>선택</button>
+                  <button className={buttonClass}>❤️</button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex p-4 bg-white border border-gray-300 rounded">
-            <div className="w-36 h-24 bg-gray-300"></div>
-            <div className="ml-4 flex-grow">
-              <h2 className="text-xl font-semibold">숙소 위치</h2>
-              <p className="text-gray-700">서울시 노원구 노원로</p>
-              <p className="text-gray-700">가격</p>
-              <div className="flex items-center mt-2">
-                <button className={`${buttonClass} mr-2`}>선택</button>
-                <button className={buttonClass}>❤️</button>
+          </a>
+
+          <a href="/vr/room_2/index.html" target="_blank" rel="noopener noreferrer">
+            <div className="flex p-4 bg-white border border-gray-300 rounded">
+              <div className="w-36 h-24 bg-gray-300"></div>
+              <div className="ml-4 flex-grow">
+                <h2 className="text-xl font-semibold">숙소 위치</h2>
+                <p className="text-gray-700">서울시 노원구 노원로</p>
+                <p className="text-gray-700">가격</p>
+                <div className="flex items-center mt-2">
+                  <button className={`${buttonClass} mr-2`}>선택</button>
+                  <button className={buttonClass}>❤️</button>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
