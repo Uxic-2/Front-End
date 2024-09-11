@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
+import questionIcon from "../imgs/question.png";
 
 const Lodging = () => {
   const buttonClass =
