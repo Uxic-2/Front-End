@@ -72,7 +72,7 @@ const HotSpot = () => {
           <>
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center relative">
-                <h2 className="text-2xl">지금 인기있는 HOT SPOT</h2>
+                <h2 className="text-2xl"><b>지금 인기있는 HOT SPOT</b></h2>
                 <div className="tooltip-icon ml-2">
                   <img src={questionIcon} alt="Question" className="w-6 h-6" />
                   <div className="tooltip-text -mt-2 -ml-16 w-72">
