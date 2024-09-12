@@ -16,7 +16,7 @@ const Home = () => {
         <StepSVG />
         <button
           onClick={handleButtonClick}
-          style={{ bottom: '125px', right: '200px' }}
+          style={{ bottom: '173px', right: '200px' }}
           className="absolute px-8 py-2 rounded-[50px] bg-[#A9C398] shadow-md shadow-black/30 text-white text-center font-pretendard text-[20px] font-bold leading-normal"
         >
           시작하기
