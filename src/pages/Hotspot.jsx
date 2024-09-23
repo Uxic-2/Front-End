@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
 import Modal from "./HotspotModal";
@@ -9,30 +10,42 @@ import heart from "../imgs/heart.svg";
 import heart_fill from "../imgs/heart_fill.svg";
 
 const HotSpot = () => {
-  const hotSpots = Array(15) // 15개의 하트 수 데이터를 생성
-    .fill({ likes: 123456789 })
-    .map((spot, index) => ({
-      ...spot,
-      likes: spot.likes - index * 1000000, // 하트수 임의로 조정
-    }));
-
+  const [hotSpots, setHotSpots] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("HotSpot");
+  const [likedStates, setLikedStates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();  // 네비게이션 추가
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // 페이지 당 표시할 항목 수
+  useEffect(() => {
+    const fetchHotSpots = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('http://localhost:8080/search', {
+          withCredentials: true  // 세션 쿠키 포함
+        });
+        const data = response.data.photos;
+        setHotSpots(data);
+        setLikedStates(Array(data.length).fill(false));
+        setLoading(false);
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          console.log("인증 실패: 세션이 유효하지 않음.");  // 401 발생 시 로그
+        } else {
+          console.error('데이터를 불러오는 중 오류:', error);
+          setError('데이터를 불러오는 중 오류가 발생했습니다.');
+        }
+        setLoading(false);
+      }
+    };
+  
+    fetchHotSpots();
+  }, [navigate]);  // useNavigate 의존성 추가
+  
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
-
-  const renderHiddenspot = () => {
-    setCurrentComponent("Hiddenspot");
-    closeModal();
-  };
-
-  const [likedStates, setLikedStates] = useState(
-    Array(hotSpots.length).fill(false)
-  );
 
   const handleLikeClick = (index) => {
     const newLikedStates = [...likedStates];
@@ -40,34 +53,22 @@ const HotSpot = () => {
     setLikedStates(newLikedStates);
   };
 
-  // 현재 페이지에서 보여줄 항목 계산
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentHotSpots = hotSpots.slice(indexOfFirstItem, indexOfLastItem);
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
 
-  // 총 페이지 수 계산
-  const totalPages = Math.ceil(hotSpots.length / itemsPerPage);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-  const sortedHotSpots = [...currentHotSpots].sort((a, b) => b.likes - a.likes);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  if (!hotSpots.length) {
+    return <div>데이터가 없습니다.</div>;
+  }
 
   return (
     <div className="flex">
       <SideBar links={links} />
       <div className="flex-1 p-4 mr-5">
-        {" "}
-        {/* 오른쪽 마진 추가 */}
         {currentComponent === "HotSpot" ? (
           <>
             <div className="flex justify-between items-center mb-6">
@@ -83,29 +84,18 @@ const HotSpot = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="border rounded p-2 mr-4"
-                />
-                <select className="border rounded p-2" defaultValue="인기순">
-                  <option value="인기순">인기순</option>
-                  <option value="최신순">최신순</option>
-                  <option value="가나다순">가나다순</option>
-                </select>
-              </div>
             </div>
             <div className="grid grid-cols-3 gap-6">
-              {sortedHotSpots.map((spot, index) => (
-                <div key={index}>
+              {hotSpots.map((spot, index) => (
+                <div key={spot._id}>
                   {index < 3 && (
                     <div className="text-center text-lg font-bold mb-2">
                       Top {index + 1}
                     </div>
                   )}
-                  {/* 16:9 비율 적용 */}
-                  <div className="bg-gray-300 w-full mb-2 aspect-[16/9]"></div>
+                  <div className="bg-gray-300 w-full mb-2 aspect-[16/9]">
+                    <img src={spot.imageUrl} alt={spot.filename} className="w-full h-full object-cover"/>
+                  </div>
                   <div className="flex justify-between items-center">
                     <button
                       onClick={() => handleLikeClick(index)}
@@ -129,32 +119,11 @@ const HotSpot = () => {
                     <Modal
                       isOpen={modalIsOpen}
                       onRequestClose={closeModal}
-                      renderHiddenspot={renderHiddenspot}
+                      renderHiddenspot={() => setCurrentComponent("Hiddenspot")}
                     />
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Pagination 버튼 추가 */}
-            <div className="flex justify-center mt-4">
-              <button
-                className="px-4 py-2 bg-gray-200 rounded-l"
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-              >
-                이전
-              </button>
-              <span className="px-4 py-2">
-                {currentPage} / {totalPages}
-              </span>
-              <button
-                className="px-4 py-2 bg-gray-200 rounded-r"
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                다음
-              </button>
             </div>
           </>
         ) : (

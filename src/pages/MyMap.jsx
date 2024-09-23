@@ -1,52 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBMypage";
-
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-
 import Map from "./MapApi";
 import Modal from "./UploadModal";
-
+import axios from "axios";
 import map_icon from "../imgs/mypage_map_icon.svg";
-import cursor_icon from "../imgs/mypage_cursor_icon.svg";
-
-function SelectDate() {
-  const [date, setDate] = useState(new Date());
-
-  return (
-    <div className="flex">
-      <div className="flex-grow p-4">
-        <div className="flex justify-center space-x-8">
-          <Calendar
-            onChange={setDate}
-            value={date}
-            selectRange={true}
-            showDoubleView={true}
-            className="p-4 border border-gray-300 rounded custom-calendar"
-          />
-        </div>
-        <div className="flex justify-end w-[75%] mt-4">
-          <button className="w-20 bg-[#E4EBF1] text-[14px] font-bold px-4 py-2 rounded-xl">
-            완료
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function MyMap() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [uploadedPhotoIds, setUploadedPhotoIds] = useState([]); // 배열로 기본 초기화
+  const [uploadedPhotos, setUploadedPhotos] = useState([]); // 배열로 기본 초기화
+  const [loading, setLoading] = useState(true); // 로딩 상태
+  const [kakaoMapLoaded, setKakaoMapLoaded] = useState(false); // Kakao 지도 로드 상태
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
+  // 서버에서 업로드된 사진 ID를 가져와서 상태에 저장
+  useEffect(() => {
+    const fetchUploadedPhotoIds = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/mypage"); // 서버에서 사진 ID 리스트를 가져옴
+        setUploadedPhotoIds(response.data.uploaded_photoid || []); // 업로드된 사진의 ID 리스트 저장 (빈 배열 기본값)
+      } catch (error) {
+        console.error("Error fetching uploaded photo IDs", error);
+        setUploadedPhotoIds([]); // 오류 발생 시에도 빈 배열로 처리
+      }
+    };
+
+    fetchUploadedPhotoIds();
+  }, []);
+
+  // Kakao 지도 로드
+  useEffect(() => {
+    const loadKakaoMap = () => {
+      if (!window.kakao || !window.kakao.maps) {
+        const script = document.createElement("script");
+        script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&autoload=false";
+        script.async = true;
+        script.onload = () => {
+          window.kakao.maps.load(() => {
+            setKakaoMapLoaded(true); // Kakao Map 로드 완료 시 상태 업데이트
+          });
+        };
+        document.head.appendChild(script);
+      } else {
+        setKakaoMapLoaded(true); // 이미 로드된 경우 바로 상태 업데이트
+      }
+    };
+
+    loadKakaoMap();
+  }, []);
+
+  // 업로드된 사진 ID를 사용해 각 사진을 서버로부터 하나씩 가져오기
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const photos = await Promise.all(
+          (uploadedPhotoIds || []).map(async (id) => {
+            const response = await axios.get(`http://localhost:8080/photo/${id}`); // 서버에서 사진 파일을 가져옴
+            return response.data;
+          })
+        );
+        setUploadedPhotos(photos || []); // 사진 데이터 저장 (빈 배열 기본값)
+        setLoading(false); // 로딩 상태 해제
+      } catch (error) {
+        console.error("Error fetching photos", error);
+        setLoading(false); // 로딩 상태 해제 (실패 시에도)
+        setUploadedPhotos([]); // 오류 발생 시에도 빈 배열로 처리
+      }
+    };
+
+    if ((uploadedPhotoIds || []).length > 0) {
+      fetchPhotos();
+    } else {
+      setLoading(false); // 사진 ID가 없는 경우 로딩 해제
+    }
+  }, [uploadedPhotoIds]);
+
+  const handleUploadSuccess = (newPhoto) => {
+    setUploadedPhotos([...uploadedPhotos, newPhoto]); // 새로운 사진을 추가
+  };
+
   return (
     <div className="flex mx-8">
-      {" "}
-      {/* Added mx-8 for horizontal margin */}
       <SideBar links={links} />
       <div className="flex-1 p-4">
         <div className="items-center mb-10">
@@ -54,8 +92,14 @@ function MyMap() {
             <img src={map_icon} alt="Map Icon" />
             <h2 className="text-2xl">내 지도</h2>
           </div>
-          <Map className="z-0 w-[70%] h-[70vh] bg-slate-200" />
+          {/* Kakao 지도 로드 시에만 지도 렌더링 */}
+          {kakaoMapLoaded ? (
+            <Map className="z-0 w-[70%] h-[70vh] bg-slate-200" />
+          ) : (
+            <div>지도를 불러오는 중...</div>
+          )}
         </div>
+
         <div className="flex flex-col items-center mx-auto m-20 p-12 w-[70%] h-[40vh] bg-[#E4EBF1] rounded-2xl">
           <div className="mt-7 text-2xl text-center font-bold">
             여행지 사진을 업로드하여
@@ -69,29 +113,31 @@ function MyMap() {
           >
             Upload
           </Link>
-          <Modal isOpen={modalIsOpen} onRequestClose={closeModal} />
-          {/* <button className="my-map-upload-button">upload</button> */}
+          <Modal isOpen={modalIsOpen} onRequestClose={closeModal} onUploadSuccess={handleUploadSuccess} />
         </div>
-        {/* <div className="flex flex-col content-center">
-          <div className="relative">
-            <img
-              className="relative w-[6%] mt-[5%] ml-[47%]"
-              src={cursor_icon}
-              alt="cursor_icon"
-            />
-            <div className="flex-1 p-4 text-2xl text-center font-bold">
-              혹시 여행 중이신가요?
-            </div>
-            <div className="flex-1 p-4 text-base text-center">
-              PHOTATO와 함께 여행 계획을 세우지 않았다면
-              <br />
-              여행 경로를 파악할 수 있도록
-              <br />
-              여행 시작 날짜와 끝나는 날짜를 입력해주세요
-            </div>
+
+        {/* 업로드된 사진 로딩 상태 관리 */}
+        {loading ? (
+          <div>로딩 중...</div>
+        ) : (
+          <div className="grid grid-cols-3 gap-4">
+            {(uploadedPhotos || []).length > 0 ? (
+              uploadedPhotos.map((photo, index) => (
+                <div key={index} className="p-2">
+                  <img
+                    src={`http://localhost:8080/image/${photo.filename}`}
+                    alt={photo.metadata?.title || "Untitled"}
+                    className="w-full h-auto"
+                  />
+                  <h3 className="text-center">{photo.metadata?.title || "No Title"}</h3>
+                  <p className="text-center">{photo.metadata?.address || "No Address"}</p>
+                </div>
+              ))
+            ) : (
+              <div>사진이 없습니다.</div>
+            )}
           </div>
-          <SelectDate />
-        </div> */}
+        )}
       </div>
     </div>
   );

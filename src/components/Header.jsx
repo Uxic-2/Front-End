@@ -6,15 +6,21 @@ import logo from "../imgs/logo.png";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const updateLoginStatus = () => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
+    const storedUserId = localStorage.getItem("userId");
     setIsLoggedIn(loggedInStatus === "true");
+    setUserId(storedUserId);
+  };
+
+  useEffect(() => {
+    updateLoginStatus();
 
     const handleStorageChange = () => {
-      const loggedInStatus = localStorage.getItem("isLoggedIn");
-      setIsLoggedIn(loggedInStatus === "true");
+      updateLoginStatus();
     };
 
     window.addEventListener("storage", handleStorageChange);
@@ -29,15 +35,20 @@ const Header = () => {
       const response = await axios.get('http://localhost:8080/member/logout');
       if (response.status === 200) {
         localStorage.removeItem("isLoggedIn");
-        setIsLoggedIn(false);
+        localStorage.removeItem("userId");
+        updateLoginStatus();
         alert("로그아웃 되었습니다.");
         navigate("/login");
       } else {
         alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
       }
     } catch (error) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userId");
+      updateLoginStatus();
       console.error('Error during logout:', error);
       alert("서버와의 통신 중 오류가 발생했습니다.");
+      navigate("/login");
     }
   };
 
@@ -45,7 +56,7 @@ const Header = () => {
     <header className="header">
       <div className="logo">
         <NavLink to="/">
-          <img src={logo} alt="Logo" className="" />
+          <img src={logo} alt="Logo" />
         </NavLink>
       </div>
       <nav className="nav">
@@ -53,9 +64,7 @@ const Header = () => {
           <li className="nav-item">
             <NavLink
               to="/about"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
+              className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
             >
               ABOUT
             </NavLink>
@@ -63,9 +72,7 @@ const Header = () => {
           <li className="nav-item">
             <NavLink
               to="/hot-spot"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
+              className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
             >
               HOT SPOT
             </NavLink>
@@ -73,9 +80,7 @@ const Header = () => {
           <li className="nav-item">
             <NavLink
               to="/support"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
+              className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
             >
               SUPPORT
             </NavLink>
@@ -85,9 +90,7 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink
                   to="/mymap"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
+                  className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
                 >
                   MY PAGE
                 </NavLink>
@@ -102,9 +105,7 @@ const Header = () => {
             <li className="nav-item">
               <NavLink
                 to="/login"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
+                className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
               >
                 LOGIN
               </NavLink>

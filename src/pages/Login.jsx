@@ -19,9 +19,11 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        // 로그인 성공 시 로컬 스토리지에 저장
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', response.data.userId);  // MongoDB의 _id 저장
         alert('로그인에 성공했습니다!');
-        navigate('/'); 
+        navigate('/');  // 로그인 후 메인 페이지로 이동
       } else {
         console.error('로그인 실패');
         alert('로그인에 실패했습니다. 다시 시도해주세요.');
@@ -67,7 +69,7 @@ const Login = () => {
                 type="password"
                 id="pw"
                 placeholder="비밀번호를 입력하세요"
-                value={pw} // password를 pw로 변경
+                value={pw}
                 onChange={(e) => setPw(e.target.value)}
                 required
               />
