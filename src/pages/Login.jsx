@@ -11,27 +11,33 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:8080/member/login', {
         id, 
         pw, 
+      }, {
+        withCredentials: true
       });
-
-      if (response.status === 200) {
+  
+      console.log('Login response data:', response.data);
+  
+      // Check if the response contains user data and _id
+      if (response.status === 200 && response.data.user && response.data.user._id) {
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', response.data.user._id);
         alert('로그인에 성공했습니다!');
-        navigate('/'); 
+        navigate('/');
       } else {
-        console.error('로그인 실패');
+        console.error('로그인 실패: 유효한 사용자 데이터 없음');
         alert('로그인에 실패했습니다. 다시 시도해주세요.');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during login:', error);
       alert('서버와의 통신 중 문제가 발생했습니다.');
     }
   };
-
+  
   const handleSignUpClick = () => {
     navigate('/signup');
   };
@@ -67,7 +73,7 @@ const Login = () => {
                 type="password"
                 id="pw"
                 placeholder="비밀번호를 입력하세요"
-                value={pw} // password를 pw로 변경
+                value={pw}
                 onChange={(e) => setPw(e.target.value)}
                 required
               />

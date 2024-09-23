@@ -105,7 +105,7 @@ const About = () => {
         <h1 className="orangeText">인사말</h1>
         <br></br>
         <p>
-        <span className="greenColor">안녕하세요! 여행의 새로운 길을 열어주는 PHOTATO에 오신 것을 환영합니다.</span>   <br></br><br></br>
+        <span className="greenColor">안녕하세요!! 여행의 새로운 길을 열어주는 PHOTATO에 오신 것을 환영합니다.</span>   <br></br><br></br>
 
 PHOTATO는 여러분의 소중한 여행 사진을 통해 최고의 국내 여행지를 추천하는 혁신적인 서비스입니다. <br></br> <br></br>
 

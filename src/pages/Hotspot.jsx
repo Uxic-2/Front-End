@@ -1,38 +1,53 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
-import Modal from "./HotspotModal";
-import HiddenSpot from "./HiddenSpot";
-import questionIcon from "../imgs/question.png";
+import CustomModal from "./HotspotModal"; // Modal import
 import heart from "../imgs/heart.svg";
 import heart_fill from "../imgs/heart_fill.svg";
 
 const HotSpot = () => {
-  const hotSpots = Array(15) // 15개의 하트 수 데이터를 생성
-    .fill({ likes: 123456789 })
-    .map((spot, index) => ({
-      ...spot,
-      likes: spot.likes - index * 1000000, // 하트수 임의로 조정
-    }));
-
+  const [hotSpots, setHotSpots] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentComponent, setCurrentComponent] = useState("HotSpot");
+  const [currentSpot, setCurrentSpot] = useState(null); // 클릭된 사진의 정보 저장
+  const [likedStates, setLikedStates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();  // 네비게이션 추가
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // 페이지 당 표시할 항목 수
+  useEffect(() => {
+    const fetchHotSpots = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('http://localhost:8080/search', {
+          withCredentials: true  // 세션 쿠키 포함
+        });
+        const data = response.data.photos;
+        setHotSpots(data);
+        setLikedStates(Array(data.length).fill(false));
+        setLoading(false);
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          console.log("인증 실패: 세션이 유효하지 않음.");  // 401 발생 시 로그
+        } else {
+          console.error('데이터를 불러오는 중 오류:', error);
+          setError('데이터를 불러오는 중 오류가 발생했습니다.');
+        }
+        setLoading(false);
+      }
+    };
+  
+    fetchHotSpots();
+  }, [navigate]);  // useNavigate 의존성 추가
+  
 
-  const openModal = () => setModalIsOpen(true);
-  const closeModal = () => setModalIsOpen(false);
-
-  const renderHiddenspot = () => {
-    setCurrentComponent("Hiddenspot");
-    closeModal();
+  const openModal = (spot) => {
+    setCurrentSpot(spot); // 클릭한 사진의 정보를 저장
+    setModalIsOpen(true);
   };
 
-  const [likedStates, setLikedStates] = useState(
-    Array(hotSpots.length).fill(false)
-  );
+  const closeModal = () => setModalIsOpen(false);
 
   const handleLikeClick = (index) => {
     const newLikedStates = [...likedStates];
@@ -40,125 +55,60 @@ const HotSpot = () => {
     setLikedStates(newLikedStates);
   };
 
-  // 현재 페이지에서 보여줄 항목 계산
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentHotSpots = hotSpots.slice(indexOfFirstItem, indexOfLastItem);
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
 
-  // 총 페이지 수 계산
-  const totalPages = Math.ceil(hotSpots.length / itemsPerPage);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-  const sortedHotSpots = [...currentHotSpots].sort((a, b) => b.likes - a.likes);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  if (!hotSpots.length) {
+    return <div>데이터가 없습니다.</div>;
+  }
 
   return (
     <div className="flex">
       <SideBar links={links} />
       <div className="flex-1 p-4 mr-5">
-        {" "}
-        {/* 오른쪽 마진 추가 */}
-        {currentComponent === "HotSpot" ? (
-          <>
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center relative">
-                <h2 className="text-2xl"><b>지금 인기있는 HOT SPOT</b></h2>
-                <div className="tooltip-icon ml-2">
-                  <img src={questionIcon} alt="Question" className="w-6 h-6" />
-                  <div className="tooltip-text -mt-2 -ml-16 w-72">
-                    STEP 1에서는 타 유저들의 여행 사진을 모아두어 한 눈에
-                    확인하실 수 있습니다. 하트 버튼을 누를 시 여행 폴더에
-                    저장하실 수 있고, 선택 버튼을 누르시면 HIDDEN SPOT으로
-                    넘어가게 됩니다. 지금 당장 원하는 사진을 골라보세요!
-                  </div>
+        <h2 className="text-2xl mb-6"><b>지금 인기있는 HOT SPOT</b></h2>
+        <div className="grid grid-cols-3 gap-6">
+          {hotSpots.map((spot, index) => (
+            <div key={spot._id}>
+              {index < 3 && (
+                <div className="text-center text-lg font-bold mb-2">
+                  Top {index + 1}
                 </div>
+              )}
+              <div className="bg-gray-300 w-full mb-2 aspect-[16/9]" onClick={() => openModal(spot)}>
+                <img src={`http://localhost:8080/image/${spot.filename}`} alt={spot.filename} className="w-full h-full object-cover"/>
               </div>
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="border rounded p-2 mr-4"
-                />
-                <select className="border rounded p-2" defaultValue="인기순">
-                  <option value="인기순">인기순</option>
-                  <option value="최신순">최신순</option>
-                  <option value="가나다순">가나다순</option>
-                </select>
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={() => handleLikeClick(index)}
+                  className="flex items-center"
+                >
+                  <img
+                    src={likedStates[index] ? heart_fill : heart}
+                    alt="Like"
+                    className="mr-2 w-[20%]"
+                  />
+                  <p>{spot.likes ? spot.likes.toLocaleString() : '0'}</p>
+                </button>
+                <button className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded" onClick={() => openModal(spot)}>
+                  선택
+                </button>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-6">
-              {sortedHotSpots.map((spot, index) => (
-                <div key={index}>
-                  {index < 3 && (
-                    <div className="text-center text-lg font-bold mb-2">
-                      Top {index + 1}
-                    </div>
-                  )}
-                  {/* 16:9 비율 적용 */}
-                  <div className="bg-gray-300 w-full mb-2 aspect-[16/9]"></div>
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => handleLikeClick(index)}
-                      className="flex items-center"
-                    >
-                      <img
-                        src={likedStates[index] ? heart_fill : heart}
-                        alt="Like"
-                        className="mr-2 w-[20%]"
-                      />
-                      <p>{spot.likes.toLocaleString()}</p>
-                    </button>
-
-                    <Link
-                      to="#"
-                      className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded"
-                      onClick={openModal}
-                    >
-                      선택
-                    </Link>
-                    <Modal
-                      isOpen={modalIsOpen}
-                      onRequestClose={closeModal}
-                      renderHiddenspot={renderHiddenspot}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Pagination 버튼 추가 */}
-            <div className="flex justify-center mt-4">
-              <button
-                className="px-4 py-2 bg-gray-200 rounded-l"
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-              >
-                이전
-              </button>
-              <span className="px-4 py-2">
-                {currentPage} / {totalPages}
-              </span>
-              <button
-                className="px-4 py-2 bg-gray-200 rounded-r"
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                다음
-              </button>
-            </div>
-          </>
-        ) : (
-          <HiddenSpot />
+          ))}
+        </div>
+        {/* 모달 컴포넌트 */}
+        {currentSpot && (
+          <CustomModal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            spot={currentSpot} // 클릭된 사진 정보 전달
+          />
         )}
       </div>
     </div>

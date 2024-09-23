@@ -1,14 +1,14 @@
 import React from "react";
 import Modal from "react-modal";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-function CustomModal({ isOpen, onRequestClose }) {
+function CustomModal({ isOpen, onRequestClose, spot }) { // spot 정보 받음
   const navigate = useNavigate();
 
   const goToHiddenSpot = () => {
-    navigate("/hidden-spot"); 
+    navigate("/hidden-spot");
   };
 
   return (
@@ -25,10 +25,14 @@ function CustomModal({ isOpen, onRequestClose }) {
           X
         </button>
 
-        <div className="bg-gray-300 m-auto w-[50%] aspect-[16/9] mb-2"></div>
+        {/* 사진 표시 */}
+        <div className="bg-gray-300 m-auto w-[50%] aspect-[16/9] mb-2">
+          <img src={`http://localhost:8080/image/${spot.filename}`} alt={spot.filename} className="w-full h-full object-cover" />
+        </div>
         
-        <div className="text-center">장소: 서울 월드컵 공원</div>
-        <div className="text-center">주소: 서울 월드컵 공원</div>
+        {/* 사진 정보 표시 */}
+        <div className="text-center">장소: {spot.filename}</div>
+        <div className="text-center">주소: {spot.address ? spot.address : '주소 없음'}</div>
         <div className="text-center">
           위 장소를 포함한 여행 코스를 받아보시겠습니까?
         </div>
