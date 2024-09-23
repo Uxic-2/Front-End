@@ -3,16 +3,14 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
-import Modal from "./HotspotModal";
-import HiddenSpot from "./HiddenSpot";
-import questionIcon from "../imgs/question.png";
+import CustomModal from "./HotspotModal"; // Modal import
 import heart from "../imgs/heart.svg";
 import heart_fill from "../imgs/heart_fill.svg";
 
 const HotSpot = () => {
   const [hotSpots, setHotSpots] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentComponent, setCurrentComponent] = useState("HotSpot");
+  const [currentSpot, setCurrentSpot] = useState(null); // 클릭된 사진의 정보 저장
   const [likedStates, setLikedStates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -44,7 +42,11 @@ const HotSpot = () => {
   }, [navigate]);  // useNavigate 의존성 추가
   
 
-  const openModal = () => setModalIsOpen(true);
+  const openModal = (spot) => {
+    setCurrentSpot(spot); // 클릭한 사진의 정보를 저장
+    setModalIsOpen(true);
+  };
+
   const closeModal = () => setModalIsOpen(false);
 
   const handleLikeClick = (index) => {
@@ -69,65 +71,44 @@ const HotSpot = () => {
     <div className="flex">
       <SideBar links={links} />
       <div className="flex-1 p-4 mr-5">
-        {currentComponent === "HotSpot" ? (
-          <>
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center relative">
-                <h2 className="text-2xl"><b>지금 인기있는 HOT SPOT</b></h2>
-                <div className="tooltip-icon ml-2">
-                  <img src={questionIcon} alt="Question" className="w-6 h-6" />
-                  <div className="tooltip-text -mt-2 -ml-16 w-72">
-                    STEP 1에서는 타 유저들의 여행 사진을 모아두어 한 눈에
-                    확인하실 수 있습니다. 하트 버튼을 누를 시 여행 폴더에
-                    저장하실 수 있고, 선택 버튼을 누르시면 HIDDEN SPOT으로
-                    넘어가게 됩니다. 지금 당장 원하는 사진을 골라보세요!
-                  </div>
+        <h2 className="text-2xl mb-6"><b>지금 인기있는 HOT SPOT</b></h2>
+        <div className="grid grid-cols-3 gap-6">
+          {hotSpots.map((spot, index) => (
+            <div key={spot._id}>
+              {index < 3 && (
+                <div className="text-center text-lg font-bold mb-2">
+                  Top {index + 1}
                 </div>
+              )}
+              <div className="bg-gray-300 w-full mb-2 aspect-[16/9]" onClick={() => openModal(spot)}>
+                <img src={`http://localhost:8080/image/${spot.filename}`} alt={spot.filename} className="w-full h-full object-cover"/>
+              </div>
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={() => handleLikeClick(index)}
+                  className="flex items-center"
+                >
+                  <img
+                    src={likedStates[index] ? heart_fill : heart}
+                    alt="Like"
+                    className="mr-2 w-[20%]"
+                  />
+                  <p>{spot.likes ? spot.likes.toLocaleString() : '0'}</p>
+                </button>
+                <button className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded" onClick={() => openModal(spot)}>
+                  선택
+                </button>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-6">
-              {hotSpots.map((spot, index) => (
-                <div key={spot._id}>
-                  {index < 3 && (
-                    <div className="text-center text-lg font-bold mb-2">
-                      Top {index + 1}
-                    </div>
-                  )}
-                  <div className="bg-gray-300 w-full mb-2 aspect-[16/9]">
-                    <img src={spot.imageUrl} alt={spot.filename} className="w-full h-full object-cover"/>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => handleLikeClick(index)}
-                      className="flex items-center"
-                    >
-                      <img
-                        src={likedStates[index] ? heart_fill : heart}
-                        alt="Like"
-                        className="mr-2 w-[20%]"
-                      />
-                      <p>{spot.likes.toLocaleString()}</p>
-                    </button>
-
-                    <Link
-                      to="#"
-                      className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded"
-                      onClick={openModal}
-                    >
-                      선택
-                    </Link>
-                    <Modal
-                      isOpen={modalIsOpen}
-                      onRequestClose={closeModal}
-                      renderHiddenspot={() => setCurrentComponent("Hiddenspot")}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        ) : (
-          <HiddenSpot />
+          ))}
+        </div>
+        {/* 모달 컴포넌트 */}
+        {currentSpot && (
+          <CustomModal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            spot={currentSpot} // 클릭된 사진 정보 전달
+          />
         )}
       </div>
     </div>
