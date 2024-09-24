@@ -13,7 +13,7 @@ function CustomModal({ isOpen, onRequestClose, spot }) {
 
   return (
     <Modal
-      className={`fixed z-0 bg-white m-[10%_0_0_25%] w-[60%] h-[60vh] rounded-xl overflow-auto ${
+      className={`fixed z-0 bg-white m-[10%_0_0_25%] w-[60%] h-[60vh] rounded-xl overflow-auto shadow-md ${  // 그림자 추가
         isOpen ? "" : "hidden"
       }`}
       isOpen={isOpen}
@@ -39,14 +39,14 @@ function CustomModal({ isOpen, onRequestClose, spot }) {
         
         <div className="flex justify-center mt-1"> 
           <button
-            className="bg-gray-100 w-[15%] h-[40px] rounded-xl mr-10 shadow-md"  // 그림자 추가
+            className="bg-gray-100 w-[15%] h-[40px] rounded-xl mr-10 shadow-md"  // 버튼에 그림자 추가
             onClick={onRequestClose}
           >
             아니오
           </button>
 
           <button
-            className="bg-[#fc926b] text-white w-[15%] h-[40px] rounded-xl shadow-md"  // 그림자 추가
+            className="bg-[#fc926b] text-white w-[15%] h-[40px] rounded-xl shadow-md"  // 버튼에 그림자 추가
             onClick={goToHiddenSpot}
           >
             네
