@@ -8,13 +8,15 @@ import links from "../components/SideBar/SBSupport";
 
 const SupNotice = () => {
   return (
-    <div className="container">
+    <div className="flex">
       <SideBar links={links} />
-      <div className="content">
-        <h1>공지사항</h1>
-        <div className="search-bar">
-          <input type="text" placeholder="검색" />
-          <button type="submit"> 🔍</button>
+      <div className="w-[75%] mx-auto pt-[50px]">
+        <div className="w-[100%] flex justify-between">
+          <h1 className="text-2xl font-bold">공지사항</h1>
+          <div className="search-bar">
+            <input type="text" placeholder="검색" />
+            <button type="submit"> 🔍</button>
+          </div>
         </div>
         <table className="faq-table">
           <thead>

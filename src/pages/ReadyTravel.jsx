@@ -23,7 +23,7 @@ const ReadyTravel = () => {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-grow mx-auto mt-10 p-4">
+      <div className="flex-grow mx-auto pt-[50px]">
         {/* 텍스트와 아이콘을 같은 줄에 배치하기 위해 flex 사용 */}
         <div className="flex justify-center items-center mb-4">
           <h1 className="text-sm text-center mr-2">

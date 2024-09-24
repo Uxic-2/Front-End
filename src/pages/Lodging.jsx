@@ -16,7 +16,7 @@ const Lodging = () => {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="mx-auto mt-5 p-4">
+      <div className="mx-auto w-[50%] pt-[50px]">
         <div className="flex flex-col items-left mb-6">
           <img
             src={lodging_photato}

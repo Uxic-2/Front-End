@@ -19,13 +19,13 @@ function MyFolder() {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-1 p-4 ">
-        <div className="items-center mb-10">
-          <div className="flex ">
-            <h2 className="text-2xl">하트 보관함</h2>
+      <div className="flex-1 pt-[50px] ">
+        <div className="items-center">
+          <div className="flex m-auto w-[70%] ">
+            <h2 className="text-2xl font-bold">내 여행 폴더</h2>
           </div>
         </div>
-        <div className=" m-auto w-[70%] border-2 border-main-orange rounded-xl">
+        <div className="overflow-auto m-auto pb-5 w-[70%] h-[75vh] border-2 border-main-orange rounded-2xl">
           {Array.from(Array(Math.ceil(myFolder.length / listItems)).keys()).map(
             (v) => {
               return (

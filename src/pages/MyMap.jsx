@@ -37,7 +37,8 @@ function MyMap() {
     const loadKakaoMap = () => {
       if (!window.kakao || !window.kakao.maps) {
         const script = document.createElement("script");
-        script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&autoload=false";
+        script.src =
+          "//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&autoload=false";
         script.async = true;
         script.onload = () => {
           window.kakao.maps.load(() => {
@@ -59,7 +60,9 @@ function MyMap() {
       try {
         const photos = await Promise.all(
           (uploadedPhotoIds || []).map(async (id) => {
-            const response = await axios.get(`http://localhost:8080/photo/${id}`); // 서버에서 사진 파일을 가져옴
+            const response = await axios.get(
+              `http://localhost:8080/photo/${id}`
+            ); // 서버에서 사진 파일을 가져옴
             return response.data;
           })
         );
@@ -84,9 +87,9 @@ function MyMap() {
   };
 
   return (
-    <div className="flex mx-8">
+    <div className="flex">
       <SideBar links={links} />
-      <div className="flex-1 p-4">
+      <div className="flex-1 pt-[50px] w-[75%]">
         <div className="items-center mb-10">
           <div className="flex">
             <img src={map_icon} alt="Map Icon" />
@@ -113,7 +116,11 @@ function MyMap() {
           >
             Upload
           </Link>
-          <Modal isOpen={modalIsOpen} onRequestClose={closeModal} onUploadSuccess={handleUploadSuccess} />
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            onUploadSuccess={handleUploadSuccess}
+          />
         </div>
 
         {/* 업로드된 사진 로딩 상태 관리 */}
@@ -129,8 +136,12 @@ function MyMap() {
                     alt={photo.metadata?.title || "Untitled"}
                     className="w-full h-auto"
                   />
-                  <h3 className="text-center">{photo.metadata?.title || "No Title"}</h3>
-                  <p className="text-center">{photo.metadata?.address || "No Address"}</p>
+                  <h3 className="text-center">
+                    {photo.metadata?.title || "No Title"}
+                  </h3>
+                  <p className="text-center">
+                    {photo.metadata?.address || "No Address"}
+                  </p>
                 </div>
               ))
             ) : (

@@ -96,7 +96,7 @@ const HotSpot = () => {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-1 p-4 mr-5">
+      <div className="flex-1 pt-[50px] mr-5">
         <h2 className="text-2xl mb-6">
           <b>지금 인기있는 HOT SPOT</b>
         </h2>
