@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
 import questionIcon from "../imgs/question.png";
@@ -9,12 +9,16 @@ const Lodging = () => {
   const buttonClass =
     "px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-orange-500 hover:text-white active:bg-orange-500";
 
+  const handleLinkClick = (url) => {
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="flex">
       <SideBar links={links} />
       <div className="ml-64 p-6">
         <div className="flex flex-col items-left mb-6">
-                    <img
+          <img
             src={lodging_photato}
             alt="Lodging Photo"
             className="w-32 h-auto mb-2"
@@ -34,15 +38,14 @@ const Lodging = () => {
 
         <h1 className="text-xl font-bold mb-6">카테고리</h1>
         <div className="flex gap-4 mb-6">
-  <button className={`${buttonClass} border-0 shadow-md`}>전체</button>
-  <button className={`${buttonClass} border-0 shadow-md`}>호텔, 리조트</button>
-  <button className={`${buttonClass} border-0 shadow-md`}>모텔</button>
-  <button className={`${buttonClass} border-0 shadow-md`}>펜션</button>
-  <button className={`${buttonClass} border-0 shadow-md`}>홈, 빌라</button>
-  <button className={`${buttonClass} border-0 shadow-md`}>캠핑</button>
-  <button className={`${buttonClass} border-0 shadow-md`}>게하, 한옥</button>
-</div>
-
+          <button className={`${buttonClass} border-0 shadow-md`}>전체</button>
+          <button className={`${buttonClass} border-0 shadow-md`}>호텔, 리조트</button>
+          <button className={`${buttonClass} border-0 shadow-md`}>모텔</button>
+          <button className={`${buttonClass} border-0 shadow-md`}>펜션</button>
+          <button className={`${buttonClass} border-0 shadow-md`}>홈, 빌라</button>
+          <button className={`${buttonClass} border-0 shadow-md`}>캠핑</button>
+          <button className={`${buttonClass} border-0 shadow-md`}>게하, 한옥</button>
+        </div>
 
         <div className="flex justify-end mb-6">
           <select className="border rounded p-2" defaultValue="거리순">
@@ -53,11 +56,7 @@ const Lodging = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <a
-            href="/vr/room_1/index.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          
             <div className="flex p-4 bg-white border border-gray-300 rounded relative">
               <div className="w-36 h-24 bg-gray-300"></div>
               <div className="ml-4 flex-grow">
@@ -66,30 +65,26 @@ const Lodging = () => {
                 <p className="text-gray-700">가격</p>
                 <div className="flex items-center mt-2">
                   <button className={`${buttonClass} mr-2`}>선택</button>
-                  <button className={buttonClass}>❤️</button>
+                  <button className={`${buttonClass} mr-2`}>❤️</button>
+                  <button className={buttonClass} onClick={() => handleLinkClick("/vr/room_1/index.html")}>🔎</button>
                 </div>
               </div>
             </div>
-          </a>
+          
 
-          <a
-            href="/vr/room_2/index.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="flex p-4 bg-white border border-gray-300 rounded relative">
-              <div className="w-36 h-24 bg-gray-300"></div>
-              <div className="ml-4 flex-grow">
-                <h2 className="text-xl font-semibold">숙소 위치</h2>
-                <p className="text-gray-700">서울시 노원구 노원로</p>
-                <p className="text-gray-700">가격</p>
-                <div className="flex items-center mt-2">
-                  <button className={`${buttonClass} mr-2`}>선택</button>
-                  <button className={buttonClass}>❤️</button>
-                </div>
+          <div className="flex p-4 bg-white border border-gray-300 rounded relative">
+            <div className="w-36 h-24 bg-gray-300 "></div>
+            <div className="ml-4 flex-grow">
+              <h2 className="text-xl font-semibold">숙소 위치</h2>
+              <p className="text-gray-700">서울시 노원구 노원로</p>
+              <p className="text-gray-700">가격</p>
+              <div className="flex items-center mt-2">
+                <button className={`${buttonClass} mr-2`}>선택</button>
+                <button className={`${buttonClass} mr-2`}>❤️</button>
+                <button className={buttonClass} onClick={() => handleLinkClick("/vr/room_2/index.html")}>🔎</button>
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
