@@ -1,84 +1,84 @@
 .about-section {
-    margin-top: 7%;
-    margin-left: 15%;
-    margin-right: 18%;
-    margin-bottom: 5%;
-    padding: 20px;
-    flex-grow: 1;
-    align-items: center;
-    text-align: center;
-    /* 텍스트를 왼쪽으로 정렬 */
-    display: flex;
-    flex-direction: row;
-    /* 로고와 텍스트를 가로로 배치 */
+  margin-top: 7%;
+  margin-left: 15%;
+  margin-right: 18%;
+  margin-bottom: 5%;
+  padding: 20px;
+  flex-grow: 1;
+  align-items: center;
+  text-align: center;
+  /* 텍스트를 왼쪽으로 정렬 */
+  display: flex;
+  flex-direction: row;
+  /* 로고와 텍스트를 가로로 배치 */
 }
 
 .siteLogo {
-    align-items: center;
+  align-items: center;
 }
 
 .about-section .text-content {
-    align-items: center;
-    text-align: center;
-    max-width: 60%;
-    /* 텍스트 컨텐츠의 최대 너비 설정 */
+  align-items: center;
+  text-align: center;
+  max-width: 60%;
+  /* 텍스트 컨텐츠의 최대 너비 설정 */
 }
 
 .greenText {
-    color: #A9C498;
-    font-size: 2.2ch;
-    font-weight: 800;
-    text-align: center;
-    /* 텍스트 왼쪽 정렬 */
+  color: #a9c498;
+  font-size: 2.2ch;
+  font-weight: 800;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
 }
 
 .orangeText {
-    color: #F8B46E;
-    font-weight: 600;
-    font-size: 2.2ch;
+  color: #f8b46e;
+  font-weight: 600;
+  font-size: 2.2ch;
+  font-family: "Pretendard", sans-serif;
 }
 
 .siteLogo {
-    width: 200px;
-    /* 로고 크기 설정 */
-    margin-right: 40px;
-    /* 텍스트와 로고 사이의 간격 */
-    flex-shrink: 0;
-    /* 로고가 작아지지 않도록 고정 */
-    margin-left: 30%;
+  width: 200px;
+  /* 로고 크기 설정 */
+  margin-right: 40px;
+  /* 텍스트와 로고 사이의 간격 */
+  flex-shrink: 0;
+  /* 로고가 작아지지 않도록 고정 */
+  margin-left: 30%;
 }
 
 .color-block {
-    display: inline-block;
-    color: #ffffff;
-    font-size: smaller;
-    font-weight: 700;
-    text-align: center;
-    width: 80px;
-    /* 색상 블록의 너비 */
-    height: 30px;
-    /* 색상 블록의 높이 */
-    margin-top: 10px;
-    /* 외부 마진 */
+  display: inline-block;
+  color: #ffffff;
+  font-size: smaller;
+  font-weight: 700;
+  text-align: center;
+  width: 80px;
+  /* 색상 블록의 너비 */
+  height: 30px;
+  /* 색상 블록의 높이 */
+  margin-top: 10px;
+  /* 외부 마진 */
 }
 
 .color1 {
-    background-color: #F8B46E;
-    /* 첫 번째 색상 */
+  background-color: #f8b46e;
+  /* 첫 번째 색상 */
 }
 
 .color2 {
-    background-color: #A9C498;
-    /* 두 번째 색상 */
+  background-color: #a9c498;
+  /* 두 번째 색상 */
 }
 
 .character-logos {
-    width: 28vw;
-    margin-right: 2vw;
-    height: auto;
+  width: 28vw;
+  margin-right: 2vw;
+  height: auto;
 }
 
-
 .blank {
-    height: 20vh;
+  height: 20vh;
 }

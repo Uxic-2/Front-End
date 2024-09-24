@@ -1,7 +1,6 @@
 .support-container {
   display: flex;
   font-family: Arial, sans-serif;
-  margin: 20px;
 }
 
 .sidebar {
@@ -35,9 +34,8 @@
 }
 
 .support-content {
-  margin-left: 220px;
   flex: 1;
-  padding: 20px;
+  padding: 50px 0;
 }
 
 .support-content h1 {
@@ -76,7 +74,8 @@
 }
 
 #button {
-  width: 100%;
+  width: 15%;
+  margin: 10px auto;
   padding: 15px;
   background-color: #ffcc80;
   color: #333;

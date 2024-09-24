@@ -16,7 +16,7 @@
 
 /* 스크롤바 트랙 스타일 */
 ::-webkit-scrollbar-track {
-  background: #A9C398;
+  background: #a9c398;
   /* 트랙의 배경색 */
   border-radius: 10px;
   /* 둥글게 */
@@ -24,7 +24,7 @@
 
 /* 스크롤바 핸들(스크롤바 자체) 스타일 */
 ::-webkit-scrollbar-thumb {
-  background-color: #A9C398;
+  background-color: #a9c398;
   /* 스크롤바 색상 */
   border-radius: 10px;
   /* 둥글게 */
@@ -36,7 +36,7 @@
 * {
   scrollbar-width: thin;
   /* 스크롤바의 두께 */
-  scrollbar-color: #A9C398 #f0f0f0;
+  scrollbar-color: #a9c398 #f0f0f0;
   /* 스크롤바 색상과 트랙 색상 */
 }
 
@@ -53,7 +53,7 @@
   background-color: #333;
   color: #fff;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 14px;
   z-index: 10;
 }
 

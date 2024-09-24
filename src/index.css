@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    "Pretendard", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -109,4 +109,8 @@ code {
 .react-calendar__tile {
   font-family: "Pretendard Variable", sans-serif !important;
   font-weight: 700 !important;
+}
+
+div {
+  font-family: "Pretendard", sans-serif;
 }

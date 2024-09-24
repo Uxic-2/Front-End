@@ -9,11 +9,11 @@ Modal.setAppElement("#root");
 function PresentaionalModal({ isOpen, onRequestClose }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [address, setAddress] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [address, setAddress] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   const [showAddressField, setShowAddressField] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -26,11 +26,11 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
   const resetFields = () => {
     setSelectedFile(null);
     setPreviewSrc(null);
-    setTitle('');
-    setDescription('');
-    setAddress('');
-    setLatitude('');
-    setLongitude('');
+    setTitle("");
+    setDescription("");
+    setAddress("");
+    setLatitude("");
+    setLongitude("");
     setShowAddressField(false);
   };
 
@@ -41,12 +41,17 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
       img.src = event.target.result;
       img.onload = function () {
         window.EXIF.getData(img, function () {
-          const gpsLatitude = window.EXIF.getTag(this, 'GPSLatitude');
-          const gpsLongitude = window.EXIF.getTag(this, 'GPSLongitude');
-          const gpsLatitudeRef = window.EXIF.getTag(this, 'GPSLatitudeRef');
-          const gpsLongitudeRef = window.EXIF.getTag(this, 'GPSLongitudeRef');
+          const gpsLatitude = window.EXIF.getTag(this, "GPSLatitude");
+          const gpsLongitude = window.EXIF.getTag(this, "GPSLongitude");
+          const gpsLatitudeRef = window.EXIF.getTag(this, "GPSLatitudeRef");
+          const gpsLongitudeRef = window.EXIF.getTag(this, "GPSLongitudeRef");
 
-          if (gpsLatitude && gpsLongitude && gpsLatitudeRef && gpsLongitudeRef) {
+          if (
+            gpsLatitude &&
+            gpsLongitude &&
+            gpsLatitudeRef &&
+            gpsLongitudeRef
+          ) {
             const lat = convertDMSToDecimal(gpsLatitude, gpsLatitudeRef);
             const lon = convertDMSToDecimal(gpsLongitude, gpsLongitudeRef);
             setLatitude(lat);
@@ -63,7 +68,7 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
   const convertDMSToDecimal = (dms, ref) => {
     const [degrees, minutes, seconds] = dms;
     let decimal = degrees + minutes / 60 + seconds / 3600;
-    return ref === 'S' || ref === 'W' ? -decimal : decimal;
+    return ref === "S" || ref === "W" ? -decimal : decimal;
   };
 
   const handleFileChange = (event) => {
@@ -85,48 +90,52 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
 
   const uploadPost = async () => {
     if (!selectedFile) {
-      alert('Please select a file to upload.');
+      alert("Please select a file to upload.");
       return;
     }
 
     const formData = new FormData();
-    formData.append('uploadImg', selectedFile);
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('latitude', latitude);
-    formData.append('longitude', longitude);
-    formData.append('address', address);
+    formData.append("uploadImg", selectedFile);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("latitude", latitude);
+    formData.append("longitude", longitude);
+    formData.append("address", address);
 
-    console.log('FormData Entries:', ...formData.entries()); // FormData 내용 
+    console.log("FormData Entries:", ...formData.entries()); // FormData 내용
 
     try {
-      const response = await axios.post('http://localhost:8080/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:8080/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response.status === 200) {
-        alert('Upload successful');
+        alert("Upload successful");
         resetFields();
         onRequestClose();
       } else {
-        alert('Upload failed');
+        alert("Upload failed");
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
-      alert('An error occurred during the upload.');
+      console.error("Error uploading file:", error);
+      alert("An error occurred during the upload.");
     }
   };
 
   return (
     <Modal
       className={`fixed z-0 bg-[#FFFADD] m-[4%_0_0_10%] w-[70%] h-[80vh] overflow-auto${
-        isOpen ? '' : 'hidden'
+        isOpen ? "" : "hidden"
       }`}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0)' } }}
+      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
     >
       <div className="p-5">
         <button className="ml-[98%]" onClick={onRequestClose}>
@@ -141,9 +150,9 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
                 src={previewSrc}
                 alt="Preview"
                 style={{
-                  width: '300px',
-                  height: '300px',
-                  objectFit: 'cover',
+                  width: "300px",
+                  height: "300px",
+                  objectFit: "cover",
                 }}
               />
             ) : (
@@ -153,7 +162,7 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
             )}
             <input
               type="file"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               ref={fileInputRef}
               onChange={handleFileChange}
             />

@@ -1,67 +1,66 @@
 .container {
-    display: flex;
+  display: flex;
 }
 
 .content {
-    margin-left: 220px;
-    padding: 20px;
-    width: calc(100% - 220px);
+  margin-left: 220px;
+  padding: 20px;
+  width: calc(100% - 220px);
 }
 
 .search-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
+  margin-right: 0px;
+  margin-bottom: 20px;
 }
 
 .search-bar input {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .search-bar button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #ccc;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
 .faq-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .faq-table th,
 .faq-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 .faq-table th {
-    background-color: #a0c17b;
-    color: white;
+  background-color: #a0c17b;
+  color: white;
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .pagination button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .pagination .page-number {
-    margin: 0 10px;
-    font-weight: bold;
+  margin: 0 10px;
+  font-weight: bold;
 }
