@@ -18,11 +18,11 @@ const Lodging = () => {
       <SideBar links={links} />
       <div className="ml-64 p-6">
         <div className="flex flex-col items-left mb-6">
-          <img
-            src={lodging_photato}
-            alt="Lodging Photo"
-            className="w-32 h-auto mb-2"
-          />
+            <img
+              src={lodging_photato}
+              alt="Lodging Photo"
+              className="w-32 h-auto mb-2"
+            />
           <h1 className="text-2xl font-bold flex items-center">
             <span><i>편집자가 추천해주는 숙소 BEST</i></span>
             <div className="relative ml-2 tooltip-icon">
@@ -60,7 +60,7 @@ const Lodging = () => {
             <div className="flex p-4 bg-white border border-gray-300 rounded relative">
               <div className="w-36 h-24 bg-gray-300"></div>
               <div className="ml-4 flex-grow">
-                <h2 className="text-xl font-semibold">숙소 위치</h2>
+                <h2 className="text-xl font-semibold">숙소 이름</h2>
                 <p className="text-gray-700">서울시 노원구 노원로</p>
                 <p className="text-gray-700">가격</p>
                 <div className="flex items-center mt-2">
@@ -75,7 +75,7 @@ const Lodging = () => {
           <div className="flex p-4 bg-white border border-gray-300 rounded relative">
             <div className="w-36 h-24 bg-gray-300 "></div>
             <div className="ml-4 flex-grow">
-              <h2 className="text-xl font-semibold">숙소 위치</h2>
+              <h2 className="text-xl font-semibold">숙소 이름</h2>
               <p className="text-gray-700">서울시 노원구 노원로</p>
               <p className="text-gray-700">가격</p>
               <div className="flex items-center mt-2">
