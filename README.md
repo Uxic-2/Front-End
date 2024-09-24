@@ -1,25 +1,3 @@
-<div>
-  <div className="about-page">
-    
-    <section ref={aboutRef} data-section="ABOUT" className="about-section">
-      ![character_logo](character_logos)
-      <div className="text-content">
-        <h1 className="greenText">사진 위치 분석 기반 국내 여행 추천 시스템</h1>
-        <br />
-        ![Photato Logo](logo) 
-        <p>
-          사진분석 여행 추천 시스템이라는 본 웹사이트의 취지에 걸맞는<br />
-          <span className="orangeText">나만의 SPOT</span>을 찾길 바라는 마음에서 시작되었다.<br />
-          <span className="orangeText">PHOTATO</span>는 뜨거운 감자를 의미하는데, 나만의 숨겨진 곳을 공유하고<br />
-          그 곳이 많은 이들의 <span className="orangeText">HOT SPOT</span>이 되길 바라는 마음에서 유래되었다.
-        </p>
-        <br />
-        <div>
-          <div className="color-block color1">#F8B46E</div>
-          <div className="color-block color2">#A9C498</div>
-        </div>
-      </div>
-    </section>
 
   </div>
   <div className="blank"></div>
