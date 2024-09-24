@@ -1,35 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
+import { Link, useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
-import CustomModal from "./HotspotModal"; // Modal import
-import heart from "../imgs/heart.svg";
-import heart_fill from "../imgs/heart_fill.svg";
+import CustomModal from "./HotspotModal"; 
+import empty_heart from "../imgs/empty_heart.png";
+import filled_heart from "../imgs/filled_heart.png";
 
 const HotSpot = () => {
   const [hotSpots, setHotSpots] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentSpot, setCurrentSpot] = useState(null); // 클릭된 사진의 정보 저장
-  const [likedStates, setLikedStates] = useState([]);
+  const [currentSpot, setCurrentSpot] = useState(null); 
+  const [likedStates, setLikedStates] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();  // 네비게이션 추가
+  const navigate = useNavigate();  
 
   useEffect(() => {
     const fetchHotSpots = async () => {
       try {
         setLoading(true);
         const response = await axios.get('http://localhost:8080/search', {
-          withCredentials: true  // 세션 쿠키 포함
+          withCredentials: true 
         });
         const data = response.data.photos;
         setHotSpots(data);
-        setLikedStates(Array(data.length).fill(false));
+
+        // 각 spot의 ID에 따라 사용자가 좋아요를 눌렀는지 확인하는 로컬 스토리지에서의 초기 상태 설정
+        const likedStatuses = data.map(spot => {
+          return localStorage.getItem(`liked_${spot._id}`) === 'true';
+        });
+
+        setLikedStates(likedStatuses);
         setLoading(false);
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          console.log("인증 실패: 세션이 유효하지 않음.");  // 401 발생 시 로그
+          console.log("인증 실패: 세션이 유효하지 않음.");
         } else {
           console.error('데이터를 불러오는 중 오류:', error);
           setError('데이터를 불러오는 중 오류가 발생했습니다.');
@@ -39,20 +45,38 @@ const HotSpot = () => {
     };
   
     fetchHotSpots();
-  }, [navigate]);  // useNavigate 의존성 추가
-  
+  }, [navigate]);
 
   const openModal = (spot) => {
-    setCurrentSpot(spot); // 클릭한 사진의 정보를 저장
+    setCurrentSpot(spot); 
     setModalIsOpen(true);
   };
 
   const closeModal = () => setModalIsOpen(false);
 
-  const handleLikeClick = (index) => {
+  // 하트 클릭 시 좋아요 수 증가/감소 로직
+  const handleLikeClick = (index, spotId) => {
     const newLikedStates = [...likedStates];
-    newLikedStates[index] = !newLikedStates[index];
+    newLikedStates[index] = !newLikedStates[index]; // 상태 반전
+
+    // 좋아요 상태를 반영하여 숫자 증가/감소
+    const updatedSpots = hotSpots.map((spot, i) => {
+      if (i === index) {
+        const updatedLikes = newLikedStates[index] ? spot.likes + 1 : spot.likes - 1;
+        return { ...spot, likes: updatedLikes }; // likes 수 업데이트
+      }
+      return spot;
+    });
+
+    // 좋아요 상태를 로컬 스토리지에 저장
+    if (newLikedStates[index]) {
+      localStorage.setItem(`liked_${spotId}`, 'true');  // 좋아요 상태 저장
+    } else {
+      localStorage.setItem(`liked_${spotId}`, 'false');  // 좋아요 상태 취소
+    }
+
     setLikedStates(newLikedStates);
+    setHotSpots(updatedSpots); // 업데이트된 핫스팟을 설정하여 리렌더링
   };
 
   if (loading) {
@@ -85,15 +109,15 @@ const HotSpot = () => {
               </div>
               <div className="flex justify-between items-center">
                 <button
-                  onClick={() => handleLikeClick(index)}
+                  onClick={() => handleLikeClick(index, spot._id)}  // spot ID 전달
                   className="flex items-center"
                 >
                   <img
-                    src={likedStates[index] ? heart_fill : heart}
+                    src={likedStates[index] ? filled_heart : empty_heart}  // 좋아요 상태에 따른 이미지 변경
                     alt="Like"
                     className="mr-2 w-[20%]"
                   />
-                  <p>{spot.likes ? spot.likes.toLocaleString() : '0'}</p>
+                  <p>{spot.likes ? spot.likes.toLocaleString() : '0'}</p>  {/* 좋아요 수 표시 */}
                 </button>
                 <button className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded" onClick={() => openModal(spot)}>
                   선택
@@ -107,7 +131,7 @@ const HotSpot = () => {
           <CustomModal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
-            spot={currentSpot} // 클릭된 사진 정보 전달
+            spot={currentSpot} 
           />
         )}
       </div>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-function CustomModal({ isOpen, onRequestClose, spot }) { // spot 정보 받음
+function CustomModal({ isOpen, onRequestClose, spot }) {
   const navigate = useNavigate();
 
   const goToHiddenSpot = () => {
@@ -37,16 +37,16 @@ function CustomModal({ isOpen, onRequestClose, spot }) { // spot 정보 받음
           위 장소를 포함한 여행 코스를 받아보시겠습니까?
         </div>
         
-        <div className="flex justify-between mt-6"> 
+        <div className="flex justify-center mt-1"> 
           <button
-            className="bg-gray-100 w-[15%] h-[40px] rounded-xl"
+            className="bg-gray-100 w-[15%] h-[40px] rounded-xl mr-10 shadow-md"  // 그림자 추가
             onClick={onRequestClose}
           >
             아니오
           </button>
 
           <button
-            className="bg-[#fc926b] text-white w-[15%] h-[40px] rounded-xl"
+            className="bg-[#fc926b] text-white w-[15%] h-[40px] rounded-xl shadow-md"  // 그림자 추가
             onClick={goToHiddenSpot}
           >
             네
