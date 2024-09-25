@@ -17,54 +17,54 @@ const Home = () => {
 
   return (
     <div className="overflow-hidden overflow-x-hidden w-full min-h-screen bg-gradient-to-b from-white via-[#FFFADD] to-[#F8B46E] box-border">
-      <img src={img_potatoes} className="mt-[20vh] mx-auto"></img>
-      <div className="text-center">
-        <div className="mt-10 font-bold text-3xl">
+      <img src={img_potatoes} className="h-[20vh] mt-[20vh] mx-auto"></img>
+      <div className="h-[20vh] mt-[10vh] mb-[35vh] text-center">
+        <div className=" font-bold text-3xl">
           <span>나만의 </span>
           <span className="text-main-green">"</span>
           <span className="text-main-orange">HIDDEN SPOT</span>
           <span className="text-main-green">"</span>
           <span>을 찾다.</span>
         </div>
-        <div className="mt-5 mx-auto text-gray-400">
+        <div className="mt-[2vh] mx-auto text-gray-400">
           취향에 맞는 추천 여행지와 여행 스케줄을 PHOTATO해보세요.
         </div>
       </div>
-      <img src={img_home} className="mt-[40vh] ml-[15vw] w-[80vw]"></img>
+      <img src={img_home} className="h-[185vh] ml-[15vw]"></img>
       <img
         src={img_cloud1}
-        className="absolute top-[110vh] right-0 w-[45vw] z-10"
+        className="h-[40vh] absolute top-[125vh] right-0 z-10"
       ></img>
       <img
         src={img_cloud2}
-        className="absolute top-[160vh] left-0 w-[45vw] z-10"
+        className="h-[40vh] absolute top-[165vh] left-0 z-10"
       ></img>
       <img
         src={img_cloud1}
-        className="absolute top-[200vh] right-0 w-[50vw] z-10"
+        className="h-[45vh] absolute top-[200vh] right-0 z-10"
       ></img>
       <img
         src={img_cloud2}
-        className="absolute top-[260vh] left-0 w-[55vw] z-10"
+        className="h-[45vh] absolute top-[260vh] left-0 z-10"
       ></img>
       <img
         src={img_potato}
-        className="absolute top-[104vh] right-[-2vw] w-[15vw]"
+        className="h-[12vh] absolute top-[129vh] right-[10vw]"
       ></img>
       <img
         src={img_potato}
-        className="absolute top-[155vh] left-[7vw] w-[15vw] transform scale-x-[-1]"
+        className="h-[12vh] absolute top-[163vh] left-[12vw] transform scale-x-[-1]"
       ></img>
       <img
         src={img_potato}
-        className="absolute top-[203vh] right-[14vw] w-[15vw]"
+        className="h-[12vh] absolute top-[205vh] right-[14vw]"
       ></img>
       <img
         src={img_potato}
-        className="absolute top-[255vh] left-[10vw] w-[17vw] transform scale-x-[-1]"
+        className="h-[12vh] absolute top-[253vh] left-[3vw] transform scale-x-[-1]"
       ></img>
 
-      <div className="absolute top-[123vh] right-[2vw] w-[35vw] z-50">
+      <div className="absolute top-[135vh] right-[2vw] w-[35vw] z-50">
         <div className=" font-bold text-3xl text-right">
           <span>STEP 1 사진 선택</span>
         </div>
@@ -87,7 +87,7 @@ const Home = () => {
           <br />
         </div>
       </div>
-      <div className="absolute top-[175vh] left-[2vw] w-[40vw] z-50">
+      <div className="absolute top-[180vh] left-[2vw] w-[40vw] z-50">
         <div className=" font-bold text-3xl text-left">
           <span>STEP 2 여행 기간 설정</span>
         </div>
@@ -102,7 +102,7 @@ const Home = () => {
           계획의 기반이 됩니다.
         </div>
       </div>
-      <div className="absolute top-[217vh] right-[2vw] w-[40vw] z-50">
+      <div className="absolute top-[215vh] right-[2vw] w-[40vw] z-50">
         <div className=" font-bold text-3xl text-right">
           <span>STEP 3 숙소/맛집 선택</span>
         </div>
@@ -129,6 +129,41 @@ const Home = () => {
           포함시킬 수 있습니다.
         </div>
       </div>
+      <div className="absolute top-[275vh] left-[2vw] w-[40vw] z-50">
+        <div className=" font-bold text-3xl text-left">
+          <span>STEP 4 이동 경로 안내</span>
+        </div>
+        <div className="mx-auto text-left">
+          1. PHOTATO는 사용자가 선택한 숙소, 맛집, 관광지를 바탕으로 최적의 이동
+          경로를 안내합니다.
+          <br />
+          2. 이동 경로는 시간 효율성과 편의성을 고려하여 설계되며, 사용자에게
+          다양한 교통 수단 정보를 제공합니다.
+          <br />
+          3. 사용자는{" "}
+          <div className="px-3 py-1 rounded-2xl bg-main-orange inline font-bold">
+            다시 생성하기
+          </div>
+          버튼을 눌러 새로운 경로를 제공 받을 수 있습니다.
+          <br />
+          4. 여행 스케줄에 포함된 장소들을 지도 상에서 확인할 수 있으며, 이동
+          경로를 따라 계획된 일정을 쉽게 파악할 수 있습니다.
+          <br />
+          5. 사용자는 여행 중 언제든지 경로를 수정하거나 삭제할 수 있습니다.
+          <br />
+          6.{" "}
+          <div className="px-4 py-1 rounded-2xl bg-black text-white inline">
+            save
+          </div>{" "}
+          버튼을 누르면 [마이페이지->저장한 스케줄] 에서 확인할 수 있습니다.
+        </div>
+      </div>
+      <button
+        onClick={handleButtonClick}
+        className="absolute top-[285vh] right-[12vw] px-8 py-2 rounded-[50px] bg-[#A9C398] shadow-md shadow-black/30 text-white text-center font-pretendard text-[20px] font-bold leading-normal"
+      >
+        시작하기
+      </button>
       <div className="grid grid-cols-5 grid-rows-2 gap-2.5 p-5 mt-[15vh]">
         {Array.from({ length: 10 }).map((_, index) => (
           <img
