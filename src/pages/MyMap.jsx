@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBMypage";
-import Map from "./MapApi";
+import Map from "./Map"; // Map 컴포넌트를 올바르게 임포트
 import Modal from "./UploadModal";
 import axios from "axios";
 import map_icon from "../imgs/mypage_map_icon.svg";
 
 function MyMap() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [uploadedPhotoIds, setUploadedPhotoIds] = useState([]); // 배열로 기본 초기화
-  const [uploadedPhotos, setUploadedPhotos] = useState([]); // 배열로 기본 초기화
-  const [loading, setLoading] = useState(true); // 로딩 상태
-  const [kakaoMapLoaded, setKakaoMapLoaded] = useState(false); // Kakao 지도 로드 상태
+  const [uploadedPhotoIds, setUploadedPhotoIds] = useState([]);
+  const [uploadedPhotos, setUploadedPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [kakaoMapLoaded, setKakaoMapLoaded] = useState(false);
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
@@ -21,11 +21,11 @@ function MyMap() {
   useEffect(() => {
     const fetchUploadedPhotoIds = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/mypage"); // 서버에서 사진 ID 리스트를 가져옴
-        setUploadedPhotoIds(response.data.uploaded_photoid || []); // 업로드된 사진의 ID 리스트 저장 (빈 배열 기본값)
+        const response = await axios.get("http://localhost:8080/mypage");
+        setUploadedPhotoIds(response.data.uploaded_photoid || []);
       } catch (error) {
         console.error("Error fetching uploaded photo IDs", error);
-        setUploadedPhotoIds([]); // 오류 발생 시에도 빈 배열로 처리
+        setUploadedPhotoIds([]);
       }
     };
 
@@ -38,52 +38,50 @@ function MyMap() {
       if (!window.kakao || !window.kakao.maps) {
         const script = document.createElement("script");
         script.src =
-          "//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&autoload=false";
+          "//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&autoload=false"; // 실제 앱 키로 교체
         script.async = true;
         script.onload = () => {
           window.kakao.maps.load(() => {
-            setKakaoMapLoaded(true); // Kakao Map 로드 완료 시 상태 업데이트
+            setKakaoMapLoaded(true);
           });
         };
         document.head.appendChild(script);
       } else {
-        setKakaoMapLoaded(true); // 이미 로드된 경우 바로 상태 업데이트
+        setKakaoMapLoaded(true);
       }
     };
 
     loadKakaoMap();
   }, []);
 
-  // 업로드된 사진 ID를 사용해 각 사진을 서버로부터 하나씩 가져오기
+  // 업로드된 사진 ID를 사용해 각 사진을 서버로부터 가져오기
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
         const photos = await Promise.all(
           (uploadedPhotoIds || []).map(async (id) => {
-            const response = await axios.get(
-              `http://localhost:8080/photo/${id}`
-            ); // 서버에서 사진 파일을 가져옴
+            const response = await axios.get(`http://localhost:8080/photo/${id}`);
             return response.data;
           })
         );
-        setUploadedPhotos(photos || []); // 사진 데이터 저장 (빈 배열 기본값)
-        setLoading(false); // 로딩 상태 해제
+        setUploadedPhotos(photos || []);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching photos", error);
-        setLoading(false); // 로딩 상태 해제 (실패 시에도)
-        setUploadedPhotos([]); // 오류 발생 시에도 빈 배열로 처리
+        setLoading(false);
+        setUploadedPhotos([]);
       }
     };
 
     if ((uploadedPhotoIds || []).length > 0) {
       fetchPhotos();
     } else {
-      setLoading(false); // 사진 ID가 없는 경우 로딩 해제
+      setLoading(false);
     }
   }, [uploadedPhotoIds]);
 
   const handleUploadSuccess = (newPhoto) => {
-    setUploadedPhotos([...uploadedPhotos, newPhoto]); // 새로운 사진을 추가
+    setUploadedPhotos([...uploadedPhotos, newPhoto]);
   };
 
   return (

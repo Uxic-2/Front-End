@@ -2,7 +2,7 @@
 
 const links = [
   { to: "/mymap", text: "내 지도" },
-  { to: "/myfolder", text: "하트 보관함" },
+  { to: "/myfolder", text: "내 여행 폴더" },
   { to: "/myschedule", text: "저장한 스케줄" },
   { to: "/schedule-edit", text: "스케줄 테스트" },
 ];

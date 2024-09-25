@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Map from "./MapApi";
-
+import questionIcon from "../imgs/question.png";
 import order_icon from "../imgs/schedule_order_icon.svg";
 import delete_icon from "../imgs/schedule_delete_icon.svg";
 
@@ -122,7 +122,24 @@ function Schedule() {
   };
 
   return (
-    <div className="flex-1 p-4 ">
+    <div className="flex-1 p-4 "><div className="flex flex-col items-center justify-center h-[20vh]">
+    <div className="flex items-center">
+      <h1 className="text-lg font-medium">여행 스케줄 이름</h1>
+      <div className="relative inline-block ml-2 group">
+        <img src={questionIcon} alt="Question" className="w-4 h-4 cursor-pointer" />
+        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-80 p-2 text-sm bg-gray-700 text-white rounded hidden group-hover:block">
+          STEP 4에서는 3단계의 선택을 바탕으로 짜여진 이동 동선 및 경로를 확인하실 수 있습니다.
+        </div>
+      </div>
+    </div>
+    <input
+      type="text"
+      placeholder="Enter route name"
+      className="w-[30%] mt-2 p-2 border border-orange-300 rounded"
+    />
+  </div>
+  
+  
       {schedules.length > 0 && (
         <div className="mb-10">
           <div className="flex">
