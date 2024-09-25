@@ -5,6 +5,10 @@
   justify-content: space-between;
   background-color: #ffffff;
   padding: 5px 20px;
+  flex-wrap: nowrap;
+  /* 요소들이 줄바꿈하지 않도록 설정 */
+  overflow: hidden;
+  /* 헤더가 넘칠 경우 숨김 처리 */
 }
 
 .logo img {
@@ -95,8 +99,6 @@
 /* 미디어 쿼리 */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    align-items: flex-start;
     padding: 10px;
   }
 
@@ -111,14 +113,17 @@
   }
 
   .nav-list {
-    display: block;
+    display: flex;
+    /* 블록에서 플렉스로 변경 */
     margin-right: 0;
     text-align: center;
   }
 
   .nav-item {
     display: block;
-    margin: 10px 0;
+    /* 플렉스 아이템 유지 */
+    margin: 0;
+    /* 마진 제거 */
   }
 
   .search-bar {
@@ -132,16 +137,20 @@
   }
 }
 
+/* 화면 너비가 480px 이하일 때 로고 숨기기 */
 @media (max-width: 480px) {
   .logo img {
-    height: 30px;
+    display: none;
+    /* 로고 이미지 숨김 */
   }
 
   .nav-item {
     margin: 8px 0;
+    /* 여유 공간 유지 */
   }
 
   .nav-link {
     font-size: 14px;
+    /* 글자 크기 조정 */
   }
 }
