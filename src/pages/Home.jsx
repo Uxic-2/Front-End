@@ -22,7 +22,7 @@ const Home = () => {
           시작하기
         </button>
       </div>
-      <div className="grid grid-cols-5 grid-rows-2 gap-2.5 p-5 mt-8">X
+      <div className="grid grid-cols-5 grid-rows-2 gap-2.5 p-5 mt-8">
         {Array.from({ length: 10 }).map((_, index) => (
           <img
             src={exampleImage}
