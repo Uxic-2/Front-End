@@ -1,41 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 
-const MapApi = () => {
-  const containerRef = useRef(null);
-  const [isMapLoaded, setIsMapLoaded] = useState(false);
+function MapApi({ setKakaoMapLoaded }) {
+    useEffect(() => {
+        const loadKakaoMap = () => {
+            if (!window.kakao || !window.kakao.maps) {
+                const script = document.createElement("script");
+                script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_ACTUAL_API_KEY&autoload=false"; // 실제 API 키로 변경
+                script.async = true;
 
-  useEffect(() => {
-    // Kakao 지도 API 스크립트 동적으로 추가
-    const apikey = process.env.REACT_APP_KAKAO_MAP_API;
+                script.onload = () => {
+                    window.kakao.maps.load(() => {
+                        setKakaoMapLoaded(true);
+                    });
+                };
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = apikey;
-    document.body.appendChild(script);
+                script.onerror = () => {
+                    console.error("Failed to load Kakao Maps API");
+                };
 
-    const onLoadKakaoMap = () => {
-      window.kakao.maps.load(() => {
-        const mapContainer = document.getElementById("map");
-        const mapOption = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-          level: 3, // 지도의 확대 레벨
+                document.head.appendChild(script);
+            } else {
+                setKakaoMapLoaded(true);
+            }
         };
-        new window.kakao.maps.Map(mapContainer, mapOption);
-        setIsMapLoaded(true); // 지도가 로드되었음을 설정
-      });
-    };
-    script.addEventListener("load", onLoadKakaoMap);
-  }, []);
 
-  return (
-    <div
-      id="map"
-      ref={containerRef}
-      className={`z-0 w-[600px] h-[500px] m-auto ${
-        isMapLoaded ? "" : "bg-slate-200"
-      }`}
-    ></div>
-  );
-};
+        loadKakaoMap();
+    }, [setKakaoMapLoaded]);
+
+    return null;
+}
 
 export default MapApi;

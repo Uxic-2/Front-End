@@ -14,12 +14,10 @@ import SignUp from "./pages/SignUp";
 import Support from "./pages/Support";
 import HotSpot from "./pages/Hotspot";
 import About from "./pages/About";
-import HiddenSpot from "./pages/HiddenSpot";
 import ReadyTravel from "./pages/ReadyTravel";
 import SupNotice from "./pages/SupNotice";
 import SupQuestion from "./pages/SupQuestion";
 import Lodging from "./pages/Lodging";
-import Restaurant from "./pages/Restaurant";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
@@ -69,9 +67,7 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/hot-spot" element={<HotSpot userId={userId} />} />  {/* 유저 ID 전달 */}
         <Route path="/about" element={<About />} />
-        <Route path="/hidden-spot" element={<HiddenSpot />} />
         <Route path="/ready-travel" element={<ReadyTravel />} />
-        <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/lodging" element={<Lodging />} />
         <Route path="/mymap" element={<MyMap />} />
         <Route path="/myfolder" element={<MyFolder />} />
