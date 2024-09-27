@@ -8,7 +8,7 @@ function ScheduleCreate() {
   return (
     <div className="flex">
       <SideBar links={links} />
-      <Schedule />z
+      <Schedule />
     </div>
   );
 }

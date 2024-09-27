@@ -9,15 +9,29 @@ import "../index.css";
 import { useNavigate } from "react-router-dom";
 
 const ReadyTravel = () => {
-  const [date, setDate] = useState(new Date());
+  const [selectedRange, setSelectedRange] = useState([null, null]);
 
   const formatDay = (locale, date) => {
-    return date.getDate(); // 날짜에서 숫자만 반환
+    return date.getDate(); // Only return day of the month
   };
 
   const navigate = useNavigate();
+
   const NextStepPopup = () => {
-    navigate("/lodging");
+    if (selectedRange[0] && selectedRange[1]) {
+      // Only proceed if both start and end dates are selected
+      navigate("/lodging");
+    } else {
+      alert("여행 기간을 선택해주세요.");
+    }
+  };
+
+  const handleDateChange = (value) => {
+    if (Array.isArray(value)) {
+      setSelectedRange(value); // Set both start and end date
+    } else {
+      setSelectedRange([value, null]); // Reset if only a single date is selected
+    }
   };
 
   return (
@@ -40,14 +54,36 @@ const ReadyTravel = () => {
 
         <div className="flex justify-center space-x-8">
           <Calendar
-            onChange={setDate}
-            value={date}
+            onChange={handleDateChange}
+            value={selectedRange}
             selectRange={true}
             showDoubleView={true}
             className="p-4 custom-calendar"
             formatDay={formatDay}
+            tileClassName={({ date, view }) => {
+              if (selectedRange[0] && selectedRange[1]) {
+                const startDate = new Date(selectedRange[0]);
+                const endDate = new Date(selectedRange[1]);
+
+                if (date >= startDate && date <= endDate) {
+                  return "highlight-range"; // Apply class to highlight the selected range
+                }
+              }
+              return null;
+            }}
           />
         </div>
+
+        {/* Display selected date range */}
+        {selectedRange[0] && selectedRange[1] && (
+          <div className="text-center mt-4">
+            <p>
+              여행 시작일: {selectedRange[0].toLocaleDateString()} <br />
+              여행 종료일: {selectedRange[1].toLocaleDateString()}
+            </p>
+          </div>
+        )}
+
         <div className="flex justify-end w-[75%] mt-4">
           <button
             className="bg-[#DEF8FF] text-[12px] font-bold px-4 py-2 rounded-xl"

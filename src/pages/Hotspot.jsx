@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
@@ -17,35 +16,29 @@ const HotSpot = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchHotSpots = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get("http://localhost:8080/search", {
-          withCredentials: true,
-        });
-        const data = response.data.photos;
-        setHotSpots(data);
 
-        // 각 spot의 ID에 따라 사용자가 좋아요를 눌렀는지 확인하는 로컬 스토리지에서의 초기 상태 설정
-        const likedStatuses = data.map((spot) => {
-          return localStorage.getItem(`liked_${spot._id}`) === "true";
-        });
+    const mockData = [
+      { _id: "1", filename: "spot1.jpg", likes: 120, address: "Seoul, Korea" },
+      { _id: "2", filename: "spot2.jpg", likes: 98, address: "Busan, Korea" },
+      { _id: "3", filename: "spot3.jpg", likes: 150, address: "Incheon, Korea" },
+      { _id: "4", filename: "spot4.jpg", likes: 60, address: "Jeju, Korea" },
+      { _id: "5", filename: "spot5.jpg", likes: 75, address: "Daegu, Korea" },
+      { _id: "6", filename: "spot6.jpg", likes: 45, address: "Gwangju, Korea" },
+      { _id: "7", filename: "spot7.jpg", likes: 85, address: "Suwon, Korea" },
+      { _id: "8", filename: "spot8.jpg", likes: 110, address: "Daejeon, Korea" },
+      { _id: "9", filename: "spot9.jpg", likes: 50, address: "Pohang, Korea" },
+      { _id: "10", filename: "spot10.jpg", likes: 95, address: "Ulsan, Korea" },
+      { _id: "11", filename: "spot11.jpg", likes: 100, address: "Sejong, Korea" },
+      { _id: "12", filename: "spot12.jpg", likes: 130, address: "Gangneung, Korea" }
+    ];
 
-        setLikedStates(likedStatuses);
-        setLoading(false);
-      } catch (error) {
-        if (error.response && error.response.status === 401) {
-          console.log("인증 실패: 세션이 유효하지 않음.");
-        } else {
-          console.error("데이터를 불러오는 중 오류:", error);
-          setError("데이터를 불러오는 중 오류가 발생했습니다.");
-        }
-        setLoading(false);
-      }
-    };
+    setHotSpots(mockData);
 
-    fetchHotSpots();
-  }, [navigate]);
+    const likedStatuses = mockData.map((spot) => false); 
+    setLikedStates(likedStatuses);
+
+    setLoading(false); 
+  }, []);
 
   const openModal = (spot) => {
     setCurrentSpot(spot);
@@ -54,43 +47,26 @@ const HotSpot = () => {
 
   const closeModal = () => setModalIsOpen(false);
 
-  // 하트 클릭 시 좋아요 수 증가/감소 로직
-  const handleLikeClick = (index, spotId) => {
+  const handleLikeClick = (index) => {
     const newLikedStates = [...likedStates];
-    newLikedStates[index] = !newLikedStates[index]; // 상태 반전
+    newLikedStates[index] = !newLikedStates[index]; 
 
-    // 좋아요 상태를 반영하여 숫자 증가/감소
     const updatedSpots = hotSpots.map((spot, i) => {
       if (i === index) {
         const updatedLikes = newLikedStates[index]
           ? spot.likes + 1
           : spot.likes - 1;
-        return { ...spot, likes: updatedLikes }; // likes 수 업데이트
+        return { ...spot, likes: updatedLikes }; 
       }
       return spot;
     });
 
-    // 좋아요 상태를 로컬 스토리지에 저장
-    if (newLikedStates[index]) {
-      localStorage.setItem(`liked_${spotId}`, "true"); // 좋아요 상태 저장
-    } else {
-      localStorage.setItem(`liked_${spotId}`, "false"); // 좋아요 상태 취소
-    }
-
     setLikedStates(newLikedStates);
-    setHotSpots(updatedSpots); // 업데이트된 핫스팟을 설정하여 리렌더링
+    setHotSpots(updatedSpots);
   };
 
   if (loading) {
     return <div>로딩 중...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!hotSpots.length) {
-    return <div>데이터가 없습니다.</div>;
   }
 
   return (
@@ -120,16 +96,15 @@ const HotSpot = () => {
               </div>
               <div className="flex justify-between items-center">
                 <button
-                  onClick={() => handleLikeClick(index, spot._id)} // spot ID 전달
+                  onClick={() => handleLikeClick(index)}
                   className="flex items-center"
                 >
                   <img
-                    src={likedStates[index] ? filled_heart : empty_heart} // 좋아요 상태에 따른 이미지 변경
+                    src={likedStates[index] ? filled_heart : empty_heart}
                     alt="Like"
                     className="mr-2 w-[20%]"
                   />
-                  <p>{spot.likes ? spot.likes.toLocaleString() : "0"}</p>{" "}
-                  {/* 좋아요 수 표시 */}
+                  <p>{spot.likes ? spot.likes.toLocaleString() : "0"}</p>
                 </button>
                 <button
                   className="bg-[#E4EBF1] px-4 py-1 w-[68px] rounded"
@@ -141,7 +116,6 @@ const HotSpot = () => {
             </div>
           ))}
         </div>
-        {/* 모달 컴포넌트 */}
         {currentSpot && (
           <CustomModal
             isOpen={modalIsOpen}

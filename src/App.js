@@ -18,6 +18,9 @@ import ReadyTravel from "./pages/ReadyTravel";
 import SupNotice from "./pages/SupNotice";
 import SupQuestion from "./pages/SupQuestion";
 import Lodging from "./pages/Lodging";
+import HiddenSpot from "./pages/HiddenSpot";
+import Restaurant from "./pages/Restaurant";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
@@ -76,6 +79,8 @@ function App() {
         <Route path="/schedule-create" element={<ScheduleCreate />} />
         <Route path="/supnotice" element={<SupNotice />} />
         <Route path="/supquestion" element={<SupQuestion />} />
+        <Route path="/hidden-spot" element={<HiddenSpot />} />
+        <Route path="/restaurant" element={<Restaurant />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </div>
