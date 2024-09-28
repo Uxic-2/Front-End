@@ -7,6 +7,16 @@ import lodging_photato from "../imgs/lodging_photato.png";
 import folder_icon from "../imgs/mypage_folder.svg";
 import empty_heart from "../imgs/empty_heart.png";
 import filled_heart from "../imgs/filled_heart.png";
+import lg1 from "../imgs/lg1.png";
+import lg2 from "../imgs/lg2.png";
+import lg3 from "../imgs/lg3.png";
+import lg4 from "../imgs/lg4.png";
+import lg5 from "../imgs/lg5.png";
+import lg6 from "../imgs/lg6.png";
+import lg7 from "../imgs/lg7.png";
+import lg8 from "../imgs/lg8.png";
+import lg9 from "../imgs/lg9.png";
+import lg10 from "../imgs/lg10.png";
 import "../index.css";
 
 const lodgingData = [
@@ -17,6 +27,7 @@ const lodgingData = [
     location: "서울시 강남구",
     price: 150000,
     distance: 10,
+    image: lg1,
   },
   {
     id: 2,
@@ -25,6 +36,7 @@ const lodgingData = [
     location: "서울시 종로구",
     price: 120000,
     distance: 8,
+    image: lg2,
   },
   {
     id: 3,
@@ -33,6 +45,7 @@ const lodgingData = [
     location: "부산시 해운대구",
     price: 80000,
     distance: 15,
+    image: lg3,
   },
   {
     id: 4,
@@ -41,6 +54,7 @@ const lodgingData = [
     location: "강원도 평창군",
     price: 200000,
     distance: 20,
+    image: lg4,
   },
   {
     id: 5,
@@ -49,6 +63,7 @@ const lodgingData = [
     location: "제주시",
     price: 90000,
     distance: 18,
+    image: lg5,
   },
   {
     id: 6,
@@ -57,6 +72,7 @@ const lodgingData = [
     location: "전라북도 남원시",
     price: 50000,
     distance: 25,
+    image: lg6,
   },
   {
     id: 7,
@@ -65,6 +81,7 @@ const lodgingData = [
     location: "경기도 수원시",
     price: 60000,
     distance: 12,
+    image: lg7,
   },
   {
     id: 8,
@@ -73,6 +90,7 @@ const lodgingData = [
     location: "전주시",
     price: 110000,
     distance: 17,
+    image: lg8,
   },
   {
     id: 9,
@@ -81,6 +99,7 @@ const lodgingData = [
     location: "인천시 중구",
     price: 130000,
     distance: 5,
+    image: lg9,
   },
   {
     id: 10,
@@ -89,46 +108,7 @@ const lodgingData = [
     location: "강원도 속초시",
     price: 40000,
     distance: 30,
-  },
-  {
-    id: 11,
-    name: "펜션 K",
-    category: "펜션",
-    location: "경기도 가평군",
-    price: 180000,
-    distance: 22,
-  },
-  {
-    id: 12,
-    name: "모텔 L",
-    category: "모텔",
-    location: "서울시 동대문구",
-    price: 70000,
-    distance: 6,
-  },
-  {
-    id: 13,
-    name: "홈 M",
-    category: "홈, 빌라",
-    location: "부산시 북구",
-    price: 100000,
-    distance: 28,
-  },
-  {
-    id: 14,
-    name: "한옥 N",
-    category: "게하, 한옥",
-    location: "경주",
-    price: 140000,
-    distance: 16,
-  },
-  {
-    id: 15,
-    name: "게하 O",
-    category: "게하, 한옥",
-    location: "부산시 중구",
-    price: 90000,
-    distance: 24,
+    image: lg10,
   },
 ];
 
@@ -173,9 +153,9 @@ const Lodging = () => {
     setSelectedPopup(false);
   };
   const NextStepPopup = () => {
-    navigate("/restaurant"); 
+    navigate("/restaurant");
   };
-  
+
   const goToSschedule = () => {
     navigate("/myschedule");
   };
@@ -284,13 +264,19 @@ const Lodging = () => {
               key={lodging.id}
               className="flex p-4 bg-white border border-gray-300 rounded relative"
             >
-              <div className=" bg-gray-300"></div>
-              <button
-                className={`w-36 h-36 bg-gray-300 relative`}
-                onClick={() => handleLinkClick("/vr/room_1/index.html")}
-              >
-                <div className="absolute bottom-0 right-0 mb-2 mr-2">🔎</div>
-              </button>
+              <div className="relative w-36 h-36">
+                <img
+                  src={lodging.image}
+                  alt={lodging.name}
+                  className="w-full h-full object-cover rounded"
+                />
+                <button
+                  className="absolute bottom-0 right-0 mb-2 mr-2"
+                  onClick={() => handleLinkClick("/vr/room_1/index.html")}
+                >
+                  🔎
+                </button>
+              </div>
               <div className="ml-4 flex-grow">
                 <h2 className="text-xl font-semibold">{lodging.name}</h2>
                 <p className="text-gray-700">{lodging.location}</p>

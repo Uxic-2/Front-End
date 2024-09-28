@@ -1,11 +1,20 @@
 import React from "react";
-import exampleImage from "../imgs/example_image.jpg";
 import img_potatoes from "../imgs/home_potatoes.svg";
 import img_home from "../imgs/home.svg";
 import img_cloud1 from "../imgs/home_cloud1.svg";
 import img_cloud2 from "../imgs/home_cloud2.svg";
 import img_potato from "../imgs/potato.svg";
 import img_heart from "../imgs/filled_heart.png";
+import spot1 from "../imgs/spot1.png";
+import spot2 from "../imgs/spot2.png";
+import spot3 from "../imgs/spot3.png";
+import spot4 from "../imgs/spot4.png";
+import spot5 from "../imgs/spot5.png";
+import spot6 from "../imgs/spot6.png";
+import spot7 from "../imgs/spot7.png";
+import spot8 from "../imgs/spot8.png";
+import spot9 from "../imgs/spot9.png";
+import spot10 from "../imgs/spot10.png";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -165,14 +174,16 @@ const Home = () => {
         시작하기
       </button>
       <div className="grid grid-cols-5 grid-rows-2 gap-2.5 p-5 mt-[15vh]">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <img
-            src={exampleImage}
-            alt={`Example ${index + 1}`}
-            key={index}
-            className="w-full h-auto object-cover border border-gray-300 rounded"
-          />
-        ))}
+        {[spot1, spot2, spot3, spot4, spot5, spot6, spot7, spot8, spot9, spot10].map(
+          (spot, index) => (
+            <img
+              src={spot}
+              alt={`Spot ${index + 1}`}
+              key={index}
+              className="w-full h-[200px] object-cover border border-gray-300 rounded"
+            />
+          )
+        )}
       </div>
     </div>
   );
