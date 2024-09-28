@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import folder_icon from "../imgs/mypage_folder.svg";
 import empty_heart from "../imgs/empty_heart.png";
 import filled_heart from "../imgs/filled_heart.png";
+import spot5 from "../imgs/spot5.png";
+import spot8 from "../imgs/spot8.png";
+import spot11 from "../imgs/spot11.png";
 
 const HiddenSpot = () => {
   const [selectedPopup, setSelectedPopup] = useState(false);
@@ -13,6 +16,7 @@ const HiddenSpot = () => {
   const [buttonColors, setButtonColors] = useState({});
 
   const navigate = useNavigate();
+
   const handleSelectClick = (spot) => {
     setSelectedPopup(true);
     setButtonColors((prevState) => ({
@@ -20,6 +24,7 @@ const HiddenSpot = () => {
       [spot]: "#F8B46E",
     }));
   };
+
   const handleLikeClick = (spot) => {
     setLikedStates((prevState) => ({
       ...prevState,
@@ -27,15 +32,19 @@ const HiddenSpot = () => {
     }));
     setLikedPopup(true);
   };
+
   const closeSelectedPopup = () => {
     setSelectedPopup(false);
   };
+
   const closeLikedPopup = () => {
     setLikedPopup(false);
   };
+
   const NextStepPopup = () => {
     navigate("/ready-travel");
   };
+
   const goToFolder = () => {
     navigate("/myfolder");
   };
@@ -48,31 +57,35 @@ const HiddenSpot = () => {
           당신이 몰랐던 주변 HIDDEN SPOT
         </h1>
         <div className="grid grid-cols-1 gap-4">
-          {[1, 2, 3].map((spot) => (
-            <div key={spot} className="flex rounded-lg">
-              <div className="w-32 h-32 bg-gray-300 mr-4"></div>
+          {[spot5, spot8, spot11].map((spot, index) => (
+            <div key={index} className="flex rounded-lg">
+              <img
+                src={spot}
+                alt={`Spot ${index + 1}`}
+                className="w-32 h-32 mr-4 object-cover"
+              />
               <div className="flex-grow">
-                <h2 className="text-lg">HOT {spot}</h2>
+                <h2 className="text-lg">HOT {index + 1}</h2>
                 <p>서울시 노원구 노원로</p>
                 <p>-km(도시 + 소요 시간)</p>
                 <p>가격</p>
               </div>
               <div className="flex items-end">
                 <button
-                  onClick={() => handleLikeClick(spot)}
+                  onClick={() => handleLikeClick(index)}
                   className="flex items-center"
                 >
                   <img
-                    src={likedStates[spot] ? filled_heart : empty_heart}
+                    src={likedStates[index] ? filled_heart : empty_heart}
                     alt="Like"
                     className="w-[25%] mb-1"
                   />
                 </button>
                 <button
                   className="text-white px-4 py-1.5 rounded-xl w-[7vw] mr-4"
-                  onClick={() => handleSelectClick(spot)}
+                  onClick={() => handleSelectClick(index)}
                   style={{
-                    backgroundColor: buttonColors[spot] || "#E4EBF1",
+                    backgroundColor: buttonColors[index] || "#E4EBF1",
                   }}
                 >
                   선택
@@ -130,4 +143,5 @@ const HiddenSpot = () => {
     </div>
   );
 };
+
 export default HiddenSpot;

@@ -5,6 +5,18 @@ import links from "../components/SideBar/SBHotspot";
 import CustomModal from "./HotspotModal";
 import empty_heart from "../imgs/empty_heart.png";
 import filled_heart from "../imgs/filled_heart.png";
+import spot1 from "../imgs/spot1.png";
+import spot2 from "../imgs/spot2.png";
+import spot3 from "../imgs/spot3.png";
+import spot4 from "../imgs/spot4.png";
+import spot5 from "../imgs/spot5.png";
+import spot6 from "../imgs/spot6.png";
+import spot7 from "../imgs/spot7.png";
+import spot8 from "../imgs/spot8.png";
+import spot9 from "../imgs/spot9.png";
+import spot10 from "../imgs/spot10.png";
+import spot11 from "../imgs/spot11.png";
+import spot12 from "../imgs/spot12.png";
 
 const HotSpot = () => {
   const [hotSpots, setHotSpots] = useState([]);
@@ -12,32 +24,28 @@ const HotSpot = () => {
   const [currentSpot, setCurrentSpot] = useState(null);
   const [likedStates, setLikedStates] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-
     const mockData = [
-      { _id: "1", filename: "spot1.jpg", likes: 120, address: "Seoul, Korea" },
-      { _id: "2", filename: "spot2.jpg", likes: 98, address: "Busan, Korea" },
-      { _id: "3", filename: "spot3.jpg", likes: 150, address: "Incheon, Korea" },
-      { _id: "4", filename: "spot4.jpg", likes: 60, address: "Jeju, Korea" },
-      { _id: "5", filename: "spot5.jpg", likes: 75, address: "Daegu, Korea" },
-      { _id: "6", filename: "spot6.jpg", likes: 45, address: "Gwangju, Korea" },
-      { _id: "7", filename: "spot7.jpg", likes: 85, address: "Suwon, Korea" },
-      { _id: "8", filename: "spot8.jpg", likes: 110, address: "Daejeon, Korea" },
-      { _id: "9", filename: "spot9.jpg", likes: 50, address: "Pohang, Korea" },
-      { _id: "10", filename: "spot10.jpg", likes: 95, address: "Ulsan, Korea" },
-      { _id: "11", filename: "spot11.jpg", likes: 100, address: "Sejong, Korea" },
-      { _id: "12", filename: "spot12.jpg", likes: 130, address: "Gangneung, Korea" }
+      { _id: "1", image: spot1, likes: 120, address: "Seoul, Korea" },
+      { _id: "2", image: spot2, likes: 98, address: "Busan, Korea" },
+      { _id: "3", image: spot3, likes: 150, address: "Incheon, Korea" },
+      { _id: "4", image: spot4, likes: 60, address: "Jeju, Korea" },
+      { _id: "5", image: spot5, likes: 75, address: "Daegu, Korea" },
+      { _id: "6", image: spot6, likes: 45, address: "Gwangju, Korea" },
+      { _id: "7", image: spot7, likes: 85, address: "Suwon, Korea" },
+      { _id: "8", image: spot8, likes: 110, address: "Daejeon, Korea" },
+      { _id: "9", image: spot9, likes: 50, address: "Pohang, Korea" },
+      { _id: "10", image: spot10, likes: 95, address: "Ulsan, Korea" },
+      { _id: "11", image: spot11, likes: 100, address: "Sejong, Korea" },
+      { _id: "12", image: spot12, likes: 130, address: "Gangneung, Korea" }
     ];
 
     setHotSpots(mockData);
-
-    const likedStatuses = mockData.map((spot) => false); 
-    setLikedStates(likedStatuses);
-
-    setLoading(false); 
+    setLikedStates(mockData.map(() => false));
+    setLoading(false);
   }, []);
 
   const openModal = (spot) => {
@@ -49,14 +57,14 @@ const HotSpot = () => {
 
   const handleLikeClick = (index) => {
     const newLikedStates = [...likedStates];
-    newLikedStates[index] = !newLikedStates[index]; 
+    newLikedStates[index] = !newLikedStates[index];
 
     const updatedSpots = hotSpots.map((spot, i) => {
       if (i === index) {
         const updatedLikes = newLikedStates[index]
           ? spot.likes + 1
           : spot.likes - 1;
-        return { ...spot, likes: updatedLikes }; 
+        return { ...spot, likes: updatedLikes };
       }
       return spot;
     });
@@ -89,8 +97,8 @@ const HotSpot = () => {
                 onClick={() => openModal(spot)}
               >
                 <img
-                  src={`http://localhost:8080/image/${spot.filename}`}
-                  alt={spot.filename}
+                  src={spot.image}
+                  alt={`spot${index + 1}`}
                   className="w-full h-full object-cover"
                 />
               </div>

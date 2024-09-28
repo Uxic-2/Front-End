@@ -173,8 +173,9 @@ const Lodging = () => {
     setSelectedPopup(false);
   };
   const NextStepPopup = () => {
-    navigate("/schedule-create");
+    navigate("/restaurant"); 
   };
+  
   const goToSschedule = () => {
     navigate("/myschedule");
   };

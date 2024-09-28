@@ -7,9 +7,16 @@ import links from "../components/SideBar/SBMypage";
 import schedule_icon from "../imgs/mypage_schedule.svg";
 
 function MySchedule() {
-  const myFolder = Array(10).fill({ folder_name: "folder name" });
-  const listItems = 3;
-
+  const myFolder = [
+    { folder_name: "서울 여행 일정" },
+    { folder_name: "부산 여행 일정" },
+    { folder_name: "제주도 여행 일정" },
+    { folder_name: "강원도 여행 일정" },
+    { folder_name: "경주 여행 일정" },
+    { folder_name: "전주 여행 일정" }
+  ];
+  
+  const listItems = 3; 
   const navigate = useNavigate();
 
   const goToSchedule = () => {
@@ -37,17 +44,19 @@ function MySchedule() {
                           ? listItems
                           : myFolder.length % listItems,
                     },
-                    (_, i) => v * 3 + i
-                  ).map((spot) => {
+                    (_, i) => v * listItems + i
+                  ).map((spot, index) => {
                     return (
                       <div
+                        key={index}
                         className="flex flex-col items-center w-[33%] mt-20"
                         onClick={goToSchedule}
                       >
                         <img
                           src={schedule_icon}
                           className="w-[120px] h-[120px]"
-                        ></img>
+                          alt="Schedule Icon"
+                        />
                         <div className="flex-1 text-base text-center">
                           {myFolder[spot].folder_name}
                         </div>

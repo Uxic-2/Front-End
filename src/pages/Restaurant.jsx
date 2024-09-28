@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
-import lodging_photato from "../imgs/lodging_photato.png"; 
+import lodging_photato from "../imgs/lodging_photato.png";
+import empty_heart from "../imgs/empty_heart.png";
+import filled_heart from "../imgs/filled_heart.png";
+import folder_icon from "../imgs/mypage_folder.svg";
+import { useNavigate } from "react-router-dom"; 
 import "../index.css";
 
 const restaurantData = [
@@ -25,9 +29,47 @@ const restaurantData = [
 const Restaurant = () => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [sortOption, setSortOption] = useState("거리순");
+  const [likedStates, setLikedStates] = useState({});
+  const [buttonColors, setButtonColors] = useState({});
+  const [likedPopup, setLikedPopup] = useState(false);
+  const [selectedPopup, setSelectedPopup] = useState(false);
+
+  const navigate = useNavigate(); // navigate 함수 추가
 
   const buttonClass =
     "px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-main-orange hover:text-white active:bg-main-orange";
+
+  const handleLikeClick = (restaurant) => {
+    setLikedStates((prevState) => ({
+      ...prevState,
+      [restaurant.id]: !prevState[restaurant.id],
+    }));
+    setLikedPopup(true);
+  };
+
+  const handleSelectClick = (restaurant) => {
+    setButtonColors((prevState) => ({
+      ...prevState,
+      [restaurant.id]: "#F8B46E",
+    }));
+    setSelectedPopup(true);
+  };
+
+  const closeLikedPopup = () => {
+    setLikedPopup(false);
+  };
+
+  const closeSelectedPopup = () => {
+    setSelectedPopup(false);
+  };
+
+  const NextStepPopup = () => {
+    navigate("/schedule-create");
+  };
+
+  const goToSschedule = () => {
+    navigate("/myschedule");
+  };
 
   let filteredRestaurants = selectedCategory === "전체"
     ? restaurantData
@@ -91,15 +133,79 @@ const Restaurant = () => {
                 <p className="text-gray-700">{restaurant.location}</p>
                 <p className="text-gray-700">{restaurant.price.toLocaleString()}원</p>
                 <p className="text-gray-700">{restaurant.distance} km</p>
-                <div className="flex items-center mt-2">
-                  <button className={`${buttonClass} mr-2`}>선택</button>
-                  <button className={`${buttonClass} mr-2`}>❤️</button>
+                <div className="flex justify-end mt-2">
+                  <button
+                    className="text-white px-4 py-1.5 rounded-xl w-[7vw] mr-2"
+                    onClick={() => handleSelectClick(restaurant)}
+                    style={{
+                      backgroundColor: buttonColors[restaurant.id] || "#E4EBF1",
+                    }}
+                  >
+                    {buttonColors[restaurant.id] ? "선택됨" : "선택"}
+                  </button>
+                  <button
+                    onClick={() => handleLikeClick(restaurant)}
+                    className="flex items-center"
+                  >
+                    <img
+                      src={likedStates[restaurant.id] ? filled_heart : empty_heart}
+                      alt="Like"
+                      className="w-[25%] mb-1"
+                    />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {likedPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-lg flex flex-col items-center">
+            <img
+              src={folder_icon}
+              className="w-[120px] h-[120px] mb-4"
+              alt="Folder Icon"
+            />
+            <p>좋아요한 맛집을 ㅇㅇ폴더에 담았습니다!</p>
+            <div className="flex mt-4">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={goToSschedule}
+              >
+                폴더 가기
+              </button>
+              <button
+                className="bg-gray-500 text-white px-4 py-2 rounded ml-2"
+                onClick={closeLikedPopup}
+              >
+                계속 둘러보기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-lg">
+            <p>ㅇㅇ동 여행 스케줄에 담습니다.</p>
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={NextStepPopup}
+            >
+              다음 단계로
+            </button>
+            <button
+              className="bg-gray-500 text-white px-4 py-2 rounded ml-2"
+              onClick={closeSelectedPopup}
+            >
+              더 선택하기
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import Modal from "react-modal";
 import img_icon from "../imgs/mymap_image.png";
 import loc_icon from "../imgs/mymap_loc.png";
@@ -7,7 +6,7 @@ import usericon from "../imgs/userIcon.svg";
 
 Modal.setAppElement("#root");
 
-function PresentaionalModal({ isOpen, onRequestClose }) {
+function PresentaionalModal({ isOpen, onRequestClose, onUploadSuccess }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
   const [title, setTitle] = useState("");
@@ -89,44 +88,26 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
     fileInputRef.current.click();
   };
 
-  const uploadPost = async () => {
+  const uploadPost = () => {
     if (!selectedFile) {
       alert("Please select a file to upload.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("uploadImg", selectedFile);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("latitude", latitude);
-    formData.append("longitude", longitude);
-    formData.append("address", address);
+    const newPhoto = {
+      filename: previewSrc,
+      metadata: {
+        title: title,
+        description: description,
+        address: address || `위도: ${latitude}, 경도: ${longitude}`,
+        latitude: latitude,
+        longitude: longitude,
+      },
+    };
 
-    console.log("FormData Entries:", ...formData.entries()); // FormData 내용
-
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        alert("Upload successful");
-        resetFields();
-        onRequestClose();
-      } else {
-        alert("Upload failed");
-      }
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("An error occurred during the upload.");
-    }
+    onUploadSuccess(newPhoto);
+    resetFields();
+    onRequestClose();
   };
 
   return (
@@ -143,13 +124,9 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
           X
         </button>
         <div className="flex items-center justify-left mb-2">
-  <img
-    src={usericon}
-    alt="usericon"
-    className="w-[5%] h-auto mr-2" // Set width to 5% and height to auto, with a margin to the right
-  />
-  <div>user_123</div>
-</div>
+          <img src={usericon} alt="usericon" className="w-[5%] h-auto mr-2" />
+          <div>user_123</div>
+        </div>
 
         <div className="flex bg-white m-auto w-[100%] h-[70vh] mb-2 rounded-[20px] shadow-lg">
           <div className="flex flex-col w-[50%] justify-center">
@@ -210,14 +187,12 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <textarea
-  className="w-[100%] p-4 border bg-white bg-opacity-0 resize-none text-xs rounded-[10px]"
-  placeholder="설명글"
-  rows="16"  // Increase the number of rows from 4 to 6 (or more if needed)
-  value={description}
-  onChange={(e) => setDescription(e.target.value)}
-/>
-
-
+                  className="w-[100%] p-4 border bg-white bg-opacity-0 resize-none text-xs rounded-[10px]"
+                  placeholder="설명글"
+                  rows="6"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
               </form>
             </div>
           </div>

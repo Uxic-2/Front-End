@@ -1,4 +1,3 @@
-// myfolder 내부 모달 이미지 표시용 컨테이너
 import React, { useState } from "react";
 
 function HotSpotList({ HotSpot, listItems }) {
@@ -31,7 +30,11 @@ function HotSpotList({ HotSpot, listItems }) {
       <div className="grid grid-cols-4 gap-3">
         {currentItems.map((spot, index) => (
           <div key={index} className="flex flex-col items-center">
-            <img className="bg-slate-300 w-[240px] h-[180px]" />
+            <img 
+              className="bg-slate-300 w-[240px] h-[180px]" 
+              src="https://via.placeholder.com/240x180.png" 
+              alt={`Image ${index}`} 
+            />
           </div>
         ))}
       </div>
