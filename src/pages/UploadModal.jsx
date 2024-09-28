@@ -3,6 +3,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import img_icon from "../imgs/mymap_image.png";
 import loc_icon from "../imgs/mymap_loc.png";
+import usericon from "../imgs/userIcon.svg";
 
 Modal.setAppElement("#root");
 
@@ -130,23 +131,31 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
 
   return (
     <Modal
-      className={`fixed z-0 bg-[#FFFADD] m-[4%_0_0_10%] w-[70%] h-[80vh] overflow-auto${
+      className={`z-[9999] fixed z-0 bg-[#FFFADD] m-[2%_0_0_10%] w-[80%] h-[95vh] overflow-auto rounded-[20px]${
         isOpen ? "" : "hidden"
       }`}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
+      style={{ overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)" } }}
     >
       <div className="p-5">
         <button className="ml-[98%]" onClick={onRequestClose}>
           X
         </button>
-        <div className="justify-center">user_123</div>
-        <div className="flex bg-white m-auto w-[100%] h-[70vh] mb-2">
+        <div className="flex items-center justify-left mb-2">
+  <img
+    src={usericon}
+    alt="usericon"
+    className="w-[5%] h-auto mr-2" // Set width to 5% and height to auto, with a margin to the right
+  />
+  <div>user_123</div>
+</div>
+
+        <div className="flex bg-white m-auto w-[100%] h-[70vh] mb-2 rounded-[20px] shadow-lg">
           <div className="flex flex-col w-[50%] justify-center">
             {previewSrc ? (
               <img
-                className="mt-[5%] mb-5 m-auto"
+                className="mt-[5%] mb-5 m-auto rounded-[15px]"
                 src={previewSrc}
                 alt="Preview"
                 style={{
@@ -156,7 +165,7 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
                 }}
               />
             ) : (
-              <div className="mt-[5%] mb-5 m-auto text-center">
+              <div className="mt-[5%] mb-5 m-auto text-center rounded-[15px] border-dashed border-2 border-gray-300 p-10">
                 사진을 여기에 끌어다 놓으세요
               </div>
             )}
@@ -167,7 +176,7 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
               onChange={handleFileChange}
             />
             <button
-              className="m-[1%_auto_3%] bg-main-orange text-white w-[70%] h-[40px] rounded-xl"
+              className="m-[1%_auto_3%] bg-main-orange text-white w-[70%] h-[40px] rounded-[20px]"
               onClick={handleButtonClick}
             >
               컴퓨터에서 선택
@@ -175,14 +184,14 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
           </div>
 
           <div className="flex flex-col w-[50%]">
-            <div className="flex m-[2%_auto] w-[100%]">
+            <div className="flex m-[2%_auto] w-[100%] items-center">
               <img className="w-5 h-5" src={loc_icon} alt="location icon" />
               {latitude && longitude ? (
-                <div>{`위도: ${latitude}, 경도: ${longitude}`}</div>
+                <div className="ml-2">{`위도: ${latitude}, 경도: ${longitude}`}</div>
               ) : (
-                <div className="w-[100%]">
+                <div className="w-[100%] ml-2">
                   <input
-                    className="w-[100%] p-4 border bg-white bg-opacity-0 text-xs"
+                    className="w-[100%] p-4 border bg-white bg-opacity-0 text-xs rounded-[10px]"
                     type="text"
                     placeholder="위치를 입력해주세요"
                     value={address}
@@ -194,26 +203,28 @@ function PresentaionalModal({ isOpen, onRequestClose }) {
             <div className="m-[2%_auto] w-[100%]">
               <form>
                 <input
-                  className="w-[100%] p-4 border bg-white bg-opacity-0 text-xs"
+                  className="w-[100%] p-4 border bg-white bg-opacity-0 text-xs rounded-[10px]"
                   type="text"
                   placeholder="제목"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <textarea
-                  className="w-[100%] p-4 border bg-white bg-opacity-0 resize-none text-xs"
-                  placeholder="설명글"
-                  rows="4"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
+  className="w-[100%] p-4 border bg-white bg-opacity-0 resize-none text-xs rounded-[10px]"
+  placeholder="설명글"
+  rows="16"  // Increase the number of rows from 4 to 6 (or more if needed)
+  value={description}
+  onChange={(e) => setDescription(e.target.value)}
+/>
+
+
               </form>
             </div>
           </div>
         </div>
         <div className="flex justify-center w-[100%]">
           <button
-            className="bg-main-orange text-white w-[15%] h-[40px] m-auto rounded-xl"
+            className="bg-main-orange text-white w-[15%] h-[40px] m-auto rounded-[20px]"
             onClick={uploadPost}
           >
             Upload
