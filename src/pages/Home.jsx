@@ -155,7 +155,7 @@ const Home = () => {
           <div className="px-4 py-1 rounded-2xl bg-black text-white inline">
             save
           </div>{" "}
-          버튼을 누르면 [마이페이지->저장한 스케줄] 에서 확인할 수 있습니다.
+          버튼을 누르면 [마이페이지-&gt;저장한 스케줄] 에서 확인할 수 있습니다.
         </div>
       </div>
       <button

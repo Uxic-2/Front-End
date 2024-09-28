@@ -3,14 +3,28 @@ import SideBar from "../components/SideBar";
 import links from "../components/SideBar/SBHotspot";
 import { useNavigate } from "react-router-dom";
 import folder_icon from "../imgs/mypage_folder.svg";
+import empty_heart from "../imgs/empty_heart.png";
+import filled_heart from "../imgs/filled_heart.png";
+
 const HiddenSpot = () => {
   const [selectedPopup, setSelectedPopup] = useState(false);
   const [likedPopup, setLikedPopup] = useState(false);
+  const [likedStates, setLikedStates] = useState({});
+  const [buttonColors, setButtonColors] = useState({});
+
   const navigate = useNavigate();
-  const handleSelectClick = () => {
+  const handleSelectClick = (spot) => {
     setSelectedPopup(true);
+    setButtonColors((prevState) => ({
+      ...prevState,
+      [spot]: "#F8B46E",
+    }));
   };
-  const handleLikeClick = () => {
+  const handleLikeClick = (spot) => {
+    setLikedStates((prevState) => ({
+      ...prevState,
+      [spot]: !prevState[spot],
+    }));
     setLikedPopup(true);
   };
   const closeSelectedPopup = () => {
@@ -25,36 +39,43 @@ const HiddenSpot = () => {
   const goToFolder = () => {
     navigate("/myfolder");
   };
+
   return (
     <div className="flex">
       <SideBar links={links} />
-      <div className="flex-grow p-4">
-        <h1 className="text-xl mb-4">당신이 몰랐던 주변 HIDDEN SPOT</h1>
+      <div className="mx-auto w-[75%] pt-[50px]">
+        <h1 className="mb-4 text-2xl font-bold flex items-center">
+          당신이 몰랐던 주변 HIDDEN SPOT
+        </h1>
         <div className="grid grid-cols-1 gap-4">
           {[1, 2, 3].map((spot) => (
-            <div
-              key={spot}
-              className="flex items-center bg-gray-100 p-4 rounded-lg"
-            >
-              <div className="w-24 h-24 bg-gray-300 mr-4"></div>
+            <div key={spot} className="flex rounded-lg">
+              <div className="w-32 h-32 bg-gray-300 mr-4"></div>
               <div className="flex-grow">
                 <h2 className="text-lg">HOT {spot}</h2>
                 <p>서울시 노원구 노원로</p>
                 <p>-km(도시 + 소요 시간)</p>
                 <p>가격</p>
               </div>
-              <div className="flex flex-col items-center">
+              <div className="flex items-end">
                 <button
-                  className="bg-orange-500 text-white px-4 py-2 rounded mb-2"
-                  onClick={handleSelectClick}
+                  onClick={() => handleLikeClick(spot)}
+                  className="flex items-center"
                 >
-                  선택
+                  <img
+                    src={likedStates[spot] ? filled_heart : empty_heart}
+                    alt="Like"
+                    className="w-[25%] mb-1"
+                  />
                 </button>
                 <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={handleLikeClick}
+                  className="text-white px-4 py-1.5 rounded-xl w-[7vw] mr-4"
+                  onClick={() => handleSelectClick(spot)}
+                  style={{
+                    backgroundColor: buttonColors[spot] || "#E4EBF1",
+                  }}
                 >
-                  ❤️
+                  선택
                 </button>
               </div>
             </div>
