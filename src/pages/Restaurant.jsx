@@ -144,16 +144,7 @@ const Restaurant = () => {
                 <p className="text-gray-700">{restaurant.price.toLocaleString()}원</p>
                 <p className="text-gray-700">{restaurant.distance} km</p>
               </div>
-              <div className="flex items-center">
-                <button
-                  className="text-white px-4 py-1.5 rounded-xl w-[7vw] mr-2"
-                  onClick={() => handleSelectClick(restaurant)}
-                  style={{
-                    backgroundColor: buttonColors[restaurant.id] || "#E4EBF1",
-                  }}
-                >
-                  {buttonColors[restaurant.id] ? "선택됨" : "선택"}
-                </button>
+              <div className="flex items-center justify-end absolute bottom-4 right-4 gap-[5px]">
                 <button
                   onClick={() => handleLikeClick(restaurant)}
                   className="flex items-center"
@@ -164,58 +155,59 @@ const Restaurant = () => {
                     className="w-[25%] mb-1"
                   />
                 </button>
+                <button
+                  className="text-white px-4 py-1.5 rounded-xl w-[7vw]"
+                  onClick={() => handleSelectClick(restaurant)}
+                  style={{
+                    backgroundColor: buttonColors[restaurant.id] || "#E4EBF1",
+                  }}
+                >
+                  {buttonColors[restaurant.id] ? "선택됨" : "선택"}
+                </button>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {likedPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded shadow-lg flex flex-col items-center">
-            <img
-              src={folder_icon}
-              className="w-[120px] h-[120px] mb-4"
-              alt="Folder Icon"
-            />
-            <p>좋아요한 맛집을 ㅇㅇ폴더에 담았습니다!</p>
-            <div className="flex mt-4">
+        {/* 하트 팝업 */}
+        {likedPopup && (
+          <div className="popup-overlay" onClick={closeLikedPopup}>
+            <div className="popup flex flex-col items-center">
+              <img src={folder_icon} alt="My Folder" className="w-[20%]" />
+              <p>마이페이지에 저장되었습니다.</p>
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="mt-4 p-2 bg-orange-500 text-white rounded"
                 onClick={goToSschedule}
               >
-                폴더 가기
-              </button>
-              <button
-                className="bg-gray-500 text-white px-4 py-2 rounded ml-2"
-                onClick={closeLikedPopup}
-              >
-                계속 둘러보기
+                마이페이지로 가기
               </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {selectedPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded shadow-lg">
-            <p>ㅇㅇ동 여행 스케줄에 담습니다.</p>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={NextStepPopup}
-            >
-              다음 단계로
-            </button>
-            <button
-              className="bg-gray-500 text-white px-4 py-2 rounded ml-2"
-              onClick={closeSelectedPopup}
-            >
-              더 선택하기
-            </button>
+        {/* 선택 팝업 */}
+        {selectedPopup && (
+          <div className="popup-overlay" onClick={closeSelectedPopup}>
+            <div className="popup">
+              <p>일정 작성 단계로 넘어가시겠습니까?</p>
+              <div className="flex justify-center mt-4">
+                <button
+                  className="mx-2 px-4 py-2 bg-gray-300 text-black rounded"
+                  onClick={closeSelectedPopup}
+                >
+                  취소
+                </button>
+                <button
+                  className="mx-2 px-4 py-2 bg-orange-500 text-white rounded"
+                  onClick={NextStepPopup}
+                >
+                  확인
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
