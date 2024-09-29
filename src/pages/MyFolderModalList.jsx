@@ -31,8 +31,8 @@ function HotSpotList({ HotSpot, listItems }) {
         {currentItems.map((spot, index) => (
           <div key={index} className="flex flex-col items-center">
             <img 
-              className="bg-slate-300 w-[240px] h-[180px]" 
-              src="https://via.placeholder.com/240x180.png" 
+              className="bg-slate-300 w-[240px] h-[180px] object-cover rounded" 
+              src={spot}  
               alt={`Image ${index}`} 
             />
           </div>

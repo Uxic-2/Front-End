@@ -5,25 +5,32 @@ import lodging_photato from "../imgs/lodging_photato.png";
 import empty_heart from "../imgs/empty_heart.png";
 import filled_heart from "../imgs/filled_heart.png";
 import folder_icon from "../imgs/mypage_folder.svg";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "../index.css";
 
+// 이미지 import
+import f1 from "../imgs/f1.png";
+import f2 from "../imgs/f2.png";
+import f3 from "../imgs/f3.png";
+import f4 from "../imgs/f4.png";
+import f5 from "../imgs/f5.png";
+import f6 from "../imgs/f6.png";
+import f7 from "../imgs/f7.png";
+import f8 from "../imgs/f8.png";
+import f9 from "../imgs/f9.png";
+import f10 from "../imgs/f10.png";
+
 const restaurantData = [
-  { id: 1, name: "중식당 A", category: "중식", location: "서울시 강남구", price: 20000, distance: 10 },
-  { id: 2, name: "일식당 B", category: "일식", location: "서울시 종로구", price: 30000, distance: 8 },
-  { id: 3, name: "양식당 C", category: "양식", location: "부산시 해운대구", price: 40000, distance: 15 },
-  { id: 4, name: "한식당 D", category: "한식", location: "강원도 평창군", price: 15000, distance: 20 },
-  { id: 5, name: "카페 E", category: "카페", location: "제주시", price: 10000, distance: 18 },
-  { id: 6, name: "디저트 F", category: "디저트", location: "전라북도 남원시", price: 8000, distance: 25 },
-  { id: 7, name: "인스타 핫플 G", category: "인스타 핫플", location: "경기도 수원시", price: 25000, distance: 12 },
-  { id: 8, name: "중식당 H", category: "중식", location: "전주시", price: 22000, distance: 17 },
-  { id: 9, name: "카페 I", category: "카페", location: "인천시 중구", price: 12000, distance: 5 },
-  { id: 10, name: "양식당 J", category: "양식", location: "강원도 속초시", price: 35000, distance: 30 },
-  { id: 11, name: "한식당 K", category: "한식", location: "경기도 가평군", price: 18000, distance: 22 },
-  { id: 12, name: "디저트 L", category: "디저트", location: "서울시 동대문구", price: 9000, distance: 6 },
-  { id: 13, name: "일식당 M", category: "일식", location: "부산시 북구", price: 28000, distance: 28 },
-  { id: 14, name: "한식당 N", category: "한식", location: "경주", price: 16000, distance: 16 },
-  { id: 15, name: "양식당 O", category: "양식", location: "부산시 중구", price: 38000, distance: 24 },
+  { id: 1, name: "중식당 A", category: "중식", location: "서울시 강남구", price: 20000, distance: 10, image: f1 },
+  { id: 2, name: "일식당 B", category: "일식", location: "서울시 종로구", price: 30000, distance: 8, image: f2 },
+  { id: 3, name: "양식당 C", category: "양식", location: "부산시 해운대구", price: 40000, distance: 15, image: f3 },
+  { id: 4, name: "한식당 D", category: "한식", location: "강원도 평창군", price: 15000, distance: 20, image: f4 },
+  { id: 5, name: "카페 E", category: "카페", location: "제주시", price: 10000, distance: 18, image: f5 },
+  { id: 6, name: "디저트 F", category: "디저트", location: "전라북도 남원시", price: 8000, distance: 25, image: f6 },
+  { id: 7, name: "인스타 핫플 G", category: "인스타 핫플", location: "경기도 수원시", price: 25000, distance: 12, image: f7 },
+  { id: 8, name: "중식당 H", category: "중식", location: "전주시", price: 22000, distance: 17, image: f8 },
+  { id: 9, name: "카페 I", category: "카페", location: "인천시 중구", price: 12000, distance: 5, image: f9 },
+  { id: 10, name: "양식당 J", category: "양식", location: "강원도 속초시", price: 35000, distance: 30, image: f10 },
 ];
 
 const Restaurant = () => {
@@ -34,7 +41,7 @@ const Restaurant = () => {
   const [likedPopup, setLikedPopup] = useState(false);
   const [selectedPopup, setSelectedPopup] = useState(false);
 
-  const navigate = useNavigate(); // navigate 함수 추가
+  const navigate = useNavigate(); 
 
   const buttonClass =
     "px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-main-orange hover:text-white active:bg-main-orange";
@@ -126,34 +133,37 @@ const Restaurant = () => {
 
         <div className="flex flex-col gap-4">
           {filteredRestaurants.map(restaurant => (
-            <div key={restaurant.id} className="flex p-4 bg-white border border-gray-300 rounded relative">
-              <div className="w-36 h-24 bg-gray-300"></div>
+            <div key={restaurant.id} className="flex p-4 bg-white border border-gray-300 rounded relative items-center">
+              {/* 이미지 표시: 정방향으로 설정 */}
+              <div className="w-36 h-36">
+                <img src={restaurant.image} alt={restaurant.name} className="w-full h-full object-cover rounded" />
+              </div>
               <div className="ml-4 flex-grow">
                 <h2 className="text-xl font-semibold">{restaurant.name}</h2>
                 <p className="text-gray-700">{restaurant.location}</p>
                 <p className="text-gray-700">{restaurant.price.toLocaleString()}원</p>
                 <p className="text-gray-700">{restaurant.distance} km</p>
-                <div className="flex justify-end mt-2">
-                  <button
-                    className="text-white px-4 py-1.5 rounded-xl w-[7vw] mr-2"
-                    onClick={() => handleSelectClick(restaurant)}
-                    style={{
-                      backgroundColor: buttonColors[restaurant.id] || "#E4EBF1",
-                    }}
-                  >
-                    {buttonColors[restaurant.id] ? "선택됨" : "선택"}
-                  </button>
-                  <button
-                    onClick={() => handleLikeClick(restaurant)}
-                    className="flex items-center"
-                  >
-                    <img
-                      src={likedStates[restaurant.id] ? filled_heart : empty_heart}
-                      alt="Like"
-                      className="w-[25%] mb-1"
-                    />
-                  </button>
-                </div>
+              </div>
+              <div className="flex items-center">
+                <button
+                  className="text-white px-4 py-1.5 rounded-xl w-[7vw] mr-2"
+                  onClick={() => handleSelectClick(restaurant)}
+                  style={{
+                    backgroundColor: buttonColors[restaurant.id] || "#E4EBF1",
+                  }}
+                >
+                  {buttonColors[restaurant.id] ? "선택됨" : "선택"}
+                </button>
+                <button
+                  onClick={() => handleLikeClick(restaurant)}
+                  className="flex items-center"
+                >
+                  <img
+                    src={likedStates[restaurant.id] ? filled_heart : empty_heart}
+                    alt="Like"
+                    className="w-[25%] mb-1"
+                  />
+                </button>
               </div>
             </div>
           ))}

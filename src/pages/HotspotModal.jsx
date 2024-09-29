@@ -13,7 +13,7 @@ function CustomModal({ isOpen, onRequestClose, spot }) {
 
   return (
     <Modal
-      className={`fixed z-0 bg-white m-[10%_0_0_25%] w-[60%] h-[60vh] rounded-xl overflow-auto shadow-md ${  // 그림자 추가
+      className={`fixed z-0 bg-white m-[10%_0_0_25%] w-[60%] h-[60vh] rounded-xl overflow-auto shadow-md ${  
         isOpen ? "" : "hidden"
       }`}
       isOpen={isOpen}
@@ -25,13 +25,13 @@ function CustomModal({ isOpen, onRequestClose, spot }) {
           X
         </button>
 
-        {/* 사진 표시 */}
         <div className="bg-gray-300 m-auto w-[50%] aspect-[16/9] mb-2">
-          <img src={`http://localhost:8080/image/${spot.filename}`} alt={spot.filename} className="w-full h-full object-cover" />
+        <img src={spot.image} alt={spot.name} className="w-full h-full object-cover" />
         </div>
+
         
         {/* 사진 정보 표시 */}
-        <div className="text-center">장소: {spot.filename}</div>
+        <div className="text-center">장소: {spot.name ? spot.name : '장소 없음'}</div>
         <div className="text-center">주소: {spot.address ? spot.address : '주소 없음'}</div>
         <div className="text-center">
           위 장소를 포함한 여행 코스를 받아보시겠습니까?
@@ -39,14 +39,14 @@ function CustomModal({ isOpen, onRequestClose, spot }) {
         
         <div className="flex justify-center mt-1"> 
           <button
-            className="bg-gray-100 w-[15%] h-[40px] rounded-xl mr-10 shadow-md"  // 버튼에 그림자 추가
+            className="bg-gray-100 w-[15%] h-[40px] rounded-xl mr-10 shadow-md"  
             onClick={onRequestClose}
           >
             아니오
           </button>
 
           <button
-            className="bg-[#fc926b] text-white w-[15%] h-[40px] rounded-xl shadow-md"  // 버튼에 그림자 추가
+            className="bg-[#fc926b] text-white w-[15%] h-[40px] rounded-xl shadow-md"  
             onClick={goToHiddenSpot}
           >
             네
